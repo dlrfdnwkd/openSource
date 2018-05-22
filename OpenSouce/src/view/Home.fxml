@@ -1,45 +1,54 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.*?>
+<?import org.controlsfx.control.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.effect.*?>
 <?import javafx.scene.control.*?>
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.BorderPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="724.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <TabPane prefHeight="600.0" prefWidth="800.0" tabClosingPolicy="UNAVAILABLE">
+      <TabPane prefHeight="600.0" prefWidth="800.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <tabs>
           <Tab text="달력">
                <content>
                   <SplitPane dividerPositions="0.0840630472854641" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0">
                     <items>
-                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="45.0" prefWidth="800.0">
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="42.0" prefWidth="1000.0" style="-fx-background-color: white;">
                            <children>
-                              <Button layoutX="746.0" layoutY="14.0" mnemonicParsing="false" text="보기" />
-                              <Button layoutX="688.0" layoutY="14.0" mnemonicParsing="false" text="쓰기" />
-                              <Button layoutX="427.0" layoutY="14.0" mnemonicParsing="false" text="-&gt;" />
-                              <Button layoutX="342.0" layoutY="14.0" mnemonicParsing="false" text="&lt;-" />
-                              <Label layoutX="390.0" layoutY="18.0" text="5월" />
+                              <Button layoutX="946.0" layoutY="14.0" mnemonicParsing="false" style="-fx-background-color: #0D00FF;" text="보기" textFill="WHITE" />
+                              <Button layoutX="895.0" layoutY="14.0" mnemonicParsing="false" style="-fx-background-color: #0D00FF; -fx-border-radius: 5;" text="입력" textFill="WHITE" />
+                              <Button layoutX="443.0" layoutY="16.0" mnemonicParsing="false" prefHeight="23.0" prefWidth="0.0" text="Button">
+                                 <effect>
+                                    <ImageInput>
+                                       <source>
+                                          <Image url="file:/C:/Users/기루/Downloads/iconmonstr-angel-left-circle-thin-24.png" />
+                                       </source>
+                                    </ImageInput>
+                                 </effect>
+                              </Button>
+                              <Button layoutX="529.0" layoutY="16.0" mnemonicParsing="false" prefHeight="23.0" prefWidth="4.0" text="Button">
+                                 <effect>
+                                    <ImageInput>
+                                       <source>
+                                          <Image url="file:/C:/Users/기루/Downloads/iconmonstr-angel-right-circle-thin-24.png" />
+                                       </source>
+                                    </ImageInput>
+                                 </effect>
+                              </Button>
+                              <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="480.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../../../../../Downloads/iconmonstr-circle-1-32.png" />
+                                 </image>
+                              </ImageView>
+                              <Label layoutX="490.0" layoutY="21.0" text="5월" textFill="#fffdfd" />
                            </children>
                         </AnchorPane>
-                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="506.0" prefWidth="800.0">
-                           <children>
-                              <TreeTableView layoutX="122.0" layoutY="139.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                <columns>
-                                  <TreeTableColumn prefWidth="75.0" text="Sun" />
-                                  <TreeTableColumn prefWidth="75.0" text="Mon" />
-                                    <TreeTableColumn prefWidth="75.0" text="Tue" />
-                                    <TreeTableColumn prefWidth="75.0" text="Wed" />
-                                    <TreeTableColumn prefWidth="75.0" text="Thu" />
-                                    <TreeTableColumn prefWidth="75.0" text="Fri" />
-                                    <TreeTableColumn prefWidth="75.0" text="Sat" />
-                                </columns>
-                                 <columnResizePolicy>
-                                    <TreeTableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
-                                 </columnResizePolicy>
-                              </TreeTableView>
-                           </children>
-                        </AnchorPane>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="506.0" prefWidth="800.0" />
                     </items>
                   </SplitPane>
                </content>

@@ -5,6 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 
@@ -40,10 +41,35 @@ public class Main extends Application {
 			loader.setLocation(Main.class.getResource("../view/Home.fxml"));
 			AnchorPane home = (AnchorPane) loader.load();
 			rootLayout.setCenter(home);
+			
+			HomeController controller = loader.getController();
+			controller.setMain(this);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
+	
+    public void setInputData() {
+    	try {
+    		FXMLLoader loader = new FXMLLoader();
+    		loader.setLocation(Main.class.getResource("../view/Input.fxml"));
+    		AnchorPane page= (AnchorPane) loader.load();
+    		
+    		Stage dialogStage = new Stage();
+    		dialogStage.setTitle("입력하기");
+    	    dialogStage.initModality(Modality.WINDOW_MODAL);
+    	    dialogStage.initOwner(primaryStage);
+    	    Scene scene = new Scene(page);
+    	    dialogStage.setScene(scene);
+    	    
+    	    HomeButtonController controller = loader.getController();
+    	    controller.setDialogStage(dialogStage);
+    	    
+    	    dialogStage.showAndWait();
+    	} catch(Exception e) {
+    		e.printStackTrace();
+    	}
+    }
 	
 	public Stage getPrimaryStage() {
 		return primaryStage;

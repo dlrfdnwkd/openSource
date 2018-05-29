@@ -1,9 +1,12 @@
 package controller;
+import java.time.YearMonth;
+
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -12,8 +15,10 @@ public class HomeController {
 	private Main main;
 	private Button previousMonthButton;
 	private Stage primaryStage;
+	@FXML Pane calendarPane;
 
 	public void setMain(Main main) {
+		calendarPane.getChildren().add(new CalendarViewController(YearMonth.now()).getView());
 		this.main = main;
 	}
 	@FXML

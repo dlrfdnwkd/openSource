@@ -20,7 +20,7 @@
                     <items>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="42.0" prefWidth="1000.0" style="-fx-background-color: white;">
                            <children>
-                              <Button layoutX="946.0" layoutY="14.0" mnemonicParsing="false" style="-fx-background-color: #0D00FF;" text="보기" textFill="WHITE" />
+                              <Button layoutX="946.0" layoutY="14.0" mnemonicParsing="false" onAction="#outputButton" style="-fx-background-color: #0D00FF;" text="보기" textFill="WHITE" />
                               <Button layoutX="895.0" layoutY="14.0" mnemonicParsing="false" onAction="#inputButton" style="-fx-background-color: #0D00FF; -fx-border-radius: 5;" text="입력" textFill="WHITE" />
                               <Button fx:id="previousMonthButton" layoutX="443.0" layoutY="16.0" mnemonicParsing="false" prefHeight="23.0" prefWidth="0.0" text="Button">
                                  <effect>

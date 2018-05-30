@@ -7,40 +7,22 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
-
-public class Main extends Application {
-	
+public class LoginController  {
 	private Stage primaryStage;
 	private BorderPane rootLayout;
-	
-	@Override
-	public void start(Stage primaryStage) {
-		try {
-		this.primaryStage = primaryStage;
-		this.primaryStage.setTitle("신호등 가계부");
-		FXMLLoader loader = new FXMLLoader();
-		loader.setLocation(Main.class.getResource("../view/Login.fxml"));
-		AnchorPane login =(AnchorPane) loader.load();
-		Scene scene = new Scene(login);
-		primaryStage.setScene(scene);
-		primaryStage.show();
-		//setRootLayout();
-		//setHome();
-		LoginController controller = loader.getController();
-		if(controller.x==1) {
-			setRootLayout();
-			setHome();
-		}
-		} catch(Exception e) {
-			e.printStackTrace();
-		}
-    }
-	
-	 public void setRootLayout() {
+	public Main main;
+	public int x;
+	public int loginButton() {
+		return x=1;
+
+	}
+
+/*	public void setRootLayout() {
 		try {
 			FXMLLoader loader = new FXMLLoader();
 			loader.setLocation(Main.class.getResource("../view/RootLayout.fxml"));
 			rootLayout = (BorderPane) loader.load();
+			main.setPrimaryStage(primaryStage);
 			Scene scene = new Scene(rootLayout);
 			primaryStage.setScene(scene);
 			primaryStage.show();
@@ -57,20 +39,9 @@ public class Main extends Application {
 			AnchorPane home = (AnchorPane) loader.load();
 			rootLayout.setCenter(home);
 			HomeController controller = loader.getController();
-			//controller.setMain(this);
+			//controller.setMain(null);;
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-	}  
-	
-	public Stage getPrimaryStage() {
-		return primaryStage;
-	}
-	public void setPrimaryStage(Stage primaryStage) {
-		this.primaryStage =primaryStage;
-	}
-	
-	public static void main(String[] args) {
-		launch(args);
-	}
+	}   */ 
 }

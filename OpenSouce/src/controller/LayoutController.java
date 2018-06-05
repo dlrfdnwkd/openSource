@@ -1,0 +1,82 @@
+package controller;
+
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
+
+public  class LayoutController {
+	private static BorderPane root;
+
+	public void setRootLayout() {
+		try {
+		root = FXMLLoader.load(getClass().getResource("/view/RootLayout.fxml"));
+		Stage rootStage;
+		Scene scene = new Scene(root);
+		rootStage = Main.parentWindow;
+		rootStage.setScene(scene);
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
+	public static void setHome() {	
+		try {
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(Main.class.getResource("../view/Home.fxml"));
+			AnchorPane home = (AnchorPane) loader.load();
+			root.setCenter(home);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	public static void setReport() {
+		try {
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(Main.class.getResource("../view/Report.fxml"));
+			VBox report = (VBox) loader.load();
+			root.setCenter(report);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	public static void setBudget() {	
+		try {
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(Main.class.getResource("../view/Budget.fxml"));
+			AnchorPane budget = (AnchorPane) loader.load();
+			root.setCenter(budget);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	public static void setUser() {
+		try {
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(Main.class.getResource("../view/User.fxml"));
+			VBox User = (VBox) loader.load();
+			root.setCenter(User);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	@FXML
+	private void handleMouseClickHome(MouseEvent event) {
+		setHome();
+	}
+	@FXML
+	private void handleMouseClickReport(MouseEvent event) {
+		setReport();
+	}
+	@FXML
+	private void handleMouseClickBudget(MouseEvent event) {
+		setBudget();
+	}
+	@FXML
+	private void handleMouseClickUser(MouseEvent event) {
+		setUser();
+	}
+}

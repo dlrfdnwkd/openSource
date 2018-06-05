@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.BorderPane?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="724.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Label alignment="CENTER" prefHeight="55.0" prefWidth="1000.0" text="계정정보">
+         <font>
+            <Font size="46.0" />
+         </font>
+      </Label>
+      <AnchorPane prefHeight="669.0" prefWidth="1000.0">
+         <children>
+            <Label layoutX="372.0" layoutY="181.0" text="이름 :" />
+            <TextField layoutX="428.0" layoutY="177.0" promptText="홍길동" />
+            <Label layoutX="372.0" layoutY="222.0" text="ID :" />
+            <Label layoutX="372.0" layoutY="262.0" text="비밀번호 :" />
+            <PasswordField layoutX="490.0" layoutY="258.0" />
+            <PasswordField layoutX="490.0" layoutY="296.0" />
+            <Label layoutX="372.0" layoutY="300.0" text="비밀번호 재확인:" />
+            <Label layoutX="436.0" layoutY="222.0" text="keepBook" />
+            <Label layoutX="372.0" layoutY="344.0" text="이메일 :" />
+            <Label layoutX="436.0" layoutY="344.0" text="keepbook@naver.com" />
+            <Label layoutX="372.0" layoutY="387.0" text="전화번호 :" />
+            <Label layoutX="436.0" layoutY="387.0" text="010" />
+            <Label layoutX="464.0" layoutY="387.0" text="-" />
+            <Label layoutX="482.0" layoutY="387.0" text="1234" />
+            <Label layoutX="521.0" layoutY="387.0" text="-" />
+            <Label layoutX="535.0" layoutY="387.0" text="5678" />
+            <Button layoutX="480.0" layoutY="604.0" mnemonicParsing="false" text="수정" />
+         </children>
+      </AnchorPane>
+   </children>
+</VBox>

@@ -10,7 +10,6 @@ import javafx.stage.Stage;
 
 public class HomeController {
 	
-	private Main main;
 	private Button previousMonthButton;
 	private Stage primaryStage;
 

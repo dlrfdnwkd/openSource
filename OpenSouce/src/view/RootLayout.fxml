@@ -7,19 +7,65 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.BorderPane?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.LayoutController">
    <left>
-      <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: black;" BorderPane.alignment="CENTER" />
+      <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: black;" BorderPane.alignment="CENTER">
+         <children>
+            <VBox layoutX="36.0" layoutY="84.0" prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../image/통계이미지.png" />
+                           </image></ImageView>
+                        <Label text="통계">
+                           <font>
+                              <Font size="35.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="70.0" prefWidth="200.0">
+                     <children>
+                        <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../image/보고서이미지.png" />
+                           </image>
+                        </ImageView>
+                        <Label onMouseClicked="#handleMouseClickReport" prefHeight="43.0" prefWidth="111.0" text="보고서">
+                           <font>
+                              <Font size="35.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../image/예산이미지.png" />
+                           </image></ImageView>
+                        <Label onMouseClicked="#handleMouseClickBudget" text="예산">
+                           <font>
+                              <Font size="35.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+         </children></AnchorPane>
    </left>
    <top>
       <Pane prefHeight="76.0" prefWidth="1200.0" style="-fx-background-color: white;" BorderPane.alignment="CENTER">
          <children>
-            <ImageView fitHeight="50.0" fitWidth="57.0" layoutX="573.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="50.0" fitWidth="57.0" layoutX="573.0" layoutY="13.0" onMouseClicked="#handleMouseClickHome" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../image/홈버튼.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="60.0" fitWidth="52.0" layoutX="1134.0" layoutY="12.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="60.0" fitWidth="52.0" layoutX="1134.0" layoutY="12.0" onMouseClicked="#handleMouseClickUser" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../image/유저버튼.png" />
                </image>

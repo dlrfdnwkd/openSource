@@ -32,7 +32,7 @@ public class LoginController  {
 			alert.showAndWait();		
 		}
 	}
-	/*@FXML
+	@FXML
 	public void signUpButton() {
 		setSignUpButton();
 	}
@@ -54,6 +54,5 @@ public class LoginController  {
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
-	}*/
-	
+	}
 }

@@ -19,6 +19,6 @@
          </font>
       </Label>
       <Button layoutX="93.0" layoutY="350.0" mnemonicParsing="false" onAction="#signUpButton" text="회원가입" />
-      <Button layoutX="296.0" layoutY="350.0" mnemonicParsing="false" text="ID/PASSWORD 찾기" />
+      <Button layoutX="296.0" layoutY="350.0" mnemonicParsing="false" onAction="#findButton" text="ID/PASSWORD 찾기" />
    </children>
 </AnchorPane>

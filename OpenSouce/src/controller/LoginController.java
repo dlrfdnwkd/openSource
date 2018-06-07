@@ -7,6 +7,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.scene.control.PasswordField;
@@ -40,12 +41,12 @@ public class LoginController  {
 		try {
 		FXMLLoader loader = new FXMLLoader();
 		loader.setLocation(Main.class.getResource("../view/Signup.fxml"));
-		AnchorPane page= (AnchorPane) loader.load();	
+		AnchorPane signUP= (AnchorPane) loader.load();	
 		Stage dialogStage = new Stage();
 		dialogStage.setTitle("회원가입");
 	    dialogStage.initModality(Modality.WINDOW_MODAL);
 	    dialogStage.initOwner(primaryStage);
-	    Scene scene = new Scene(page);
+	    Scene scene = new Scene(signUP);
 	    dialogStage.setScene(scene);
 	    SignUpController controller = loader.getController();
 	    controller.setDialogStage(dialogStage);
@@ -54,5 +55,28 @@ public class LoginController  {
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
+	}
+	@FXML
+	public void findButton() {
+		setFindButton();
+	}
+	public void setFindButton() {
+		try {
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(Main.class.getResource("../view/Find.fxml"));
+			VBox find= (VBox) loader.load();	
+			Stage dialogStage = new Stage();
+			dialogStage.setTitle("아이디/비밀번호 찾기");
+		    dialogStage.initModality(Modality.WINDOW_MODAL);
+		    dialogStage.initOwner(primaryStage);
+		    Scene scene = new Scene(find);
+		    dialogStage.setScene(scene);
+		    FindController controller = loader.getController();
+		    controller.setDialogStage(dialogStage);
+		    dialogStage.showAndWait();
+		    dialogStage.setResizable(false);
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
 	}
 }

@@ -13,6 +13,7 @@ import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.PieChart;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.ProgressBar;
+import javafx.scene.shape.Circle;
 
 public class pieChartController implements Initializable{
 	
@@ -30,6 +31,9 @@ public class pieChartController implements Initializable{
 
     @FXML
     private PieChart pieChart;
+    
+    @FXML
+    private Circle circle;
 		@Override
 	
 			public void initialize(URL url, ResourceBundle rd) {
@@ -56,7 +60,7 @@ public class pieChartController implements Initializable{
 						
 						SalaryChart.getData().addAll(set1,set2);
 						
-						
+						circle.
 						
 					}
 			}

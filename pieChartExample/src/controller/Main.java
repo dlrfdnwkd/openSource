@@ -14,23 +14,9 @@ import javafx.scene.control.ProgressIndicator;
 import javafx.scene.control.Slider;
 import javafx.scene.layout.AnchorPane;
 
-
 public class Main extends Application {
 	@Override
-	/*public void start(Stage primaryStage) {
-		try {
-			FXMLLoader loader = new FXMLLoader();
-			loader.setLocation(Main.class.getResource("../view//pieChart.fxml"));
-			AnchorPane root = (AnchorPane) loader.load();
-			Scene scene = new Scene(root);	
-			primaryStage.setScene(scene);
-			primaryStage.show();
-		} catch(Exception e) {
-			e.printStackTrace();
-		}
-		
-	}*/
-
+	
 	public void start(Stage primaryStage) {
 		
 		try {
@@ -69,6 +55,7 @@ public class Main extends Application {
 					pi.setProgress(new_val.doubleValue() / 50);
 				}});
 			
+		  
 		    
 	}
 	

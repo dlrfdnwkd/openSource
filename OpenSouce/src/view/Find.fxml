@@ -80,6 +80,6 @@
             </TextField>
          </children>
       </HBox>
-      <Button mnemonicParsing="false" text="Button" />
+      <Button mnemonicParsing="false" text="확인" />
    </children>
 </VBox>

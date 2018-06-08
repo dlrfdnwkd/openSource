@@ -1,5 +1,7 @@
 package controller;
 
+import java.util.ArrayList;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -10,6 +12,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import model.User;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 
@@ -20,8 +23,37 @@ public class LoginController  {
 	private PasswordField txtPassword;
 	private Stage primaryStage;
 	private LayoutController layoutController =new LayoutController();
+	public ArrayList<User> users = new ArrayList<>();
+	public LoginController() {
+		users.add(new User());
+		users.get(0).setName("이길우");
+		users.get(0).setID("dlrfdnwkd");
+		users.get(0).setPassword("1212");
+		users.get(0).setEmail("dlrfdnwkd@naver.com");
+		users.get(0).setPhoneNumber("01050606887");
+		users.add(new User());
+		users.get(1).setName("백태현");
+		users.get(1).setID("백태현");
+		users.get(1).setPassword("123");
+		users.get(1).setEmail("dlrfdnwkd@naver.com");
+		users.get(1).setPhoneNumber("01050606887");
+		users.add(new User());
+		users.get(2).setName("정의진");
+		users.get(2).setID("정의진");
+		users.get(2).setPassword("123");
+		users.get(2).setEmail("dlrfdnwkd@naver.com");
+		users.get(2).setPhoneNumber("01050606887");
+		users.add(new User());
+		users.get(3).setName("전일규");
+		users.get(3).setID("전일규");
+		users.get(3).setPassword("123");
+		users.get(3).setEmail("dlrfdnwkd@naver.com");
+		users.get(3).setPhoneNumber("01050606887");
+	}
 	public void LoginButton(ActionEvent event) throws Exception {
-		if(txtUserID.getText().equals("user") && txtPassword.getText().equals("1234")) {
+		boolean UserFind =false;
+		UserFind = userFind();
+		if(UserFind==true) {
 	    layoutController.setRootLayout();
 		layoutController.setHome();
 		} else {
@@ -79,4 +111,13 @@ public class LoginController  {
 				e.printStackTrace();
 			}
 	}
+	public boolean userFind() {
+		boolean userFind = false;
+		for(int i=0;i<users.size();i++) {
+			if(txtUserID.getText().equals(users.get(i).getName()) && txtPassword.getText().equals(users.get(i).getPassword())){
+					userFind=true;			
+		}
+	}
+		return userFind;
+}
 }

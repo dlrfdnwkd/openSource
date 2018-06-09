@@ -1,7 +1,9 @@
 package controller;
 
-import java.util.ArrayList;
 
+import javafx.collections.ObservableList;
+
+import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -18,50 +20,28 @@ import javafx.scene.control.TextField;
 
 public class LoginController  {
 	@FXML
-	private TextField txtUserID;
+	private TextField txtID;
 	@FXML
 	private PasswordField txtPassword;
 	private Stage primaryStage;
 	private LayoutController layoutController =new LayoutController();
-	public ArrayList<User> users = new ArrayList<>();
-	public LoginController() {
-		users.add(new User());
-		users.get(0).setName("이길우");
-		users.get(0).setID("dlrfdnwkd");
-		users.get(0).setPassword("1212");
-		users.get(0).setEmail("dlrfdnwkd@naver.com");
-		users.get(0).setPhoneNumber("01050606887");
-		users.add(new User());
-		users.get(1).setName("백태현");
-		users.get(1).setID("백태현");
-		users.get(1).setPassword("123");
-		users.get(1).setEmail("dlrfdnwkd@naver.com");
-		users.get(1).setPhoneNumber("01050606887");
-		users.add(new User());
-		users.get(2).setName("정의진");
-		users.get(2).setID("정의진");
-		users.get(2).setPassword("123");
-		users.get(2).setEmail("dlrfdnwkd@naver.com");
-		users.get(2).setPhoneNumber("01050606887");
-		users.add(new User());
-		users.get(3).setName("전일규");
-		users.get(3).setID("전일규");
-		users.get(3).setPassword("123");
-		users.get(3).setEmail("dlrfdnwkd@naver.com");
-		users.get(3).setPhoneNumber("01050606887");
-	}
+	public ObservableList<User> users = FXCollections.observableArrayList();
+	public int userNumber;
+	public int usersNumber;
+
 	public void LoginButton(ActionEvent event) throws Exception {
 		boolean UserFind =false;
 		UserFind = userFind();
+		System.out.println(users.get(userNumber).getID()+"  "+users.get(userNumber).getPassword());
 		if(UserFind==true) {
 	    layoutController.setRootLayout();
 		layoutController.setHome();
 		} else {
 			Alert alert = new Alert(AlertType.WARNING);
 			//alert.initOwner(main.getPrimaryStage());
-			alert.setTitle("오류 메시지");
+			alert.setTitle("로그인 실패");
 			alert.setHeaderText("아이디 및 비밀번호 오류");
-			alert.setContentText("다시 입력해주시오.");
+			alert.setContentText("확인한 후 다시 입력해주시오.");
 			alert.showAndWait();		
 		}
 	}
@@ -81,6 +61,7 @@ public class LoginController  {
 	    Scene scene = new Scene(signUP);
 	    dialogStage.setScene(scene);
 	    SignUpController controller = loader.getController();
+	    controller.setLogin(this);
 	    controller.setDialogStage(dialogStage);
 	    dialogStage.showAndWait();
 	    dialogStage.setResizable(false);
@@ -114,8 +95,9 @@ public class LoginController  {
 	public boolean userFind() {
 		boolean userFind = false;
 		for(int i=0;i<users.size();i++) {
-			if(txtUserID.getText().equals(users.get(i).getName()) && txtPassword.getText().equals(users.get(i).getPassword())){
-					userFind=true;			
+			if(txtID.getText().equals(users.get(i).getID()) && txtPassword.getText().equals(users.get(i).getPassword())){
+					userFind=true;
+					userNumber = i;
 		}
 	}
 		return userFind;

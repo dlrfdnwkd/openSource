@@ -158,7 +158,6 @@ private boolean passwordTest = false;
 		}
 		if(errorMessage==""){
 			loginCon.users.add(new User(txtName.getText(),txtFirstNumber.getText(),txtLastNumber.getText(),txtID.getText(),txtPassword.getText(),txtEmail.getText(),txtPhoneNumber.getText()));
-			System.out.println(loginCon.users.get(loginCon.userNumber).getName()+" "+loginCon.users.get(loginCon.userNumber).getFirstNumber()+" "+loginCon.users.get(loginCon.userNumber).getID());
 			Alert alert = new Alert(AlertType.INFORMATION);
 			alert.setTitle("회원가입 성공");
 			alert.setHeaderText("회원가입 됬습니다.");

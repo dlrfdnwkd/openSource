@@ -28,11 +28,13 @@ public class LoginController  {
 	public ObservableList<User> users = FXCollections.observableArrayList();
 	public int userNumber;
 	public int usersNumber;
+	public LoginController() {
+		users.add(new User("이길우","951212","1179717","dlrfdnwkd","123","dlrfdnwkd","01050606887"));
+	}
 
 	public void LoginButton(ActionEvent event) throws Exception {
 		boolean UserFind =false;
 		UserFind = userFind();
-		System.out.println(users.get(userNumber).getID()+"  "+users.get(userNumber).getPassword());
 		if(UserFind==true) {
 	    layoutController.setRootLayout();
 		layoutController.setHome();
@@ -42,7 +44,8 @@ public class LoginController  {
 			alert.setTitle("로그인 실패");
 			alert.setHeaderText("아이디 및 비밀번호 오류");
 			alert.setContentText("확인한 후 다시 입력해주시오.");
-			alert.showAndWait();		
+			alert.showAndWait();	
+			txtPassword.setText(null);
 		}
 	}
 	@FXML
@@ -85,6 +88,7 @@ public class LoginController  {
 		    Scene scene = new Scene(find);
 		    dialogStage.setScene(scene);
 		    FindController controller = loader.getController();
+		    controller.setLogin(this);
 		    controller.setDialogStage(dialogStage);
 		    dialogStage.showAndWait();
 		    dialogStage.setResizable(false);

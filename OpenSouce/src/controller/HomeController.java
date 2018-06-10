@@ -12,6 +12,7 @@ public class HomeController {
 	
 	private Button previousMonthButton;
 	private Stage primaryStage;
+	private LoginController loginCon;
 
 	/*public void setMain(Main main) {
 		this.main = main;

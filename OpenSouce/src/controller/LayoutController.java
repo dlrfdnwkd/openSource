@@ -11,6 +11,7 @@ import javafx.stage.Stage;
 
 public  class LayoutController {
 	private static BorderPane root;
+	private LoginController loginCon;
 
 	public void setRootLayout() {
 		try {
@@ -23,7 +24,7 @@ public  class LayoutController {
 			e.printStackTrace();
 		}
 	}
-	public static void setHome() {	
+	public void setHome() {	
 		try {
 			FXMLLoader loader = new FXMLLoader();
 			loader.setLocation(Main.class.getResource("../view/Home.fxml"));
@@ -33,7 +34,7 @@ public  class LayoutController {
 			e.printStackTrace();
 		}
 	}
-	public static void setReport() {
+	public void setReport() {
 		try {
 			FXMLLoader loader = new FXMLLoader();
 			loader.setLocation(Main.class.getResource("../view/Report.fxml"));
@@ -43,7 +44,7 @@ public  class LayoutController {
 			e.printStackTrace();
 		}
 	}
-	public static void setBudget() {	
+	public void setBudget() {	
 		try {
 			FXMLLoader loader = new FXMLLoader();
 			loader.setLocation(Main.class.getResource("../view/Budget.fxml"));
@@ -53,12 +54,14 @@ public  class LayoutController {
 			e.printStackTrace();
 		}
 	}
-	public static void setUser() {
+	public void setUser() {
 		try {
 			FXMLLoader loader = new FXMLLoader();
 			loader.setLocation(Main.class.getResource("../view/User.fxml"));
 			VBox User = (VBox) loader.load();
 			root.setCenter(User);
+			UserController controller = loader.getController();
+			controller.setUser(loginCon.userNumber);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -78,5 +81,6 @@ public  class LayoutController {
 	@FXML
 	private void handleMouseClickUser(MouseEvent event) {
 		setUser();
+		UserController controller = new UserController();
 	}
 }

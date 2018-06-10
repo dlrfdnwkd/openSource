@@ -25,9 +25,8 @@ public class LoginController  {
 	private PasswordField txtPassword;
 	private Stage primaryStage;
 	private LayoutController layoutController =new LayoutController();
-	public ObservableList<User> users = FXCollections.observableArrayList();
-	public int userNumber;
-	public int usersNumber;
+	public static ObservableList<User> users = FXCollections.observableArrayList();
+	public static int userNumber;
 	public LoginController() {
 		users.add(new User("ÀÌ±æ¿ì","951212","1179717","dlrfdnwkd","123","dlrfdnwkd","01050606887"));
 	}

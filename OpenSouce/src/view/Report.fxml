@@ -6,7 +6,6 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.BorderPane?>
 
-
 <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="724.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <HBox prefHeight="642.0" prefWidth="1000.0">
@@ -14,13 +13,33 @@
             <VBox prefHeight="127.0" prefWidth="500.0">
                <children>
                   <Label text="1.지출" />
-                  <ListView prefHeight="640.0" prefWidth="500.0" />
+                  <TableView prefHeight="615.0" prefWidth="500.0">
+                    <columns>
+                      <TableColumn prefWidth="75.0" text="날짜" />
+                      <TableColumn prefWidth="75.0" text="유형" />
+                        <TableColumn prefWidth="75.0" text="제목" />
+                        <TableColumn prefWidth="75.0" text="금액" />
+                        <TableColumn prefWidth="75.0" text="내용" />
+                    </columns>
+                     <columnResizePolicy>
+                        <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                     </columnResizePolicy>
+                  </TableView>
                </children>
             </VBox>
             <VBox prefHeight="127.0" prefWidth="500.0">
                <children>
                   <Label text="2.수입" />
-                  <ListView prefHeight="696.0" prefWidth="500.0" />
+                  <TableView prefHeight="615.0" prefWidth="200.0">
+                    <columns>
+                      <TableColumn prefWidth="75.0" text="날짜" />
+                      <TableColumn prefWidth="75.0" text="제목" />
+                        <TableColumn prefWidth="75.0" text="금액" />
+                    </columns>
+                     <columnResizePolicy>
+                        <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                     </columnResizePolicy>
+                  </TableView>
                </children>
             </VBox>
          </children>

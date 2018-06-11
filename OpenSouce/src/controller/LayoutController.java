@@ -40,8 +40,6 @@ public  class LayoutController {
 			loader.setLocation(Main.class.getResource("../view/Report.fxml"));
 			VBox report = (VBox) loader.load();
 			root.setCenter(report);
-			ReportController controller = loader.getController();
-			controller.setReprot(this);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

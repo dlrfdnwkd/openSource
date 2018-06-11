@@ -2,27 +2,25 @@ package model;
 
 import java.time.LocalDate;
 
-import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.ObjectProperty;
-import javafx.beans.property.SimpleIntegerProperty;
-import javafx.beans.property.SimpleObjectProperty;
+import javafx.beans.property.LongProperty;
+import javafx.beans.property.SimpleLongProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
 public class Expense {
 	private String ID;
-	private final ObjectProperty<LocalDate> date;
+	private LocalDate date;
 	private final StringProperty type;
 	private final StringProperty name;
-	private final IntegerProperty expense;	
+	private final LongProperty expense;	
 	private final StringProperty contend;	
 	
-	public Expense(String ID,LocalDate date,String type,String name,int expense,String contend) {
+	public Expense(String ID,LocalDate date,String type,String name,Long expense,String contend) {
 		this.ID = ID;
-		this.date = new SimpleObjectProperty<LocalDate>(date);
+		this.date = date;
 		this.type = new SimpleStringProperty(type);
 		this.name = new SimpleStringProperty(name);
-		this.expense = new SimpleIntegerProperty(expense);
+		this.expense = new SimpleLongProperty(expense);
 		this.contend = new SimpleStringProperty(contend);
 	}
 	public String getID() {
@@ -32,13 +30,10 @@ public class Expense {
 		this.ID = ID;
 	}
 	public LocalDate getDate() {
-		return date.get();
+		return date;
 	}
 	public void setDate(LocalDate date) {
-		this.date.set(date);
-	}
-	public ObjectProperty<LocalDate> getDateProperty(){
-		return date;
+		this.date = date;
 	}
 	public String getType() {
 		return type.get();
@@ -58,13 +53,13 @@ public class Expense {
 	public StringProperty getNameProperty() {
 		return name;
 	}
-	public int getExpense() {
+	public Long getExpense() {
 		return expense.get();
 	}
-	public void setExpense(int expense) {
+	public void setExpense(Long expense) {
 		this.expense.set(expense);
 	}
-	public IntegerProperty getExpenseProperty() {
+	public LongProperty getExpenseProperty() {
 		return expense;
 	}
 	public String getContend() {

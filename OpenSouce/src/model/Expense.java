@@ -15,15 +15,15 @@ public class Expense {
 	private final StringProperty type;
 	private final StringProperty name;
 	private final IntegerProperty expense;	
-	private final StringProperty contend;	
+	private final StringProperty content;	
 	
-	public Expense(String ID,LocalDate date,String type,String name,int expense,String contend) {
+	public Expense(String ID,LocalDate date,String type,String name,int expense,String content) {
 		this.ID = ID;
 		this.date = new SimpleObjectProperty<LocalDate>(date);
 		this.type = new SimpleStringProperty(type);
 		this.name = new SimpleStringProperty(name);
 		this.expense = new SimpleIntegerProperty(expense);
-		this.contend = new SimpleStringProperty(contend);
+		this.content = new SimpleStringProperty(content);
 	}
 	public String getID() {
 		return ID;
@@ -67,14 +67,14 @@ public class Expense {
 	public IntegerProperty getExpenseProperty() {
 		return expense;
 	}
-	public String getContend() {
-		return contend.get();
+	public String getContent() {
+		return content.get();
 	}
-	public void setContend(String contend) {
-		this.contend.set(contend);
+	public void setContent(String content) {
+		this.content.set(content);
 	}
-	public StringProperty getContendProperty() {
-		return contend;
+	public StringProperty getContentProperty() {
+		return content;
 	}
 
 }

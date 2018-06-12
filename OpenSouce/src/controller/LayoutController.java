@@ -20,6 +20,7 @@ public  class LayoutController {
 		Scene scene = new Scene(root);
 		rootStage = Main.parentWindow;
 		rootStage.setScene(scene);
+		rootStage.centerOnScreen();
 		}catch(Exception e) {
 			e.printStackTrace();
 		}

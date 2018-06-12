@@ -19,7 +19,7 @@
                       <TableColumn fx:id="typeColumn" prefWidth="75.0" text="유형" />
                         <TableColumn fx:id="expenseNameColumn" prefWidth="75.0" text="제목" />
                         <TableColumn fx:id="expenseColumn" prefWidth="75.0" text="금액" />
-                        <TableColumn fx:id="expenseContendColumn" prefWidth="75.0" text="내용" />
+                        <TableColumn fx:id="expenseContentColumn" prefWidth="75.0" text="내용" />
                     </columns>
                      <columnResizePolicy>
                         <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
@@ -51,7 +51,7 @@
               <columns>
                 <TableColumn fx:id="scheduleDateColumn" prefWidth="169.0" text="날짜" />
                 <TableColumn fx:id="scheduleNameColumn" prefWidth="180.0" text="제목" />
-                  <TableColumn fx:id="scheduleContendColumn" prefWidth="649.0" text="내용" />
+                  <TableColumn fx:id="scheduleContentColumn" prefWidth="649.0" text="내용" />
               </columns>
             </TableView>
          </children>

@@ -11,12 +11,12 @@ public class Schedule {
 	private String ID;
 	private ObjectProperty<LocalDate> date;
 	private final StringProperty name;
-	private final StringProperty contend;
-	public Schedule(String ID,LocalDate date,String name,String contend) {
+	private final StringProperty content;
+	public Schedule(String ID,LocalDate date,String name,String content) {
 		this.ID = ID;
 		this.date = new SimpleObjectProperty<LocalDate>(date);
 		this.name = new SimpleStringProperty(name);
-		this.contend = new SimpleStringProperty(contend);
+		this.content = new SimpleStringProperty(content);
 	}
 	public String getID() {
 		return ID;
@@ -42,14 +42,14 @@ public class Schedule {
 	public StringProperty getNameProperty() {
 		return name;
 	}
-	public String getContend() {
-		return contend.get();
+	public String getContent() {
+		return content.get();
 	}
-	public void setContend(String contend) {
-		this.contend.set(contend);
+	public void setContent(String content) {
+		this.content.set(content);
 	}
-	public StringProperty getContendProperty() {
-		return contend;
+	public StringProperty getContentProperty() {
+		return content;
 	}
 
 }

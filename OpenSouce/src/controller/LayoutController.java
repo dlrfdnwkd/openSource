@@ -1,5 +1,7 @@
 package controller;
 
+import java.time.YearMonth;
+
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -30,6 +32,8 @@ public  class LayoutController {
 			FXMLLoader loader = new FXMLLoader();
 			loader.setLocation(Main.class.getResource("../view/Home.fxml"));
 			AnchorPane home = (AnchorPane) loader.load();
+			HomeController controller = loader.getController();
+			controller.calendar.getChildren().add(new CalendarController(YearMonth.now()).getView());
 			root.setCenter(home);
 		} catch (Exception e) {
 			e.printStackTrace();

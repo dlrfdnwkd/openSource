@@ -9,6 +9,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.SplitPane;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Pane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -17,14 +18,7 @@ public class HomeController {
 	private Button previousMonthButton;
 	private Stage primaryStage;
 	private LoginController loginCon;
-	private YearMonth month;
-	@FXML public GridPane calendar;
-	public HomeController() {
-		month = YearMonth.now();
-		Button btn = new Button("±æ¿ì");
-		btn.setPrefSize(5, 5);
-			//	calendar.add(btn, j, i);	
-	}
+	@FXML  Pane calendar;
 
 	/*public void setMain(Main main) {
 		this.main = main;

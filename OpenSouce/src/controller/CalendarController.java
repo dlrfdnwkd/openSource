@@ -3,15 +3,23 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundImage;
+import javafx.scene.layout.BackgroundPosition;
+import javafx.scene.layout.BackgroundRepeat;
+import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import model.AnchorPaneNode;
 import model.Expense;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.time.LocalDate;
 import java.time.YearMonth;
 import java.util.ArrayList;
@@ -24,15 +32,18 @@ public class CalendarController {
     private Text calendarTitle;
     private YearMonth currentYearMonth;
     private ObservableList<Expense> expenses = FXCollections.observableArrayList();
+    private static HomeController homeCon;
 
     /**
      * Create a calendar view
      * @param yearMonth year month to create the calendar of
+     * @throws FileNotFoundException 
      */
     public CalendarController(YearMonth yearMonth) {
     	expenses.add(new Expense("길우",LocalDate.of(2018, 6, 12),"유흥","점심",2000,"컵라면"));
     	expenses.add(new Expense("길우",LocalDate.of(2018, 5, 4),"교통","저녁",30000,"음료수"));
-        currentYearMonth = yearMonth;
+    	currentYearMonth = yearMonth;
+    	//homeCon.yearMonth = yearMonth;
         // Create the calendar grid pane
         GridPane calendar = new GridPane();
         calendar.setPrefSize(1000, 650);
@@ -41,7 +52,7 @@ public class CalendarController {
         for (int i = 0; i < 5; i++) {
             for (int j = 0; j < 7; j++) {
                 AnchorPaneNode ap = new AnchorPaneNode();
-                ap.setPrefSize(500,200);
+                ap.setPrefSize(300,100);
                 calendar.add(ap,j,i);
                 allCalendarDays.add(ap);
             }
@@ -52,28 +63,51 @@ public class CalendarController {
                                         new Text("Sat") };
         GridPane dayLabels = new GridPane();
         dayLabels.setPrefWidth(600);
+        dayLabels.setGridLinesVisible(true);
+        
         Integer col = 0;
         for (Text txt : dayNames) {
             AnchorPane ap = new AnchorPane();
-            ap.setPrefSize(400, 10);
-            ap.setBottomAnchor(txt, 5.0);
-            ap.setLeftAnchor(txt, 5.0);
+            ap.setPrefSize(400, 40);
+            ap.setBottomAnchor(txt, 10.0);
+            ap.setLeftAnchor(txt, 60.0);
+            ap.setCenterShape(false);
+            txt.setStyle("-fx-font-size : 15");
             ap.getChildren().add(txt);
             ap.setStyle("-fx-background-color : white;");
             dayLabels.add(ap, col++, 0);
         }
         // Create calendarTitle and buttons to change current month
         calendarTitle = new Text();
-        Button previousMonth = new Button("<<");
+        calendarTitle.setStyle("-fx-fill: blue;-fx-font-size: 18");
+        //Image image = new Image("file:image/a.png");
+        //ImageView imageView = new ImageView();
+        //imageView.setImage(image);
+        //imageView.setPreserveRatio(true);
+        //imageView.setFitWidth(1);
+        //Image image = new Image(getClass().getResourceAsStream("@../image/a.png"));
+        //ImageView imageView = new ImageView(image);
+        Button previousMonth = new Button("<");
+        previousMonth.setStyle("-fx-border-color: blue; -fx-border-radius: 10;-fx-background-color: white");
+        //previousMonth.setGraphic(imageView);
+        //previousMonth.setGraphic(new ImageView(image));
+        //Image image = new Image(getClass().getResourceAsStream("/immage/a.png"));
+       // previousMonth.setStyle("-fx-background-image: url('image/a.png')");       
         previousMonth.setOnAction(e -> previousMonth());
-        Button nextMonth = new Button(">>");
+        Button nextMonth = new Button(">");
+        nextMonth.setStyle("-fx-border-color: blue; -fx-border-radius: 10;-fx-background-color: white");
         nextMonth.setOnAction(e -> nextMonth());
-        HBox titleBar = new HBox(previousMonth, calendarTitle, nextMonth);
+        HBox titleBar = new HBox(previousMonth,calendarTitle,nextMonth);
+        titleBar.setPrefSize(1000, 40);
         titleBar.setAlignment(Pos.BASELINE_CENTER);
+
+        //titleBar.set(Pos.BASELINE_CENTER);
+        //homeCon.previousMonthButton.setOnAction(e -> previousMonth());
+        //homeCon.nextMonthButton.setOnAction(e -> nextMonth());
         // Populate calendar with the appropriate day numbers
         populateCalendar(yearMonth);
         // Create the calendar view
-        view = new VBox(titleBar, dayLabels, calendar);
+        view = new VBox(titleBar,dayLabels, calendar);
     }
 
     /**
@@ -83,6 +117,7 @@ public class CalendarController {
     public void populateCalendar(YearMonth yearMonth) {
         // Get the date we want to start with on the calendar
         LocalDate calendarDate = LocalDate.of(yearMonth.getYear(), yearMonth.getMonthValue(), 1);
+       // currentYearMonth = (YearMonth)calendarDate.getMonth();
         // Dial back the day until it is SUNDAY (unless the month starts on a sunday)
         while (!calendarDate.getDayOfWeek().toString().equals("SUNDAY") ) {
             calendarDate = calendarDate.minusDays(1);
@@ -116,7 +151,7 @@ public class CalendarController {
             ap.getChildren().add(txt);
             calendarDate = calendarDate.plusDays(1);
         }
-        calendarTitle.setText(yearMonth.getMonth().getValue() + " " + String.valueOf(yearMonth.getYear()));
+        calendarTitle.setText(String.valueOf(yearMonth.getYear() + "년   " + yearMonth.getMonth().getValue()+"월"));
     }
 
     /**

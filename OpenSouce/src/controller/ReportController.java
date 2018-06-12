@@ -35,21 +35,29 @@ public class ReportController {
 	public static ObservableList<Schedule> schedules = FXCollections.observableArrayList();
 	public ObservableList<Schedule> monthSchedules = FXCollections.observableArrayList();
 	private LayoutController layoutCon;
+	private LoginController loginCon;
 
 	public ReportController() {
+		
 		for(int i=0;i<expenses.size();i++) {
+			if(loginCon.users.get(loginCon.userNumber).getID().equals(expenses.get(i).getID())) {
 			if(expenses.get(i).getDate().getMonth().equals(LocalDate.now().getMonth())) {
 			monthExpenses.add(expenses.get(i));
 			}
+			}
 		}
 		for(int j=0;j<incomes.size();j++) {
+			if(loginCon.users.get(loginCon.userNumber).getID().equals(incomes.get(j).getID())) {
 			if(incomes.get(j).getDate().getMonth().equals(LocalDate.now().getMonth())) {
 				monthIncomes.add(incomes.get(j));
 			}
+			}
 		}
 		for(int a=0;a<schedules.size();a++) {
+			if(loginCon.users.get(loginCon.userNumber).getID().equals(schedules.get(a).getID())) {
 			if(schedules.get(a).getDate().getMonth().equals(LocalDate.now().getMonth())) {
 				monthSchedules.add(schedules.get(a));
+			}
 			}
 		}
 		//expenses.add(new Expense(loginCon.users.get(loginCon.userNumber).getID(),LocalDate.of(2018,6,11),"교통","버스비",5000,"티머니 충전"));

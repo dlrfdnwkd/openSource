@@ -29,32 +29,40 @@ public class ReportController {
 	@FXML private TableColumn<Schedule, String> scheduleNameColumn;
 	@FXML private TableColumn<Schedule, String> scheduleContentColumn;
 	public static ObservableList<Expense> expenses = FXCollections.observableArrayList();
+	public ObservableList<Expense> monthExpenses =FXCollections.observableArrayList();
 	public static ObservableList<Income> incomes = FXCollections.observableArrayList();
+	public ObservableList<Income> monthIncomes = FXCollections.observableArrayList();
 	public static ObservableList<Schedule> schedules = FXCollections.observableArrayList();
-	private LoginController loginCon;
+	public ObservableList<Schedule> monthSchedules = FXCollections.observableArrayList();
 	private LayoutController layoutCon;
 
 	public ReportController() {
+		for(int i=0;i<expenses.size();i++) {
+			if(expenses.get(i).getDate().getMonth().equals(LocalDate.now().getMonth())) {
+			monthExpenses.add(expenses.get(i));
+			}
+		}
+		for(int j=0;j<incomes.size();j++) {
+			if(incomes.get(j).getDate().getMonth().equals(LocalDate.now().getMonth())) {
+				monthIncomes.add(incomes.get(j));
+			}
+		}
+		for(int a=0;a<schedules.size();a++) {
+			if(schedules.get(a).getDate().getMonth().equals(LocalDate.now().getMonth())) {
+				monthSchedules.add(schedules.get(a));
+			}
+		}
 		//expenses.add(new Expense(loginCon.users.get(loginCon.userNumber).getID(),LocalDate.of(2018,6,11),"교통","버스비",5000,"티머니 충전"));
 		//incomes.add(new Income(loginCon.users.get(loginCon.userNumber).getID(),LocalDate.of(2018,6,6),"알바비",20000));
 		//schedules.add(new Schedule(loginCon.users.get(loginCon.userNumber).getID(),LocalDate.of(2018,6,2),"축구","오메가배 풋살결승"));
 	}
 	@FXML
-	private void initialize() {
-		for(int i=0;i<expenses.size();i++) {
-			if(expenses.get(i).getDate().getMonth().equals(LocalDate.now().getMonth())) {
-				expenseDateColumn.setCellValueFactory(cellData -> cellData.getValue().getDateProperty());
-				typeColumn.setCellValueFactory(cellData -> cellData.getValue().getTypeProperty());
-				expenseNameColumn.setCellValueFactory(cellData -> cellData.getValue().getNameProperty());
-				expenseColumn.setCellValueFactory(cellData -> cellData.getValue().getExpenseProperty().asObject());
-				expenseContentColumn.setCellValueFactory(cellData -> cellData.getValue().getContentProperty());
-			}
-		}
-		/*expenseDateColumn.setCellValueFactory(cellData -> cellData.getValue().getDateProperty());
+	private void initialize() {	
+		expenseDateColumn.setCellValueFactory(cellData -> cellData.getValue().getDateProperty());
 		typeColumn.setCellValueFactory(cellData -> cellData.getValue().getTypeProperty());
 		expenseNameColumn.setCellValueFactory(cellData -> cellData.getValue().getNameProperty());
 		expenseColumn.setCellValueFactory(cellData -> cellData.getValue().getExpenseProperty().asObject());
-		expenseContentColumn.setCellValueFactory(cellData -> cellData.getValue().getContentProperty());*/
+		expenseContentColumn.setCellValueFactory(cellData -> cellData.getValue().getContentProperty());
 		incomeDateColumn.setCellValueFactory(cellData -> cellData.getValue().getDateProperty());
 		incomeNameColumn.setCellValueFactory(cellData -> cellData.getValue().getNameProperty());
 		incomeColumn.setCellValueFactory(cellData -> cellData.getValue().getIncomeProperty().asObject());
@@ -63,13 +71,13 @@ public class ReportController {
 		scheduleContentColumn.setCellValueFactory(cellData -> cellData.getValue().getContentProperty());
 	}
 	public ObservableList<Expense> getExpenses(){
-		return expenses;
+		return monthExpenses;
 	}
 	public ObservableList<Income> getIncome(){
-		return incomes;
+		return monthIncomes;
 	}
 	public ObservableList<Schedule> getSchedule(){
-		return schedules;
+		return monthSchedules;
 	}
 	public void setReprot(LayoutController layoutCon) {
 		this.layoutCon = layoutCon;

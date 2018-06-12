@@ -1,10 +1,14 @@
 package controller;
+
+import java.time.YearMonth;
+
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.SplitPane;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.GridPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -13,6 +17,14 @@ public class HomeController {
 	private Button previousMonthButton;
 	private Stage primaryStage;
 	private LoginController loginCon;
+	private YearMonth month;
+	@FXML public GridPane calendar;
+	public HomeController() {
+		month = YearMonth.now();
+		Button btn = new Button("±æ¿ì");
+		btn.setPrefSize(5, 5);
+			//	calendar.add(btn, j, i);	
+	}
 
 	/*public void setMain(Main main) {
 		this.main = main;

@@ -28,18 +28,23 @@ public class AnchorPaneNode extends AnchorPane {
     public AnchorPaneNode(Node... children) {
         super(children);
         // Add action handler for mouse clicked
-        //this.setOnMouseClicked(e -> System.out.println("This pane's date is: " + date));
-       // this.setOnMouseClicked(e -> homeCon.date = date );
-       // this.setOnMouseClicked(e -> checkClicked());
-       // this.setOnMouseClicked(e -> this.setStyle("-fx-background-color: yellow"));
-        //this.setOnMouseClicked(e -> this.setStyle("-fx-border-color: black"));
-       // this.setOnMouseClicked(e -> this.setClicked=true);
+        setStyle("-fx-border-color: white;");
         this.setOnMouseClicked(new EventHandler<MouseEvent>() {
         	@Override
         	public void handle(MouseEvent ae) {
         		homeCon.date = date;
         		checkClicked();
-        		setStyle("-fx-border-color: black;");
+        		if(getStyle()=="-fx-background-color: deepskyblue;-fx-border-color: white;") {
+        			setStyle("-fx-background-color: deepskyblue;-fx-border-color: red;");
+        		}
+        		else {
+        			if(getStyle()=="-fx-background-color: gray;-fx-border-color: white;") {
+        				setStyle("-fx-background-color: gray;-fx-border-color: red;");
+        			}
+        			else {
+        				setStyle("-fx-border-color: red;");
+        			}
+        		}
         		setClicked=true;
         	}
         });
@@ -55,7 +60,15 @@ public class AnchorPaneNode extends AnchorPane {
     public void checkClicked() {
     	for(int i=0;i<calendarCon.allCalendarDays.size();i++) {
     		if(calendarCon.allCalendarDays.get(i).setClicked) {
-    			calendarCon.allCalendarDays.get(i).setStyle("-fx-border-color: white;");
+    			if(calendarCon.allCalendarDays.get(i).getStyle()=="-fx-background-color: deepskyblue;-fx-border-color: red;") {
+    				calendarCon.allCalendarDays.get(i).setStyle("-fx-background-color: deepskyblue;-fx-border-color: white;");
+    			}else {
+    				if(calendarCon.allCalendarDays.get(i).getStyle()=="-fx-background-color: gray;-fx-border-color: red;") {
+    					calendarCon.allCalendarDays.get(i).setStyle("-fx-background-color: gray;-fx-border-color: white;");
+    				}else {
+    					calendarCon.allCalendarDays.get(i).setStyle("-fx-border-color: white;");
+    				}
+    			}
     			calendarCon.allCalendarDays.get(i).setClicked = false;
     			break;
     		}

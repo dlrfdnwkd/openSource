@@ -126,7 +126,7 @@ public class CalendarController {
         for (AnchorPaneNode ap : allCalendarDays) {
             if (ap.getChildren().size() != 0) {
                 ap.getChildren().clear();
-                ap.setStyle(null);
+                ap.setStyle("-fx-border-color: white;");
             }
             ap.setDate(calendarDate);
             for(int a=0;a<expenses.size();a++) {
@@ -136,15 +136,15 @@ public class CalendarController {
                 ap.setRightAnchor(expense, 30.0);
                 ap.setBottomAnchor(expense, 30.0);
                 ap.getChildren().add(expense);
-                ap.setStyle("-fx-background-color: blue;");
+                ap.setStyle("-fx-background-color: deepskyblue;-fx-border-color: white;");
                 }
                 }
             if(!calendarDate.getMonth().equals(yearMonth.getMonth()))
             {
-            	ap.setStyle("-fx-background-color: gray;");
+            	ap.setStyle("-fx-background-color: gray;-fx-border-color: white;");
             	ap.getChildren().clear();
             }
-            ap.setStyle("-fx-border-color: white;");
+           // ap.setStyle("-fx-border-color: white;");
             Text txt = new Text(String.valueOf(calendarDate.getDayOfMonth()));
           //  ap.setDate(calendarDate);
             ap.setTopAnchor(txt, 5.0);

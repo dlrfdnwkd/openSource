@@ -27,7 +27,7 @@ import java.util.ArrayList;
 
 public class CalendarController {
 
-    private ArrayList<AnchorPaneNode> allCalendarDays = new ArrayList<>(35);
+    public static ArrayList<AnchorPaneNode> allCalendarDays = new ArrayList<>(35);
     private VBox view;
     private Text calendarTitle;
     private YearMonth currentYearMonth;
@@ -144,6 +144,7 @@ public class CalendarController {
             	ap.setStyle("-fx-background-color: gray;");
             	ap.getChildren().clear();
             }
+            ap.setStyle("-fx-border-color: white;");
             Text txt = new Text(String.valueOf(calendarDate.getDayOfMonth()));
           //  ap.setDate(calendarDate);
             ap.setTopAnchor(txt, 5.0);

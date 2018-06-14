@@ -22,6 +22,7 @@ import model.Schedule;
 public class InputButtonController {
 private ReportController reportCon;
 private LoginController loginCon;
+private HomeController homeCon;
 private Stage dialogStage;
 private ObservableList<String> type = FXCollections.observableArrayList("교통","식비","생활","의료","유흥","기타");
 @FXML private ComboBox typeCheck; 
@@ -36,7 +37,12 @@ private String select = "expense";
 	@FXML 
 	public void initialize() {
 		typeCheck.setItems(type);
+		if(homeCon.date == null) {
 		datePicker.setValue(LocalDate.now());
+		}
+		else {
+			datePicker.setValue(homeCon.date);
+		}
 	}
 	@FXML
 	public void confirmButton() {

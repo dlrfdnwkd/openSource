@@ -1,5 +1,7 @@
 package controller;
 
+import java.time.LocalDate;
+
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -16,6 +18,7 @@ public class HomeController {
 	
 	private Stage primaryStage;
 	private LoginController loginCon;
+	public static LocalDate date;
 	@FXML  Pane calendar;
 	
 	/*public void setMain(Main main) {

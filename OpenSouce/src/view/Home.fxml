@@ -15,10 +15,8 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="724.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.HomeController">
    <children>
-      <Pane fx:id="calendar" layoutY="19.0" prefHeight="705.0" prefWidth="1000.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="19.0">
-         <children>
-            <Button layoutX="865.0" layoutY="-11.0" mnemonicParsing="false" onAction="#inputButton" style="-fx-background-color: #0D00FF; -fx-border-radius: 5;" text="입력" textFill="WHITE" />
-            <Button layoutX="929.0" layoutY="-11.0" mnemonicParsing="false" onAction="#outputButton" style="-fx-background-color: #0D00FF;" text="보기" textFill="WHITE" />
-         </children></Pane>
+      <Pane fx:id="calendar" layoutY="22.0" prefHeight="702.0" prefWidth="1000.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="22.0" />
+      <Button layoutX="862.0" layoutY="3.0" mnemonicParsing="false" onAction="#inputButton" style="-fx-background-color: #0D00FF; -fx-border-radius: 5;" text="입력" textFill="WHITE" AnchorPane.bottomAnchor="698.0" />
+      <Button layoutX="923.0" layoutY="3.0" mnemonicParsing="false" onAction="#outputButton" style="-fx-background-color: #0D00FF;" text="보기" textFill="WHITE" />
    </children>
 </AnchorPane>

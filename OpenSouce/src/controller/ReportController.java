@@ -7,6 +7,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Cell;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import model.Expense;
@@ -28,34 +29,115 @@ public class ReportController {
 	@FXML private TableColumn<Schedule, LocalDate> scheduleDateColumn;
 	@FXML private TableColumn<Schedule, String> scheduleNameColumn;
 	@FXML private TableColumn<Schedule, String> scheduleContentColumn;
-	//public static ObservableList<Expense> expenses = FXCollections.observableArrayList();
-	public ObservableList<Expense> monthExpenses =FXCollections.observableArrayList();
-	//public static ObservableList<Income> incomes = FXCollections.observableArrayList();
-	public ObservableList<Income> monthIncomes = FXCollections.observableArrayList();
-	//public static ObservableList<Schedule> schedules = FXCollections.observableArrayList();
-	public ObservableList<Schedule> monthSchedules = FXCollections.observableArrayList();
+	private ObservableList<Expense> monthExpenses =FXCollections.observableArrayList();
+	private ObservableList<Income> monthIncomes = FXCollections.observableArrayList();
+	private ObservableList<Schedule> monthSchedules = FXCollections.observableArrayList();
 	private LayoutController layoutCon;
 	private LoginController loginCon;
-
-	public ReportController() {
-		
+	private HomeController homeCon;
+	@FXML Label dateTitle;
+	
+	@FXML
+	private void previousMonthButton() {
+		homeCon.date = homeCon.date.minusMonths(1);
+		dateTitle.setText(homeCon.date.getYear()+"년 "+homeCon.date.getMonthValue()+"월");
+		monthExpenses.clear();
+		monthIncomes.clear();
+		monthSchedules.clear();
 		for(int i=0;i<layoutCon.expenses.size();i++) {
 			if(loginCon.users.get(loginCon.userNumber).getID().equals(layoutCon.expenses.get(i).getID())) {
-			if(layoutCon.expenses.get(i).getDate().getMonth().equals(LocalDate.now().getMonth())) {
+			if(layoutCon.expenses.get(i).getDate().getMonth().equals(homeCon.date.getMonth())) {
 			monthExpenses.add(layoutCon.expenses.get(i));
 			}
 			}
 		}
 		for(int j=0;j<layoutCon.incomes.size();j++) {
 			if(loginCon.users.get(loginCon.userNumber).getID().equals(layoutCon.incomes.get(j).getID())) {
-			if(layoutCon.incomes.get(j).getDate().getMonth().equals(LocalDate.now().getMonth())) {
+			if(layoutCon.incomes.get(j).getDate().getMonth().equals(homeCon.date.getMonth())) {
 				monthIncomes.add(layoutCon.incomes.get(j));
 			}
 			}
 		}
 		for(int a=0;a<layoutCon.schedules.size();a++) {
 			if(loginCon.users.get(loginCon.userNumber).getID().equals(layoutCon.schedules.get(a).getID())) {
-			if(layoutCon.schedules.get(a).getDate().getMonth().equals(LocalDate.now().getMonth())) {
+			if(layoutCon.schedules.get(a).getDate().getMonth().equals(homeCon.date.getMonth())) {
+				monthSchedules.add(layoutCon.schedules.get(a));
+			}
+			}
+		}
+		expenseDateColumn.setSortType(TableColumn.SortType.ASCENDING);
+		expenseTable.getSortOrder().add(expenseDateColumn);
+		expenseDateColumn.setSortable(true);
+		expenseTable.sort();
+		incomeDateColumn.setSortType(TableColumn.SortType.ASCENDING);
+		incomeTable.getSortOrder().add(incomeDateColumn);
+		incomeDateColumn.setSortable(true);
+		incomeTable.sort();
+		scheduleDateColumn.setSortType(TableColumn.SortType.ASCENDING);
+		scheduleTable.getSortOrder().add(scheduleDateColumn);
+		scheduleDateColumn.setSortable(true);
+		scheduleTable.sort();
+	}
+	@FXML
+	private void nextMonthButton() {
+		homeCon.date =homeCon.date.plusMonths(1);
+		dateTitle.setText(homeCon.date.getYear()+"년 "+homeCon.date.getMonthValue()+"월");
+		monthExpenses.clear();
+		monthIncomes.clear();
+		monthSchedules.clear();
+		for(int i=0;i<layoutCon.expenses.size();i++) {
+			if(loginCon.users.get(loginCon.userNumber).getID().equals(layoutCon.expenses.get(i).getID())) {
+			if(layoutCon.expenses.get(i).getDate().getMonth().equals(homeCon.date.getMonth())) {
+			monthExpenses.add(layoutCon.expenses.get(i));
+			}
+			}
+		}
+		for(int j=0;j<layoutCon.incomes.size();j++) {
+			if(loginCon.users.get(loginCon.userNumber).getID().equals(layoutCon.incomes.get(j).getID())) {
+			if(layoutCon.incomes.get(j).getDate().getMonth().equals(homeCon.date.getMonth())) {
+				monthIncomes.add(layoutCon.incomes.get(j));
+			}
+			}
+		}
+		for(int a=0;a<layoutCon.schedules.size();a++) {
+			if(loginCon.users.get(loginCon.userNumber).getID().equals(layoutCon.schedules.get(a).getID())) {
+			if(layoutCon.schedules.get(a).getDate().getMonth().equals(homeCon.date.getMonth())) {
+				monthSchedules.add(layoutCon.schedules.get(a));
+			}
+			}
+		}
+		expenseDateColumn.setSortType(TableColumn.SortType.ASCENDING);
+		expenseTable.getSortOrder().add(expenseDateColumn);
+		expenseDateColumn.setSortable(true);
+		expenseTable.sort();
+		incomeDateColumn.setSortType(TableColumn.SortType.ASCENDING);
+		incomeTable.getSortOrder().add(incomeDateColumn);
+		incomeDateColumn.setSortable(true);
+		incomeTable.sort();
+		scheduleDateColumn.setSortType(TableColumn.SortType.ASCENDING);
+		scheduleTable.getSortOrder().add(scheduleDateColumn);
+		scheduleDateColumn.setSortable(true);
+		scheduleTable.sort();
+	}
+
+	public ReportController() {
+		for(int i=0;i<layoutCon.expenses.size();i++) {
+			if(loginCon.users.get(loginCon.userNumber).getID().equals(layoutCon.expenses.get(i).getID())) {
+			if(layoutCon.expenses.get(i).getDate().getMonth().equals(homeCon.date.getMonth())) {
+			monthExpenses.add(layoutCon.expenses.get(i));
+			}
+			}
+		}
+		for(int j=0;j<layoutCon.incomes.size();j++) {
+			if(loginCon.users.get(loginCon.userNumber).getID().equals(layoutCon.incomes.get(j).getID())) {
+			if(layoutCon.incomes.get(j).getDate().getMonth().equals(homeCon.date.getMonth())) {
+				monthIncomes.add(layoutCon.incomes.get(j));
+			}
+			}
+		}
+		for(int a=0;a<layoutCon.schedules.size();a++) {
+			if(loginCon.users.get(loginCon.userNumber).getID().equals(layoutCon.schedules.get(a).getID())) {
+			if(layoutCon.schedules.get(a).getDate().getMonth().equals(homeCon.date.getMonth())) {
 				monthSchedules.add(layoutCon.schedules.get(a));
 			}
 			}
@@ -77,6 +159,7 @@ public class ReportController {
 		scheduleDateColumn.setCellValueFactory(cellData -> cellData.getValue().getDateProperty());
 		scheduleNameColumn.setCellValueFactory(cellData -> cellData.getValue().getNameProperty());
 		scheduleContentColumn.setCellValueFactory(cellData -> cellData.getValue().getContentProperty());
+
 	}
 	public ObservableList<Expense> getExpenses(){
 		return monthExpenses;
@@ -90,8 +173,20 @@ public class ReportController {
 	public void setReprot(LayoutController layoutCon) {
 		this.layoutCon = layoutCon;
 		expenseTable.setItems(getExpenses());
+		expenseDateColumn.setSortType(TableColumn.SortType.ASCENDING);
+		expenseTable.getSortOrder().add(expenseDateColumn);
+		expenseDateColumn.setSortable(true);
+		expenseTable.sort();
 		incomeTable.setItems(getIncome());
+		incomeDateColumn.setSortType(TableColumn.SortType.ASCENDING);
+		incomeTable.getSortOrder().add(incomeDateColumn);
+		incomeDateColumn.setSortable(true);
+		incomeTable.sort();
 		scheduleTable.setItems(getSchedule());
+		scheduleDateColumn.setSortType(TableColumn.SortType.ASCENDING);
+		scheduleTable.getSortOrder().add(scheduleDateColumn);
+		scheduleDateColumn.setSortable(true);
+		scheduleTable.sort();
 	}
 
 }

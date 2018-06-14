@@ -12,6 +12,9 @@ import javafx.scene.layout.Pane;
 
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import model.Expense;
+import model.Income;
+import model.Schedule;
 
 
 public class HomeController {
@@ -21,6 +24,11 @@ public class HomeController {
 	public static LocalDate date;
 	private LayoutController layoutCon;
 	@FXML  Pane calendar;
+	public HomeController() {
+	//	layoutCon.expenses.add(new Expense(loginCon.users.get(loginCon.userNumber).getID(),LocalDate.of(2018,6,11),"교통","버스비",5000,"티머니 충전"));
+		//layoutCon.incomes.add(new Income(loginCon.users.get(loginCon.userNumber).getID(),LocalDate.of(2018,6,6),"알바비",20000));
+		//layoutCon.schedules.add(new Schedule(loginCon.users.get(loginCon.userNumber).getID(),LocalDate.of(2018,6,2),"축구","오메가배 풋살결승"));
+	}
 	
 	public void setMain(LayoutController layoutCon) {
 		this.layoutCon = layoutCon;
@@ -64,6 +72,7 @@ public class HomeController {
 	    	    Scene scene = new Scene(page);
 	    	    dialogStage.setScene(scene);  
 	    	    OutputButtonController controller = loader.getController();
+	    	    controller.setOutput(this);
 	    	    controller.setDialogStage(dialogStage);
 	    	    dialogStage.showAndWait();
 	    	    dialogStage.setResizable(false);

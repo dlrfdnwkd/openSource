@@ -1,24 +1,13 @@
 package controller;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
+
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundImage;
-import javafx.scene.layout.BackgroundPosition;
-import javafx.scene.layout.BackgroundRepeat;
-import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import model.AnchorPaneNode;
-import model.Expense;
-
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.time.LocalDate;
 import java.time.YearMonth;
@@ -31,8 +20,7 @@ public class CalendarController {
     private VBox view;
     private Text calendarTitle;
     private YearMonth currentYearMonth;
-    private ObservableList<Expense> expenses = FXCollections.observableArrayList();
-    private static HomeController homeCon;
+    private LayoutController layoutCon;
 
     /**
      * Create a calendar view
@@ -40,8 +28,6 @@ public class CalendarController {
      * @throws FileNotFoundException 
      */
     public CalendarController(YearMonth yearMonth) {
-    	expenses.add(new Expense("길우",LocalDate.of(2018, 6, 12),"유흥","점심",2000,"컵라면"));
-    	expenses.add(new Expense("길우",LocalDate.of(2018, 5, 4),"교통","저녁",30000,"음료수"));
     	currentYearMonth = yearMonth;
     	allCalendarDays.clear();
     	//homeCon.yearMonth = yearMonth;
@@ -81,19 +67,8 @@ public class CalendarController {
         // Create calendarTitle and buttons to change current month
         calendarTitle = new Text();
         calendarTitle.setStyle("-fx-fill: blue;-fx-font-size: 18");
-        //Image image = new Image("file:image/a.png");
-        //ImageView imageView = new ImageView();
-        //imageView.setImage(image);
-        //imageView.setPreserveRatio(true);
-        //imageView.setFitWidth(1);
-        //Image image = new Image(getClass().getResourceAsStream("@../image/a.png"));
-        //ImageView imageView = new ImageView(image);
         Button previousMonth = new Button("<");
-        previousMonth.setStyle("-fx-border-color: blue; -fx-border-radius: 10;-fx-background-color: white");
-        //previousMonth.setGraphic(imageView);
-        //previousMonth.setGraphic(new ImageView(image));
-        //Image image = new Image(getClass().getResourceAsStream("/immage/a.png"));
-       // previousMonth.setStyle("-fx-background-image: url('image/a.png')");       
+        previousMonth.setStyle("-fx-border-color: blue; -fx-border-radius: 10;-fx-background-color: white");      
         previousMonth.setOnAction(e -> previousMonth());
         Button nextMonth = new Button(">");
         nextMonth.setStyle("-fx-border-color: blue; -fx-border-radius: 10;-fx-background-color: white");
@@ -130,10 +105,10 @@ public class CalendarController {
                 ap.setStyle("-fx-border-color: white;");
             }
             ap.setDate(calendarDate);
-            for(int a=0;a<expenses.size();a++) {
-                if(ap.getDate().equals((expenses.get(a).getDate())))
+            for(int a=0;a<layoutCon.expenses.size();a++) {
+                if(ap.getDate().equals((layoutCon.expenses.get(a).getDate())))
                 {
-                Text expense = new Text(Integer.toString(expenses.get(a).getExpense()));
+                Text expense = new Text(Integer.toString(layoutCon.expenses.get(a).getExpense()));
                 ap.setRightAnchor(expense, 30.0);
                 ap.setBottomAnchor(expense, 30.0);
                 ap.getChildren().add(expense);

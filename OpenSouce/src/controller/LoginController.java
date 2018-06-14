@@ -10,6 +10,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
@@ -17,12 +18,12 @@ import javafx.stage.Stage;
 import model.User;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
 
 public class LoginController  {
-	@FXML
-	private TextField txtID;
-	@FXML
-	private PasswordField txtPassword;
+	@FXML private TextField txtID;
+	@FXML private PasswordField txtPassword;
+	@FXML private Button loginButton;
 	private Stage primaryStage;
 	private LayoutController layoutController =new LayoutController();
 	public static ObservableList<User> users = FXCollections.observableArrayList();
@@ -32,7 +33,7 @@ public class LoginController  {
 	}
 
 	public void LoginButton(ActionEvent event) throws Exception {
-		boolean UserFind =false;
+		/*boolean UserFind =false;
 		UserFind = userFind();
 		if(UserFind==true) {
 	    layoutController.setRootLayout();
@@ -45,6 +46,34 @@ public class LoginController  {
 			alert.setContentText("확인한 후 다시 입력해주시오.");
 			alert.showAndWait();	
 			txtPassword.setText(null);
+		}*/
+		login();
+	}
+	public void loginButton() {
+		loginButton.setOnKeyPressed(e -> {
+			if (e.getCode() == KeyCode.ENTER) {
+				login();
+			}
+		});
+	}
+	private void login() {
+		try {
+			boolean UserFind =false;
+			UserFind = userFind();
+			if(UserFind==true) {
+		    layoutController.setRootLayout();
+			layoutController.setHome();
+			} else {
+				Alert alert = new Alert(AlertType.WARNING);
+				//alert.initOwner(main.getPrimaryStage());
+				alert.setTitle("로그인 실패");
+				alert.setHeaderText("아이디 및 비밀번호 오류");
+				alert.setContentText("확인한 후 다시 입력해주시오.");
+				alert.showAndWait();	
+				txtPassword.setText(null);
+			}
+		}catch(Exception e) {
+			e.printStackTrace();
 		}
 	}
 	@FXML

@@ -1,5 +1,6 @@
 package controller;
 
+import java.time.LocalDate;
 import java.time.YearMonth;
 
 import javafx.collections.FXCollections;
@@ -25,7 +26,12 @@ public  class LayoutController {
 	public static ObservableList<Expense> expenses = FXCollections.observableArrayList();
 	public static ObservableList<Income> incomes = FXCollections.observableArrayList();
 	public static ObservableList<Schedule> schedules = FXCollections.observableArrayList();
-	int i;
+	//int i;
+	public LayoutController() {
+		//expenses.add(new Expense(loginCon.users.get(loginCon.userNumber).getID(),LocalDate.of(2018,6,11),"교통","버스비",5000,"티머니 충전"));
+		//incomes.add(new Income(loginCon.users.get(loginCon.userNumber).getID(),LocalDate.of(2018,6,6),"알바비",20000));
+		//schedules.add(new Schedule(loginCon.users.get(loginCon.userNumber).getID(),LocalDate.of(2018,6,2),"축구","오메가배 풋살결승"));
+	}
 
 	
 	public void setRootLayout() {
@@ -46,6 +52,16 @@ public  class LayoutController {
 		for(int j = 0; j<tempList1.size();j++){
 		incomes.add(tempList1.get(j));
 	    }*/
+		expenses.add(new Expense(loginCon.users.get(loginCon.userNumber).getID(),LocalDate.of(2018,6,11),"교통","버스",5000,"티머니 충전"));
+		expenses.add(new Expense(loginCon.users.get(loginCon.userNumber).getID(),LocalDate.of(2018,7,20),"유흥","술",34000,"동창회"));
+		expenses.add(new Expense(loginCon.users.get(loginCon.userNumber).getID(),LocalDate.of(2018,6,5),"식비","점심",3500,"학식"));
+		expenses.add(new Expense(loginCon.users.get(loginCon.userNumber).getID(),LocalDate.of(2018,7,4),"식비","저녁",8500,"독스마스"));
+		expenses.add(new Expense(loginCon.users.get(loginCon.userNumber).getID(),LocalDate.of(2018,6,29),"교통","택시",5000,""));
+		expenses.add(new Expense(loginCon.users.get(loginCon.userNumber).getID(),LocalDate.of(2018,5,4),"기타","알약",3000,""));
+		expenses.add(new Expense(loginCon.users.get(loginCon.userNumber).getID(),LocalDate.of(2018,5,24),"기타","담배",4500,"레종"));
+		expenses.add(new Expense(loginCon.users.get(loginCon.userNumber).getID(),LocalDate.of(2018,6,15),"식비","야식",17000,"치킨"));
+		incomes.add(new Income(loginCon.users.get(loginCon.userNumber).getID(),LocalDate.of(2018,6,6),"알바비",20000));
+		schedules.add(new Schedule(loginCon.users.get(loginCon.userNumber).getID(),LocalDate.of(2018,6,2),"축구","오메가배 풋살결승"));
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
@@ -58,6 +74,7 @@ public  class LayoutController {
 			HomeController controller = loader.getController();	
 			controller.calendar.getChildren().clear();
 			controller.calendar.getChildren().add(new CalendarController(YearMonth.now()).getView());
+			controller.date=LocalDate.now();
 			controller.setMain(this);
 			root.setCenter(home);
 		} catch (Exception e) {

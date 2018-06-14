@@ -26,7 +26,7 @@ public class Main extends Application {
 	}
 
 	public static void main(String[] args) {
-		String url ="jdbc:mysql://127.0.0.1/?serverTimezone=UTC&verifyServerCertificate=false&useSSL=true&user=root&password=dmlwls159";
+		/*String url ="jdbc:mysql://127.0.0.1/?serverTimezone=UTC&verifyServerCertificate=false&useSSL=true&user=root&password=dmlwls159";
 		   Connection conn=null;
 		   Statement stmt=null;
 		   ResultSet rs=null;
@@ -51,7 +51,7 @@ public class Main extends Application {
 		      if(conn!=null) try {conn.close();} catch(SQLException se) {}
 		      if(stmt!=null) try {stmt.close();} catch(SQLException se) {}
 		      if(rs!=null) try {rs.close();} catch(SQLException se) {}
-		   }
+		   }*/
 		launch(args);
 	}
 }

@@ -25,6 +25,8 @@ public  class LayoutController {
 	public static ObservableList<Expense> expenses = FXCollections.observableArrayList();
 	public static ObservableList<Income> incomes = FXCollections.observableArrayList();
 	public static ObservableList<Schedule> schedules = FXCollections.observableArrayList();
+	int i;
+
 	
 	public void setRootLayout() {
 		try {
@@ -34,7 +36,7 @@ public  class LayoutController {
 		rootStage = Main.parentWindow;
 		rootStage.setScene(scene);
 		rootStage.centerOnScreen();
-		ExpenseDAO expenseDAO = new ExpenseDAO();
+		/*ExpenseDAO expenseDAO = new ExpenseDAO();
 		ObservableList<Expense> tempList = expenseDAO.getExpense();
 		for(int i = 0; i<tempList.size();i++){
 		expenses.add(tempList.get(i));
@@ -43,7 +45,7 @@ public  class LayoutController {
 		ObservableList<Income> tempList1 = incomeDAO.getIncome();
 		for(int j = 0; j<tempList1.size();j++){
 		incomes.add(tempList1.get(j));
-	    }
+	    }*/
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
@@ -53,8 +55,10 @@ public  class LayoutController {
 			FXMLLoader loader = new FXMLLoader();
 			loader.setLocation(Main.class.getResource("../view/Home.fxml"));
 			AnchorPane home = (AnchorPane) loader.load();
-			HomeController controller = loader.getController();
+			HomeController controller = loader.getController();	
+			controller.calendar.getChildren().clear();
 			controller.calendar.getChildren().add(new CalendarController(YearMonth.now()).getView());
+			controller.setMain(this);
 			root.setCenter(home);
 		} catch (Exception e) {
 			e.printStackTrace();

@@ -19,11 +19,12 @@ public class HomeController {
 	private Stage primaryStage;
 	private LoginController loginCon;
 	public static LocalDate date;
+	private LayoutController layoutCon;
 	@FXML  Pane calendar;
 	
-	/*public void setMain(Main main) {
-		this.main = main;
-	}*/
+	public void setMain(LayoutController layoutCon) {
+		this.layoutCon = layoutCon;
+	}
 	@FXML
 	private void inputButton() {
 		setInputData();

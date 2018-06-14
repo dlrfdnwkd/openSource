@@ -70,16 +70,16 @@ private String select = "expense";
 						alert.setContentText("금액을 입력해주세요.");
 						alert.show();
 					}else {
-						ExpenseDAO expenseDAO = new ExpenseDAO();
-						int result = expenseDAO.saveExpense(new Expense(loginCon.users.get(loginCon.userNumber).getID(),datePicker.getValue(),(String)typeCheck.getValue(),txtName.getText(),Integer.parseInt(txtMoney.getText()),txtContent.getText()));
+						//ExpenseDAO expenseDAO = new ExpenseDAO();
+						//int result = expenseDAO.saveExpense(new Expense(loginCon.users.get(loginCon.userNumber).getID(),datePicker.getValue(),(String)typeCheck.getValue(),txtName.getText(),Integer.parseInt(txtMoney.getText()),txtContent.getText()));
 						layoutCon.expenses.add(new Expense(loginCon.users.get(loginCon.userNumber).getID(),datePicker.getValue(),(String)typeCheck.getValue(),txtName.getText(),Integer.parseInt(txtMoney.getText()),txtContent.getText()));
-						if(result==0)
+						/*if(result==0)
 						{
 							System.out.println("성공");
 						}
 						else {
 							System.out.println("실패");
-						}
+						}*/
 						//layoutCon.expenses.add(new Expense(loginCon.users.get(loginCon.userNumber).getID(),datePicker.getValue(),(String)typeCheck.getValue(),txtName.getText(),Integer.parseInt(txtMoney.getText()),txtContent.getText()));
 			      input = true;
 					}

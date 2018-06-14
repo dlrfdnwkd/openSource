@@ -43,6 +43,7 @@ public class CalendarController {
     	expenses.add(new Expense("길우",LocalDate.of(2018, 6, 12),"유흥","점심",2000,"컵라면"));
     	expenses.add(new Expense("길우",LocalDate.of(2018, 5, 4),"교통","저녁",30000,"음료수"));
     	currentYearMonth = yearMonth;
+    	allCalendarDays.clear();
     	//homeCon.yearMonth = yearMonth;
         // Create the calendar grid pane
         GridPane calendar = new GridPane();
@@ -72,9 +73,9 @@ public class CalendarController {
             ap.setBottomAnchor(txt, 10.0);
             ap.setLeftAnchor(txt, 60.0);
             ap.setCenterShape(false);
-            txt.setStyle("-fx-font-size : 15");
+            txt.setStyle("-fx-font-size : 15;-fx-fill: white;");
             ap.getChildren().add(txt);
-            ap.setStyle("-fx-background-color : white;");
+            ap.setStyle("-fx-background-color : royalblue;-fx-border-color: white;");
             dayLabels.add(ap, col++, 0);
         }
         // Create calendarTitle and buttons to change current month

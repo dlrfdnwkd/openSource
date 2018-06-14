@@ -28,35 +28,35 @@ public class ReportController {
 	@FXML private TableColumn<Schedule, LocalDate> scheduleDateColumn;
 	@FXML private TableColumn<Schedule, String> scheduleNameColumn;
 	@FXML private TableColumn<Schedule, String> scheduleContentColumn;
-	public static ObservableList<Expense> expenses = FXCollections.observableArrayList();
+	//public static ObservableList<Expense> expenses = FXCollections.observableArrayList();
 	public ObservableList<Expense> monthExpenses =FXCollections.observableArrayList();
-	public static ObservableList<Income> incomes = FXCollections.observableArrayList();
+	//public static ObservableList<Income> incomes = FXCollections.observableArrayList();
 	public ObservableList<Income> monthIncomes = FXCollections.observableArrayList();
-	public static ObservableList<Schedule> schedules = FXCollections.observableArrayList();
+	//public static ObservableList<Schedule> schedules = FXCollections.observableArrayList();
 	public ObservableList<Schedule> monthSchedules = FXCollections.observableArrayList();
 	private LayoutController layoutCon;
 	private LoginController loginCon;
 
 	public ReportController() {
 		
-		for(int i=0;i<expenses.size();i++) {
-			if(loginCon.users.get(loginCon.userNumber).getID().equals(expenses.get(i).getID())) {
-			if(expenses.get(i).getDate().getMonth().equals(LocalDate.now().getMonth())) {
-			monthExpenses.add(expenses.get(i));
+		for(int i=0;i<layoutCon.expenses.size();i++) {
+			if(loginCon.users.get(loginCon.userNumber).getID().equals(layoutCon.expenses.get(i).getID())) {
+			if(layoutCon.expenses.get(i).getDate().getMonth().equals(LocalDate.now().getMonth())) {
+			monthExpenses.add(layoutCon.expenses.get(i));
 			}
 			}
 		}
-		for(int j=0;j<incomes.size();j++) {
-			if(loginCon.users.get(loginCon.userNumber).getID().equals(incomes.get(j).getID())) {
-			if(incomes.get(j).getDate().getMonth().equals(LocalDate.now().getMonth())) {
-				monthIncomes.add(incomes.get(j));
+		for(int j=0;j<layoutCon.incomes.size();j++) {
+			if(loginCon.users.get(loginCon.userNumber).getID().equals(layoutCon.incomes.get(j).getID())) {
+			if(layoutCon.incomes.get(j).getDate().getMonth().equals(LocalDate.now().getMonth())) {
+				monthIncomes.add(layoutCon.incomes.get(j));
 			}
 			}
 		}
-		for(int a=0;a<schedules.size();a++) {
-			if(loginCon.users.get(loginCon.userNumber).getID().equals(schedules.get(a).getID())) {
-			if(schedules.get(a).getDate().getMonth().equals(LocalDate.now().getMonth())) {
-				monthSchedules.add(schedules.get(a));
+		for(int a=0;a<layoutCon.schedules.size();a++) {
+			if(loginCon.users.get(loginCon.userNumber).getID().equals(layoutCon.schedules.get(a).getID())) {
+			if(layoutCon.schedules.get(a).getDate().getMonth().equals(LocalDate.now().getMonth())) {
+				monthSchedules.add(layoutCon.schedules.get(a));
 			}
 			}
 		}

@@ -76,5 +76,9 @@ public class Expense {
 	public StringProperty getContentProperty() {
 		return content;
 	}
+	public static void add(Expense expense2) {
+		// TODO Auto-generated method stub
+		
+	}
 
 }

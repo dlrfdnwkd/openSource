@@ -6,6 +6,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
+
 import java.sql.*;
 
 
@@ -20,9 +22,11 @@ public class Main extends Application {
 			Parent login = FXMLLoader.load(getClass().getResource("/view/Login.fxml"));
 			Scene loginscene = new Scene(login);
 			primaryStage.setScene(loginscene);
+			//primaryStage.initStyle(StageStyle.TRANSPARENT);
 			primaryStage.setTitle("신호등 가계부");
 			primaryStage.getIcons().add(new Image("file:image/신호등.png"));
 			primaryStage.show();
+			primaryStage.setResizable(false);
 	}
 
 	public static void main(String[] args) {

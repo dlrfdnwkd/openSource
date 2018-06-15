@@ -13,10 +13,10 @@
             <Font size="46.0" />
          </font>
       </Label>
-      <Label layoutX="83.0" layoutY="166.0" text="ID :" />
-      <TextField fx:id="txtID" layoutX="158.0" layoutY="162.0" promptText="UserID" />
-      <Label layoutX="57.0" layoutY="237.0" text="PASSWORD :" />
-      <PasswordField fx:id="txtPassword" layoutX="158.0" layoutY="233.0" promptText="PASSWORD" />
+      <Label layoutX="134.0" layoutY="203.0" text="ID :" />
+      <TextField fx:id="txtID" layoutX="172.0" layoutY="199.0" promptText="UserID" />
+      <Label layoutX="83.0" layoutY="256.0" text="PASSWORD :" />
+      <PasswordField fx:id="txtPassword" layoutX="172.0" layoutY="252.0" promptText="PASSWORD" />
       <Button fx:id="loginButton" layoutX="203.0" layoutY="350.0" mnemonicParsing="false" onAction="#LoginButton" onKeyPressed="#loginButton" text="Login" />
       <Button layoutX="93.0" layoutY="350.0" mnemonicParsing="false" onAction="#signUpButton" text="회원가입" />
       <Button layoutX="296.0" layoutY="350.0" mnemonicParsing="false" onAction="#findButton" text="ID/PASSWORD 찾기" />

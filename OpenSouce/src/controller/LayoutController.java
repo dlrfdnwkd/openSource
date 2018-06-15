@@ -22,7 +22,6 @@ import model.Schedule;
 public  class LayoutController {
 	private static BorderPane root;
 	private LoginController loginCon;
-	private ReportController reportCon;
 	public static ObservableList<Expense> expenses = FXCollections.observableArrayList();
 	public static ObservableList<Income> incomes = FXCollections.observableArrayList();
 	public static ObservableList<Schedule> schedules = FXCollections.observableArrayList();
@@ -41,6 +40,7 @@ public  class LayoutController {
 		Scene scene = new Scene(root);
 		rootStage = Main.parentWindow;
 		rootStage.setScene(scene);
+		rootStage.setResizable(true);
 		rootStage.centerOnScreen();
 		/*ExpenseDAO expenseDAO = new ExpenseDAO();
 		ObservableList<Expense> tempList = expenseDAO.getExpense();

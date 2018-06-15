@@ -74,7 +74,8 @@ public class UserController {
 		Stage loginStage;
 		Scene loginscene = new Scene(login);
 		loginStage = Main.parentWindow;
-		loginStage.setScene(loginscene);			
+		loginStage.setScene(loginscene);
+		loginStage.centerOnScreen();
 		}catch(Exception e) {
 			e.printStackTrace();
 		}

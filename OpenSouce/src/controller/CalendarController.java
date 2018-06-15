@@ -12,6 +12,7 @@ import java.io.FileNotFoundException;
 import java.time.LocalDate;
 import java.time.YearMonth;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 
 public class CalendarController {
@@ -21,6 +22,7 @@ public class CalendarController {
     private Text calendarTitle;
     private YearMonth currentYearMonth;
     private LayoutController layoutCon;
+    private BudgetController budgetCon;
 
     /**
      * Create a calendar view
@@ -76,11 +78,6 @@ public class CalendarController {
         HBox titleBar = new HBox(previousMonth,calendarTitle,nextMonth);
         titleBar.setPrefSize(1000, 40);
         titleBar.setAlignment(Pos.BASELINE_CENTER);
-
-        //titleBar.set(Pos.BASELINE_CENTER);
-        //homeCon.previousMonthButton.setOnAction(e -> previousMonth());
-        //homeCon.nextMonthButton.setOnAction(e -> nextMonth());
-        // Populate calendar with the appropriate day numbers
         populateCalendar(yearMonth);
         // Create the calendar view
         view = new VBox(titleBar,dayLabels, calendar);
@@ -105,6 +102,15 @@ public class CalendarController {
                 ap.setStyle("-fx-border-color: white;");
             }
             ap.setDate(calendarDate);
+            Calendar cal = Calendar.getInstance();
+   		    cal.set(Calendar.YEAR,yearMonth.getYear());
+   		    cal.set(Calendar.MONTH,yearMonth.getMonthValue());
+   		    int dayExpense = 0;
+   		    for(int e=0;e<budgetCon.monthGoalMoney.size();e++) {
+   		        if(budgetCon.monthGoalMoney.get(e).getDate().getMonth() == yearMonth.getMonth()) {
+   		    	dayExpense = budgetCon.monthGoalMoney.get(e).getTotal()/cal.DAY_OF_MONTH;
+   		        }
+   		    }
             for(int a=0;a<layoutCon.expenses.size();a++) {
                 if(ap.getDate().equals((layoutCon.expenses.get(a).getDate())))
                 {
@@ -112,6 +118,24 @@ public class CalendarController {
                 ap.setRightAnchor(expense, 30.0);
                 ap.setBottomAnchor(expense, 30.0);
                 ap.getChildren().add(expense);
+                int dayDifferentiate = 0;
+                if(dayExpense != 0) {
+                	dayDifferentiate =(layoutCon.expenses.get(a).getExpense()/dayExpense)*100;
+                }
+                if(dayDifferentiate == 0)
+                {
+                	ap.setStyle("-fx-background-color: white;-fx-border-color: white;");
+                }else {
+                	if(dayDifferentiate <= 75) {
+                		ap.setStyle("-fx-background-color: deepskyblue;-fx-border-color: white;");
+                	}else {
+                		if(dayDifferentiate <= 100) {
+                			ap.setStyle("-fx-background-color: yellow;-fx-border-color: white;");
+                		}else {
+                			ap.setStyle("-fx-background-color: red;-fx-border-color: white;");
+                		}
+                	}
+                }
                 ap.setStyle("-fx-background-color: deepskyblue;-fx-border-color: white;");
                 }
                 }

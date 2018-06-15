@@ -1,20 +1,20 @@
 package controller;
 
 import java.time.LocalDate;
+import java.util.Calendar;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.SplitPane;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import model.Expense;
-import model.Income;
-import model.Schedule;
+
 
 
 public class HomeController {
@@ -23,6 +23,9 @@ public class HomeController {
 	private LoginController loginCon;
 	public static LocalDate date;
 	private LayoutController layoutCon;
+	private BudgetController budgetCon;
+	public int i;
+	public ObservableList<Integer> dayExpense = FXCollections.observableArrayList();
 	@FXML  Pane calendar;
 	public HomeController() {
 	//	layoutCon.expenses.add(new Expense(loginCon.users.get(loginCon.userNumber).getID(),LocalDate.of(2018,6,11),"교통","버스비",5000,"티머니 충전"));
@@ -80,4 +83,13 @@ public class HomeController {
 	    		e.printStackTrace();
 	    	}
 	    }
-}
+	 /*public void setDatExpense() {
+		 //layoutCon.expenses.get(0).getExpense()
+		 Calendar cal = Calendar.getInstance();
+		 cal.set(Calendar.YEAR,date.getYear());
+		 cal.set(Calendar.MONTH,date.getMonthValue());
+		 for(int i=0;i<budgetCon.monthGoalMoney.size();i++)
+		 int datExepense = budgetCon.monthGoalMoney.get(0).getTotal() / cal.DAY_OF_MONTH;
+		 layoutCon.expenses.get
+	 }*/
+	 }

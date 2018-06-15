@@ -79,9 +79,6 @@ public class BudgetController {
 		goalMoneyTable.sort();
 	}
 	public BudgetController() {
-		for(int i=0;i<monthGoalMoney.size();i++) {
-			//if(homeCon.date.getYear() == monthGoalMoney.get(i).getDate().get)
-		}
 	}
 	@FXML
 	private void initialize() {
@@ -91,17 +88,21 @@ public class BudgetController {
 	    yearLabel.setText(homeCon.date.getYear()+"년");
 	    for(int i=0;i<monthGoalMoney.size();i++) {
 	    	if(monthGoalMoney.get(i).getDate().getYear() == homeCon.date.getYear()) {
-	    		yearGoalMoney.add(monthGoalMoney.get(i));
+	    		for(int j=0;j<yearGoalMoney.size();j++) {
+	    			if(!monthGoalMoney.get(i).equals(yearGoalMoney.get(j))) {
+	    			yearGoalMoney.add(monthGoalMoney.get(i));
+	    			}
+	    		}
 	    	}
 	    }
 	    goalMoneyMonthColumn.setCellValueFactory(cellData -> cellData.getValue().getDateProperty());
 	    goalMoneyTrafficColumn.setCellValueFactory(cellData -> cellData.getValue().getTrafficProperty().asObject());
-	    goalMoneyFoodColumn.setCellValueFactory(cellData -> cellData.getValue().getTrafficProperty().asObject());
-	    goalMoneyLifeColumn.setCellValueFactory(cellData -> cellData.getValue().getTrafficProperty().asObject());
-	    goalMoneyMedicalColumn.setCellValueFactory(cellData -> cellData.getValue().getTrafficProperty().asObject());
-	    goalMoneyPleasureColumn.setCellValueFactory(cellData -> cellData.getValue().getTrafficProperty().asObject());;
-	    goalMoneyGuitarColumn.setCellValueFactory(cellData -> cellData.getValue().getTrafficProperty().asObject());
-	    goalMoneyTotalColumn.setCellValueFactory(cellData -> cellData.getValue().getTrafficProperty().asObject());
+	    goalMoneyFoodColumn.setCellValueFactory(cellData -> cellData.getValue().getFoodProperty().asObject());
+	    goalMoneyLifeColumn.setCellValueFactory(cellData -> cellData.getValue().getLifeProperty().asObject());
+	    goalMoneyMedicalColumn.setCellValueFactory(cellData -> cellData.getValue().getMedicalProperty().asObject());
+	    goalMoneyPleasureColumn.setCellValueFactory(cellData -> cellData.getValue().getPleasureProperty().asObject());;
+	    goalMoneyGuitarColumn.setCellValueFactory(cellData -> cellData.getValue().getGuitarProperty().asObject());
+	    goalMoneyTotalColumn.setCellValueFactory(cellData -> cellData.getValue().getTotalProperty().asObject());
 	}
 	@FXML
 	private void setTotal() {
@@ -119,7 +120,7 @@ public class BudgetController {
 		if(select == false) {
 			int overType=0;
 			for(int i=0;i<monthGoalMoney.size();i++) {
-			if(monthGoalMoney.get(i).getDate().equals(YearMonth.from(homeCon.date.getMonth()))) {
+			if(monthGoalMoney.get(i).getDate().equals(YearMonth.from(homeCon.date))) {
 				if(Integer.parseInt(txtMoney.getText())<(monthGoalMoney.get(i).getTraffic()+monthGoalMoney.get(i).getFood()+monthGoalMoney.get(i).getLife()+monthGoalMoney.get(i).getMedical()+monthGoalMoney.get(i).getPleasure()+monthGoalMoney.get(i).getGuitar())) {
 					dateCheck=1;
 					overType=1;
@@ -156,7 +157,7 @@ public class BudgetController {
 				int overTotal=0;
 				if(typeCheck.getValue() == "교통") {
 			for(int i=0;i<monthGoalMoney.size();i++) {
-				if(monthGoalMoney.get(i).getDate().equals(YearMonth.from(homeCon.date.getMonth()))) {
+				if(monthGoalMoney.get(i).getDate().equals(YearMonth.from(homeCon.date))) {
 					if(Integer.parseInt(txtMoney.getText())>(monthGoalMoney.get(i).getTotal())) {
 						dateCheck=1;
 						overTotal=1;
@@ -185,7 +186,7 @@ public class BudgetController {
 				}else {
 					if(typeCheck.getValue() == "식비") {
 						for(int i=0;i<monthGoalMoney.size();i++) {
-							if(monthGoalMoney.get(i).getDate().equals(YearMonth.from(homeCon.date.getMonth()))) {
+							if(monthGoalMoney.get(i).getDate().equals(YearMonth.from(homeCon.date))) {
 								if(Integer.parseInt(txtMoney.getText())>(monthGoalMoney.get(i).getTotal())) {
 									dateCheck=1;
 									overTotal=1;
@@ -214,7 +215,7 @@ public class BudgetController {
 					}else {
 						if(typeCheck.getValue() == "생활") {
 							for(int i=0;i<monthGoalMoney.size();i++) {
-								if(monthGoalMoney.get(i).getDate().equals(YearMonth.from(homeCon.date.getMonth()))) {
+								if(monthGoalMoney.get(i).getDate().equals(YearMonth.from(homeCon.date))) {
 									if(Integer.parseInt(txtMoney.getText())>(monthGoalMoney.get(i).getTotal())) {
 										dateCheck=1;
 										overTotal=1;
@@ -243,7 +244,7 @@ public class BudgetController {
 						}else {
 							if(typeCheck.getValue() == "의료") {
 								for(int i=0;i<monthGoalMoney.size();i++) {
-									if(monthGoalMoney.get(i).getDate().equals(YearMonth.from(homeCon.date.getMonth()))) {
+									if(monthGoalMoney.get(i).getDate().equals(YearMonth.from(homeCon.date))) {
 										if(Integer.parseInt(txtMoney.getText())>(monthGoalMoney.get(i).getTotal())) {
 											dateCheck=1;
 											overTotal=1;
@@ -272,7 +273,7 @@ public class BudgetController {
 							}else {
 								if(typeCheck.getValue() == "유흥") {
 									for(int i=0;i<monthGoalMoney.size();i++) {
-										if(monthGoalMoney.get(i).getDate().equals(YearMonth.from(homeCon.date.getMonth()))) {
+										if(monthGoalMoney.get(i).getDate().equals(YearMonth.from(homeCon.date))) {
 											if(Integer.parseInt(txtMoney.getText())>(monthGoalMoney.get(i).getTotal())) {
 												dateCheck=1;
 												overTotal=1;
@@ -300,7 +301,7 @@ public class BudgetController {
 									        }
 								}else {
 									for(int i=0;i<monthGoalMoney.size();i++) {
-										if(monthGoalMoney.get(i).getDate().equals(YearMonth.from(homeCon.date.getMonth()))) {
+										if(monthGoalMoney.get(i).getDate().equals(YearMonth.from(homeCon.date))) {
 											if(Integer.parseInt(txtMoney.getText())>(monthGoalMoney.get(i).getTotal())) {
 												dateCheck=1;
 												overTotal=1;
@@ -333,15 +334,42 @@ public class BudgetController {
 				}
 			}
 		}
-		 for(int i=0;i<monthGoalMoney.size();i++) {
+		/*boolean check =false;
+		for(int j =0;j<yearGoalMoney.size();j++) {
+			for(int a=1;a<=yearGoalMoney.size();a++) {
+				if(yearGoalMoney.get(j).equals(yearGoalMoney.get(a))) {
+					check = true;
+					break;
+				}
+			}
+			if(check == true) {
+				break;
+			}
+		}
+		if(check == true) {
+			
+		}*/
+		/*boolean check = false;
+		for(int j=0;j<monthGoalMoney.size();j++) {
+			if(monthGoalMoney.get(j).getDate() == YearMonth.from(homeCon.date)) {
+				check = true;
+				break;
+			}
+		}
+		if(check = true) {
+			
+		}*/
+		if(dateCheck==0) {
+			for(int i=0;i<monthGoalMoney.size();i++) {
 		    	if(monthGoalMoney.get(i).getDate().getYear() == homeCon.date.getYear()) {
 		    		yearGoalMoney.add(monthGoalMoney.get(i));
+		    		}
 		    	}
-		    }
-		 goalMoneyMonthColumn.setSortType(TableColumn.SortType.ASCENDING);
-			goalMoneyTable.getSortOrder().add(goalMoneyMonthColumn);
-			goalMoneyMonthColumn.setSortable(true);
-			goalMoneyTable.sort();
+		}
+		goalMoneyMonthColumn.setSortType(TableColumn.SortType.ASCENDING);
+		goalMoneyTable.getSortOrder().add(goalMoneyMonthColumn);
+		goalMoneyMonthColumn.setSortable(true);
+		goalMoneyTable.sort();
 	}
 	private ObservableList<GoalMoney> getYearGoalMoney(){
 		return yearGoalMoney;

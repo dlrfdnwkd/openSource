@@ -66,7 +66,7 @@ public class HomeController {
 	    		loader.setLocation(Main.class.getResource("../view/Output.fxml"));
 	    		SplitPane page= (SplitPane) loader.load();	
 	    		Stage dialogStage = new Stage();
-	    		dialogStage.setTitle("내역환인");
+	    		dialogStage.setTitle("내역확인");
 	    	    dialogStage.initModality(Modality.WINDOW_MODAL);
 	    	    dialogStage.initOwner(primaryStage);
 	    	    Scene scene = new Scene(page);

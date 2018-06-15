@@ -7,7 +7,10 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import model.Expense;
+import model.ExpenseDAO;
 import model.User;
+import model.UserDAO;
 
 public class SignUpController {
 private Stage dialogStage;
@@ -65,6 +68,7 @@ private boolean passwordTest = false;
 			txtName.setEditable(false);
 			txtFirstNumber.setEditable(false);
 			txtLastNumber.setEditable(false);
+			
 		}
 		}
 		}
@@ -164,6 +168,9 @@ private boolean passwordTest = false;
 			alert.setContentText("로그인 해주세요.");
 			alert.show();
 			dialogStage.close();
+			UserDAO userDAO = new UserDAO();
+			int result = userDAO.saveUser(new User(txtName.getText(),txtFirstNumber.getText(),txtLastNumber.getText(),txtID.getText(),txtPassword.getText(),txtEmail.getText(),txtPhoneNumber.getText()));
+			
 		}else {
 			Alert alert = new Alert(AlertType.ERROR);
 			alert.setTitle("오류");

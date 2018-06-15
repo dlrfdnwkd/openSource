@@ -39,12 +39,12 @@ public int deleteIncome() {
 	
  }
 
-public int insertIncome(ObservableList<Income> incomes) {
+public int insertIncome(Income income) {
 	String SQL="INSERT INTO ¼öÀÔ VALUES (?,?,?,?)";
 	try {
 		int i;
-		for(i=0;i<incomes.size();i++) {
-			Income income = incomes.get(i);
+		//for(i=0;i<incomes.size();i++) {
+			//Income income = incomes.get(i);
 			PreparedStatement pstmt = conn.prepareStatement(SQL);
 			
 			pstmt.setString(1, income.getID());
@@ -52,8 +52,8 @@ public int insertIncome(ObservableList<Income> incomes) {
 			pstmt.setString(3, income.getName());
 			pstmt.setInt(4, income.getIncome());
 			pstmt.executeUpdate();
-		}
-		return i;
+		
+		return 0;
 	}catch (Exception e) {
 		e.printStackTrace();
 	}
@@ -74,12 +74,12 @@ public ObservableList<Income> getIncome(){
 	}
 	return incomes;
 }
-public int saveIncome(ObservableList<Income> incomes) {
-	if(deleteIncome() == -1) {
+public int saveIncome(Income income) {
+	/*if(deleteIncome() == -1) {
 		return -1;
-	}
-	if(insertIncome(incomes) == -1) {
-		return -1;
+	}*/
+	if(insertIncome(income) == 0) {
+		return 0;
 	}
 	return 1;
 }

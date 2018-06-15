@@ -15,7 +15,10 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import model.Expense;
+import model.ExpenseDAO;
 import model.User;
+import model.UserDAO;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
@@ -60,10 +63,18 @@ public class LoginController  {
 		try {
 			boolean UserFind =false;
 			UserFind = userFind();
+			
+			UserDAO userDAO = new UserDAO();
+			ObservableList<User> tempList3 = userDAO.getUser();
+			for(int a = 0; a<tempList3.size();a++){
+			users.add(tempList3.get(a));
+			}
+			
 			if(UserFind==true) {
 		    layoutController.setRootLayout();
 			layoutController.setHome();
-			} else {
+			}
+			else {
 				Alert alert = new Alert(AlertType.WARNING);
 				//alert.initOwner(main.getPrimaryStage());
 				alert.setTitle("로그인 실패");
@@ -96,6 +107,7 @@ public class LoginController  {
 	    controller.setDialogStage(dialogStage);
 	    dialogStage.showAndWait();
 	    dialogStage.setResizable(false);
+	    
 		}catch(Exception e) {
 			e.printStackTrace();
 		}

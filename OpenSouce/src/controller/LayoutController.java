@@ -111,6 +111,8 @@ public  class LayoutController {
 			loader.setLocation(Main.class.getResource("../view/Budget.fxml"));
 			AnchorPane budget = (AnchorPane) loader.load();
 			root.setCenter(budget);
+			BudgetController controller = loader.getController();
+			controller.setBudget(this);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

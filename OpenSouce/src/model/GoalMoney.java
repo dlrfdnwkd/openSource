@@ -1,7 +1,6 @@
 package model;
 
-import java.time.LocalDate;
-import java.time.Month;
+import java.time.YearMonth;
 
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.ObjectProperty;
@@ -10,7 +9,7 @@ import javafx.beans.property.SimpleObjectProperty;
 
 public class GoalMoney {
 	private String ID;
-	private ObjectProperty<Month> date;
+	private ObjectProperty<YearMonth> date;
 	private final IntegerProperty traffic;	
 	private final IntegerProperty food;	
 	private final IntegerProperty life;
@@ -19,9 +18,9 @@ public class GoalMoney {
 	private final IntegerProperty guitar;
 	private final IntegerProperty total;
 	
-	public GoalMoney(String ID,Month date,int traffic,int food,int life,int medical,int pleasure,int guitar,int total) {
+	public GoalMoney(String ID,YearMonth date,int traffic,int food,int life,int medical,int pleasure,int guitar,int total) {
 		this.ID = ID;
-		this.date = new SimpleObjectProperty<Month>(date);
+		this.date = new SimpleObjectProperty<YearMonth>(date);
 		this.traffic = new SimpleIntegerProperty(traffic);
 		this.food = new SimpleIntegerProperty(food);
 		this.life = new SimpleIntegerProperty(life);
@@ -37,13 +36,13 @@ public class GoalMoney {
 	public void setID(String ID) {
 		this.ID = ID;
 	}
-	public Month getDate() {
+	public YearMonth getDate() {
 		return date.get();
 	}
-	public void setDate(Month date) {
+	public void setDate(YearMonth date) {
 		this.date.set(date);
 	}
-	public ObjectProperty<Month> getDateProperty(){
+	public ObjectProperty<YearMonth> getDateProperty(){
 		return date;
 	}
 	public int getTraffic() {
@@ -100,7 +99,7 @@ public class GoalMoney {
 	public IntegerProperty getGuitarProperty() {
 		return guitar;
 	}
-	public int gettotal() {
+	public int getTotal() {
 		return total.get();
 	}
 	public void setTotal(int total) {

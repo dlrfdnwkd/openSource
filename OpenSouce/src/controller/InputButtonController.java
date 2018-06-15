@@ -18,7 +18,9 @@ import javafx.stage.Stage;
 import model.Expense;
 import model.ExpenseDAO;
 import model.Income;
+import model.IncomeDAO;
 import model.Schedule;
+import model.ScheduleDAO;
 
 public class InputButtonController {
 private LayoutController layoutCon;
@@ -70,16 +72,16 @@ private String select = "expense";
 						alert.setContentText("금액을 입력해주세요.");
 						alert.show();
 					}else {
-						//ExpenseDAO expenseDAO = new ExpenseDAO();
-						//int result = expenseDAO.saveExpense(new Expense(loginCon.users.get(loginCon.userNumber).getID(),datePicker.getValue(),(String)typeCheck.getValue(),txtName.getText(),Integer.parseInt(txtMoney.getText()),txtContent.getText()));
+						ExpenseDAO expenseDAO = new ExpenseDAO();
+						int result = expenseDAO.saveExpense(new Expense(loginCon.users.get(loginCon.userNumber).getID(),datePicker.getValue(),(String)typeCheck.getValue(),txtName.getText(),Integer.parseInt(txtMoney.getText()),txtContent.getText()));
 						layoutCon.expenses.add(new Expense(loginCon.users.get(loginCon.userNumber).getID(),datePicker.getValue(),(String)typeCheck.getValue(),txtName.getText(),Integer.parseInt(txtMoney.getText()),txtContent.getText()));
-						/*if(result==0)
+						if(result==0)
 						{
 							System.out.println("성공");
 						}
 						else {
 							System.out.println("실패");
-						}*/
+						}
 						//layoutCon.expenses.add(new Expense(loginCon.users.get(loginCon.userNumber).getID(),datePicker.getValue(),(String)typeCheck.getValue(),txtName.getText(),Integer.parseInt(txtMoney.getText()),txtContent.getText()));
 			      input = true;
 					}
@@ -101,7 +103,16 @@ private String select = "expense";
 						alert.setContentText("금액을 입력해주세요.");
 						alert.show();
 					}else {
+						IncomeDAO incomeDAO = new IncomeDAO();
+						int result = incomeDAO.saveIncome(new Income(loginCon.users.get(loginCon.userNumber).getID(),datePicker.getValue(),txtName.getText(),Integer.parseInt(txtMoney.getText())));
 						layoutCon.incomes.add(new Income(loginCon.users.get(loginCon.userNumber).getID(),datePicker.getValue(),txtName.getText(),Integer.parseInt(txtMoney.getText())));
+						if(result==0)
+						{
+							System.out.println("성공");
+						}
+						else {
+							System.out.println("실패");
+						}
 				input = true;
 					}
 				}
@@ -113,7 +124,17 @@ private String select = "expense";
 					alert.setContentText("제목을 입력해주세요.");
 					alert.show();
 				}else {
-					layoutCon.schedules.add(new Schedule(loginCon.users.get(loginCon.userNumber).getID(),datePicker.getValue(),txtName.getText(),txtContent.getText()));
+					ScheduleDAO scheduleDAO = new ScheduleDAO();
+					int result = scheduleDAO.saveSchedule(new Schedule(loginCon.users.get(loginCon.userNumber).getID(),datePicker.getValue(),txtName.getText(),txtMoney.getText()));
+					layoutCon.schedules.add(new Schedule(loginCon.users.get(loginCon.userNumber).getID(),datePicker.getValue(),txtName.getText(),txtMoney.getText()));
+					if(result==0)
+					{
+						System.out.println("성공");
+					}
+					else {
+						System.out.println("실패");
+					}
+					//layoutCon.schedules.add(new Schedule(loginCon.users.get(loginCon.userNumber).getID(),datePicker.getValue(),txtName.getText(),txtContent.getText()));
 				input = true;
 			}
 			}

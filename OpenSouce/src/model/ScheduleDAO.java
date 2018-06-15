@@ -40,7 +40,7 @@ public int deleteSchedule() {
  }
 
 public int insertSchedule(Schedule schedule) {
-	String SQL="INSERT INTO 지출 VALUES (?,?,?,?)";
+	String SQL="INSERT INTO 일정 VALUES (?,?,?,?)";
 	try {
 		int i;
 		//for(i=0;i<expenses.size();i++) {

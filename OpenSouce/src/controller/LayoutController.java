@@ -18,6 +18,7 @@ import model.ExpenseDAO;
 import model.Income;
 import model.IncomeDAO;
 import model.Schedule;
+import model.ScheduleDAO;
 
 public  class LayoutController {
 	private static BorderPane root;
@@ -42,16 +43,24 @@ public  class LayoutController {
 		rootStage = Main.parentWindow;
 		rootStage.setScene(scene);
 		rootStage.centerOnScreen();
-		/*ExpenseDAO expenseDAO = new ExpenseDAO();
+		
+		ExpenseDAO expenseDAO = new ExpenseDAO();
 		ObservableList<Expense> tempList = expenseDAO.getExpense();
 		for(int i = 0; i<tempList.size();i++){
 		expenses.add(tempList.get(i));
 		}
+		
 		IncomeDAO incomeDAO = new IncomeDAO();
 		ObservableList<Income> tempList1 = incomeDAO.getIncome();
 		for(int j = 0; j<tempList1.size();j++){
 		incomes.add(tempList1.get(j));
-	    }*/
+	    }
+		
+		ScheduleDAO scheduleDAO = new ScheduleDAO();
+		ObservableList<Schedule> tempList2 = scheduleDAO.getSchedule();
+		for(int j = 0; j<tempList2.size();j++){
+		schedules.add(tempList2.get(j));
+		}
 		expenses.add(new Expense(loginCon.users.get(loginCon.userNumber).getID(),LocalDate.of(2018,6,11),"교통","버스",5000,"티머니 충전"));
 		expenses.add(new Expense(loginCon.users.get(loginCon.userNumber).getID(),LocalDate.of(2018,7,20),"유흥","술",34000,"동창회"));
 		expenses.add(new Expense(loginCon.users.get(loginCon.userNumber).getID(),LocalDate.of(2018,6,5),"식비","점심",3500,"학식"));
@@ -90,16 +99,7 @@ public  class LayoutController {
 			ReportController controller = loader.getController();
 			controller.setReprot(this);
 			
-			/*ExpenseDAO expenseDAO = new ExpenseDAO();
-			ObservableList<Expense> tempList = expenseDAO.getExpense();
-			for(int i = 0; i<tempList.size();i++){
-			expenses.add(tempList.get(i));
-			}
-			IncomeDAO incomeDAO = new IncomeDAO();
-			ObservableList<Income> tempList1 = incomeDAO.getIncome();
-			for(int j = 0; j<tempList1.size();j++){
-			incomes.add(tempList1.get(j));
-		    }*/
+			
 			}
 		catch (Exception e) {
 			e.printStackTrace();

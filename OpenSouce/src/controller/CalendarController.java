@@ -13,6 +13,7 @@ import java.time.LocalDate;
 import java.time.YearMonth;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.GregorianCalendar;
 
 
 public class CalendarController {
@@ -23,6 +24,7 @@ public class CalendarController {
     private YearMonth currentYearMonth;
     private LayoutController layoutCon;
     private BudgetController budgetCon;
+    private HomeController homeCon;
 
     /**
      * Create a calendar view
@@ -102,13 +104,15 @@ public class CalendarController {
                 ap.setStyle("-fx-border-color: white;");
             }
             ap.setDate(calendarDate);
-            Calendar cal = Calendar.getInstance();
-   		    cal.set(Calendar.YEAR,yearMonth.getYear());
-   		    cal.set(Calendar.MONTH,yearMonth.getMonthValue());
+            int year = homeCon.date.getYear();
+            int month = homeCon.date.getMonthValue()-1;
+            int day = 1;
+            Calendar cal = new GregorianCalendar(year, month, day);
    		    int dayExpense = 0;
+   		    int dayNumber = cal.getActualMaximum(Calendar.DAY_OF_MONTH);
    		    for(int e=0;e<budgetCon.monthGoalMoney.size();e++) {
    		        if(budgetCon.monthGoalMoney.get(e).getDate().getMonth() == yearMonth.getMonth()) {
-   		    	dayExpense = budgetCon.monthGoalMoney.get(e).getTotal()/cal.DAY_OF_MONTH;
+   		    	dayExpense = budgetCon.monthGoalMoney.get(e).getTotal()/ dayNumber;
    		        }
    		    }
             for(int a=0;a<layoutCon.expenses.size();a++) {
@@ -120,23 +124,23 @@ public class CalendarController {
                 ap.getChildren().add(expense);
                 int dayDifferentiate = 0;
                 if(dayExpense != 0) {
-                	dayDifferentiate =(layoutCon.expenses.get(a).getExpense()/dayExpense)*100;
+                	dayDifferentiate =layoutCon.expenses.get(a).getExpense()*100/dayExpense;
                 }
-                if(dayDifferentiate == 0)
+                System.out.println(dayDifferentiate);
+                if(dayDifferentiate > 100)
                 {
-                	ap.setStyle("-fx-background-color: white;-fx-border-color: white;");
+                	ap.setStyle("-fx-background-color: red;-fx-border-color: white;");
                 }else {
-                	if(dayDifferentiate <= 75) {
-                		ap.setStyle("-fx-background-color: deepskyblue;-fx-border-color: white;");
+                	if(dayDifferentiate >= 70) {
+                		ap.setStyle("-fx-background-color: yellow;-fx-border-color: white;");
                 	}else {
-                		if(dayDifferentiate <= 100) {
-                			ap.setStyle("-fx-background-color: yellow;-fx-border-color: white;");
+                		if(dayDifferentiate > 0) {
+                			ap.setStyle("-fx-background-color: deepskyblue;-fx-border-color: white;");
                 		}else {
-                			ap.setStyle("-fx-background-color: red;-fx-border-color: white;");
+                			ap.setStyle("-fx-background-color: white;-fx-border-color: white;");
                 		}
                 	}
                 }
-                ap.setStyle("-fx-background-color: deepskyblue;-fx-border-color: white;");
                 }
                 }
             if(!calendarDate.getMonth().equals(yearMonth.getMonth()))

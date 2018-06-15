@@ -36,16 +36,27 @@ public class AnchorPaneNode extends AnchorPane {
         		checkClicked();
         		if(getStyle()=="-fx-background-color: deepskyblue;-fx-border-color: white;") {
         			setStyle("-fx-background-color: deepskyblue;-fx-border-color: red;");
-        		}
-        		else {
+        		}else {
+        			if(getStyle()=="-fx-background-color: yellow;-fx-border-color: white;") {
+        				setStyle("-fx-background-color: yellow;-fx-border-color: red;");
+        			}else {
+        				if(getStyle()=="-fx-background-color: red;-fx-border-color: white;") {
+        					setStyle("-fx-background-color: red;-fx-border-color: red;");
+        				}else {
         			if(getStyle()=="-fx-background-color: gray;-fx-border-color: white;") {
         				setStyle("-fx-background-color: gray;-fx-border-color: red;");
         			}
         			else {
+        				if(getStyle()=="-fx-background-color: white;-fx-border-color: white;") {
+        					setStyle("-fx-background-color: white;-fx-border-color: red;");
+        				}else {
         				setStyle("-fx-border-color: red;");
+        				}
         			}
+        				}
         		}
         		setClicked=true;
+        	}
         	}
         });
     }
@@ -66,7 +77,18 @@ public class AnchorPaneNode extends AnchorPane {
     				if(calendarCon.allCalendarDays.get(i).getStyle()=="-fx-background-color: gray;-fx-border-color: red;") {
     					calendarCon.allCalendarDays.get(i).setStyle("-fx-background-color: gray;-fx-border-color: white;");
     				}else {
-    					calendarCon.allCalendarDays.get(i).setStyle("-fx-border-color: white;");
+    					if(calendarCon.allCalendarDays.get(i).getStyle()=="-fx-background-color: white;-fx-border-color: red;") {
+    						calendarCon.allCalendarDays.get(i).setStyle("-fx-background-color: white;-fx-border-color: white;");
+    					}else {
+    						if(calendarCon.allCalendarDays.get(i).getStyle()=="-fx-background-color: red;-fx-border-color: red;") {
+    							calendarCon.allCalendarDays.get(i).setStyle("-fx-background-color: red;-fx-border-color: white;");
+    						}else {
+    							if(calendarCon.allCalendarDays.get(i).getStyle()=="-fx-background-color: yellow;-fx-border-color: white;") {
+    								calendarCon.allCalendarDays.get(i).setStyle("-fx-background-color: yellow;-fx-border-color: white;"); 
+    							}else {
+    				                    	calendarCon.allCalendarDays.get(i).setStyle("-fx-border-color: white;"); 
+    							}
+    						}
     				}
     			}
     			calendarCon.allCalendarDays.get(i).setClicked = false;
@@ -74,4 +96,5 @@ public class AnchorPaneNode extends AnchorPane {
     		}
     	}
     }
+}
 }

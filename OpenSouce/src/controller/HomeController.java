@@ -21,7 +21,7 @@ public class HomeController {
 	
 	private Stage primaryStage;
 	private LoginController loginCon;
-	public static LocalDate date;
+	public static LocalDate date ;
 	private LayoutController layoutCon;
 	private BudgetController budgetCon;
 	public int i;
@@ -31,6 +31,7 @@ public class HomeController {
 	//	layoutCon.expenses.add(new Expense(loginCon.users.get(loginCon.userNumber).getID(),LocalDate.of(2018,6,11),"교통","버스비",5000,"티머니 충전"));
 		//layoutCon.incomes.add(new Income(loginCon.users.get(loginCon.userNumber).getID(),LocalDate.of(2018,6,6),"알바비",20000));
 		//layoutCon.schedules.add(new Schedule(loginCon.users.get(loginCon.userNumber).getID(),LocalDate.of(2018,6,2),"축구","오메가배 풋살결승"));
+		date = date.now();
 	}
 	
 	public void setMain(LayoutController layoutCon) {

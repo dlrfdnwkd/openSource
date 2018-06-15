@@ -15,6 +15,7 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import model.Expense;
 import model.ExpenseDAO;
+import model.GoalMoneyDAO;
 import model.Income;
 import model.IncomeDAO;
 import model.Schedule;
@@ -69,6 +70,11 @@ public  class LayoutController {
 		schedules.add(tempList2.get(k));
 		}
 		}
+		
+		GoalMoneyDAO goalMoneyDAO = new GoalMoneyDAO();
+		ObservableList<GoalMoney> tempList4 = goalMoneyDAO.getGoalMoney();
+		for(int b = 0; b<tempList4.size();b++){
+		goalMoneys.add(tempList4.get(b));
 		
 		/*UserDAO userDAO = new UserDAO();
 		ObservableList<User> tempList3 = userDAO.getUser();

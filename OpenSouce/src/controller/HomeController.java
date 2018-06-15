@@ -1,7 +1,6 @@
 package controller;
 
 import java.time.LocalDate;
-import java.util.Calendar;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -11,9 +10,9 @@ import javafx.scene.Scene;
 import javafx.scene.control.SplitPane;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
-
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import model.Differentiate;
 
 
 
@@ -21,17 +20,59 @@ public class HomeController {
 	
 	private Stage primaryStage;
 	private LoginController loginCon;
-	public static LocalDate date ;
+	public static LocalDate date;
 	private LayoutController layoutCon;
 	private BudgetController budgetCon;
-	public int i;
-	public ObservableList<Integer> dayExpense = FXCollections.observableArrayList();
-	@FXML  Pane calendar;
+	//public int i;
+	public static ObservableList<Differentiate> differentiate = FXCollections.observableArrayList();
+	@FXML  public Pane calendar;
 	public HomeController() {
 	//	layoutCon.expenses.add(new Expense(loginCon.users.get(loginCon.userNumber).getID(),LocalDate.of(2018,6,11),"교통","버스비",5000,"티머니 충전"));
 		//layoutCon.incomes.add(new Income(loginCon.users.get(loginCon.userNumber).getID(),LocalDate.of(2018,6,6),"알바비",20000));
 		//layoutCon.schedules.add(new Schedule(loginCon.users.get(loginCon.userNumber).getID(),LocalDate.of(2018,6,2),"축구","오메가배 풋살결승"));
 		date = date.now();
+		/*differentiate.clear();
+		if(!layoutCon.expenses.isEmpty()) {
+			differentiate.add(new Differentiate(layoutCon.expenses.get(0).getID(),layoutCon.expenses.get(0).getDate(),layoutCon.expenses.get(0).getExpense()));
+			for(int i=1;i<layoutCon.expenses.size();i++) {
+				for(int j=0;j<differentiate.size();j++) {
+					if(layoutCon.expenses.get(i).getDate().equals(differentiate.get(j).getDate())) {
+						differentiate.get(j).addDayExpense(layoutCon.expenses.get(i).getExpense());
+					}else {
+						differentiate.add(new Differentiate(layoutCon.expenses.get(i).getID(),layoutCon.expenses.get(i).getDate(),layoutCon.expenses.get(i).getExpense()));
+					}
+				}
+			}
+		}*/
+			
+			
+	/*	differentiate.add(new Differentiate("",null,0));
+		for(int i=0;i<layoutCon.expenses.size();i++) {
+			for(int j=0;j<differentiate.size();j++) {
+				if(layoutCon.expenses.get(i).getDate().equals(differentiate.get(j).getDate())) {
+					System.out.println(i+" "+j+" "+differentiate.get(j).getDate()+" "+differentiate.get(j).getDayExpense());
+					differentiate.get(j).addDayExpense(layoutCon.expenses.get(i).getExpense());
+					System.out.println(i+" "+j+" "+differentiate.get(j).getDate()+" "+differentiate.get(j).getDayExpense());
+				}else {
+					System.out.println(i+" "+j+" "+differentiate.get(j).getDate()+" "+differentiate.get(j).getDayExpense());
+					differentiate.add(new Differentiate(layoutCon.expenses.get(i).getID(),layoutCon.expenses.get(i).getDate(),layoutCon.expenses.get(i).getExpense()));
+					System.out.println(i+" "+j+" "+differentiate.get(j).getDate()+" "+differentiate.get(j).getDayExpense());
+				}
+				}
+			}
+		}*/
+		/*differentiate.clear();
+		differentiate.add(new Differentiate("dlrfdnwkd",date,0));
+		System.out.println(differentiate.size());
+		for(int i=0;i<layoutCon.expenses.size();i++) {
+			for(int j=0;j<differentiate.size();j++) {
+				if(layoutCon.expenses.get(i).getDate().equals(differentiate.get(j).getDate())) {
+					differentiate.get(j).addDayExpense(layoutCon.expenses.get(i).getExpense());
+					}else {
+						differentiate.add(new Differentiate(layoutCon.expenses.get(i).getID(),layoutCon.expenses.get(i).getDate(),layoutCon.expenses.get(j).getExpense()));
+					}
+			}
+		}*/
 	}
 	
 	public void setMain(LayoutController layoutCon) {

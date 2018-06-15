@@ -14,17 +14,18 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import model.Expense;
-import model.ExpenseDAO;
 import model.Income;
-import model.IncomeDAO;
+import model.Management;
 import model.Schedule;
 
 public  class LayoutController {
 	private static BorderPane root;
 	private LoginController loginCon;
+	private HomeController homeCon;
 	public static ObservableList<Expense> expenses = FXCollections.observableArrayList();
 	public static ObservableList<Income> incomes = FXCollections.observableArrayList();
 	public static ObservableList<Schedule> schedules = FXCollections.observableArrayList();
+	public static ObservableList<Management> management = FXCollections.observableArrayList();
 	//int i;
 	public LayoutController() {
 		//expenses.add(new Expense(loginCon.users.get(loginCon.userNumber).getID(),LocalDate.of(2018,6,11),"교통","버스비",5000,"티머니 충전"));
@@ -52,6 +53,7 @@ public  class LayoutController {
 		for(int j = 0; j<tempList1.size();j++){
 		incomes.add(tempList1.get(j));
 	    }*/
+		/*
 		expenses.add(new Expense(loginCon.users.get(loginCon.userNumber).getID(),LocalDate.of(2018,6,11),"교통","버스",5000,"티머니 충전"));
 		expenses.add(new Expense(loginCon.users.get(loginCon.userNumber).getID(),LocalDate.of(2018,7,20),"유흥","술",34000,"동창회"));
 		expenses.add(new Expense(loginCon.users.get(loginCon.userNumber).getID(),LocalDate.of(2018,6,5),"식비","점심",3500,"학식"));
@@ -61,7 +63,17 @@ public  class LayoutController {
 		expenses.add(new Expense(loginCon.users.get(loginCon.userNumber).getID(),LocalDate.of(2018,5,24),"기타","담배",4500,"레종"));
 		expenses.add(new Expense(loginCon.users.get(loginCon.userNumber).getID(),LocalDate.of(2018,6,15),"식비","야식",17000,"치킨"));
 		incomes.add(new Income(loginCon.users.get(loginCon.userNumber).getID(),LocalDate.of(2018,6,6),"알바비",20000));
-		schedules.add(new Schedule(loginCon.users.get(loginCon.userNumber).getID(),LocalDate.of(2018,6,2),"축구","오메가배 풋살결승"));
+		schedules.add(new Schedule(loginCon.users.get(loginCon.userNumber).getID(),LocalDate.of(2018,6,2),"축구","오메가배 풋살결승"));*/
+		/*homeCon.differentiate.add(new Differentiate("",null,0));
+		for(int i=0;i<expenses.size();i++) {
+			for(int j=0;j<homeCon.differentiate.size();j++) {
+				if(expenses.get(i).getDate().equals(homeCon.differentiate.get(j).getDate())) {
+					homeCon.differentiate.get(j).addDayExpense(expenses.get(i).getExpense());
+				}else {
+					homeCon.differentiate.add(new Differentiate(expenses.get(i).getID(),expenses.get(i).getDate(),expenses.get(i).getExpense()));
+				}
+			}
+		}*/
 		}catch(Exception e) {
 			e.printStackTrace();
 		}

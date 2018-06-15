@@ -115,18 +115,17 @@ public class CalendarController {
    		    	dayExpense = budgetCon.monthGoalMoney.get(e).getTotal()/ dayNumber;
    		        }
    		    }
-            for(int a=0;a<layoutCon.expenses.size();a++) {
-                if(ap.getDate().equals((layoutCon.expenses.get(a).getDate())))
+            for(int a=0;a<homeCon.differentiate.size();a++) {
+                if(ap.getDate().equals((homeCon.differentiate.get(a).getDate())))
                 {
-                Text expense = new Text(Integer.toString(layoutCon.expenses.get(a).getExpense()));
+                Text expense = new Text(Integer.toString(homeCon.differentiate.get(a).getDayExpense()));
                 ap.setRightAnchor(expense, 30.0);
                 ap.setBottomAnchor(expense, 30.0);
                 ap.getChildren().add(expense);
                 int dayDifferentiate = 0;
                 if(dayExpense != 0) {
-                	dayDifferentiate =layoutCon.expenses.get(a).getExpense()*100/dayExpense;
+                	dayDifferentiate =homeCon.differentiate.get(a).getDayExpense()*100/dayExpense;
                 }
-                System.out.println(dayDifferentiate);
                 if(dayDifferentiate > 100)
                 {
                 	ap.setStyle("-fx-background-color: red;-fx-border-color: white;");

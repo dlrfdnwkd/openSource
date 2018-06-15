@@ -1,23 +1,22 @@
 package controller;
 
 import java.time.LocalDate;
-import java.time.Year;
 import java.time.YearMonth;
 
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
+import model.Differentiate;
 import model.Expense;
-import model.ExpenseDAO;
 import model.Income;
+import model.Management;
 import model.Schedule;
 
 public class InputButtonController {
@@ -72,7 +71,41 @@ private String select = "expense";
 					}else {
 						//ExpenseDAO expenseDAO = new ExpenseDAO();
 						//int result = expenseDAO.saveExpense(new Expense(loginCon.users.get(loginCon.userNumber).getID(),datePicker.getValue(),(String)typeCheck.getValue(),txtName.getText(),Integer.parseInt(txtMoney.getText()),txtContent.getText()));
+					    
 						layoutCon.expenses.add(new Expense(loginCon.users.get(loginCon.userNumber).getID(),datePicker.getValue(),(String)typeCheck.getValue(),txtName.getText(),Integer.parseInt(txtMoney.getText()),txtContent.getText()));
+						int differentiateCheck = 0;
+						if(homeCon.differentiate.isEmpty()) {
+							homeCon.differentiate.add(new Differentiate(loginCon.users.get(loginCon.userNumber).getID(),datePicker.getValue(),Integer.parseInt(txtMoney.getText())));
+						}else {
+							for(int i=0;i<homeCon.differentiate.size();i++) {
+								if(datePicker.getValue().equals(homeCon.differentiate.get(i).getDate())) {
+									homeCon.differentiate.get(i).addDayExpense(Integer.parseInt(txtMoney.getText()));
+									differentiateCheck = 1;
+									break;
+								}
+							}
+							if(differentiateCheck == 0) {
+								homeCon.differentiate.add(new Differentiate(loginCon.users.get(loginCon.userNumber).getID(),datePicker.getValue(),Integer.parseInt(txtMoney.getText())));
+							}
+						}
+						/*int managementCheck =0;
+						if(layoutCon.management.isEmpty()) {
+							layoutCon.management.add(new Management(loginCon.users.get(loginCon.userNumber).getID(),YearMonth.from(datePicker.getValue()),Integer.parseInt(txtMoney.getText()),0));
+						}else {
+							for(int j=0;j<layoutCon.management.size();j++) {
+								if(datePicker.getValue().equals(layoutCon.management.get(j).getDate())) {
+									layoutCon.management.get(j).addMonthExpense(Integer.parseInt(txtMoney.getText()));
+									managementCheck=1;
+									break;
+								}
+							}
+							if(managementCheck==0) {
+								layoutCon.management.add(new Management(loginCon.users.get(loginCon.userNumber).getID(), YearMonth.from(datePicker.getValue()),Integer.parseInt(txtMoney.getText()),0));
+							}
+							System.out.println(layoutCon.management.get(0).getID()+" "+layoutCon.management.get(0).getMonthExpense());
+						}*/
+						//homeCon.calendar.getChildren().clear();
+						//homeCon.calendar.getChildren().add(new CalendarController(YearMonth.now()).getView());
 						/*if(result==0)
 						{
 							System.out.println("¼º°ø");

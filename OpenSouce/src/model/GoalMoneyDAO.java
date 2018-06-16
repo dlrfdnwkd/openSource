@@ -1,6 +1,7 @@
 package model;
 
 import java.sql.*;
+import java.time.LocalDate;
 import java.time.YearMonth;
 
 import javafx.collections.FXCollections;
@@ -40,7 +41,9 @@ public int deleteGoalMoney() {
 	
  }
 
+
 public int insertGoalMoney(GoalMoney goalMoney) {
+	
 	String SQL="INSERT INTO 목표금액 VALUES (?,?,?,?,?,?,?,?,?)";
 	try {
 		int i;
@@ -49,7 +52,7 @@ public int insertGoalMoney(GoalMoney goalMoney) {
 			PreparedStatement pstmt = conn.prepareStatement(SQL);
 			
 			pstmt.setString(1, goalMoney.getID());
-			pstmt.setDate(2,goalMoney.getDate());
+			pstmt.setDate(2, Date.valueOf(LocalDate.of(goalMoney.getDate().getYear(), goalMoney.getDate().getMonth(), 1)));
 			pstmt.setInt(3, goalMoney.getTraffic());
 			pstmt.setInt(4, goalMoney.getFood());
 			pstmt.setInt(5, goalMoney.getLife());
@@ -68,18 +71,18 @@ public int insertGoalMoney(GoalMoney goalMoney) {
 }
 public ObservableList<GoalMoney> getGoalMoney(){
 	String SQL = "SELECT * FROM 목표금액";
-	ObservableList<GoalMoney> goalMoneys = FXCollections.observableArrayList();	
+	ObservableList<GoalMoney> monthGoalMoney = FXCollections.observableArrayList();	
 	try {
 		PreparedStatement pstmt = conn.prepareStatement(SQL);
 		rs=pstmt.executeQuery();
 		while(rs.next()) {
-			GoalMoney goalMoney =new GoalMoney(rs.getString(1),rs.getDate(2),rs.getInt(3),rs.getInt(4),rs.getInt(5),rs.getInt(6),rs.getInt(7),rs.getInt(8),rs.getInt(9));
-			goalMoneys.add(goalMoney);
+			GoalMoney goalMoney =new GoalMoney(rs.getString(1),YearMonth.from(rs.getDate(2).toLocalDate()),rs.getInt(3),rs.getInt(4),rs.getInt(5),rs.getInt(6),rs.getInt(7),rs.getInt(8),rs.getInt(9));
+			monthGoalMoney.add(goalMoney);
 			}
 	}catch(Exception e) {
 		e.printStackTrace();
 	}
-	return goalMoneys;
+	return monthGoalMoney;
 }
 public int saveGoalMoney(GoalMoney goalMoney) {
 	/*if(deleteExpense() == -1) {

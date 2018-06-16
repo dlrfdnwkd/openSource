@@ -15,6 +15,7 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import model.Expense;
 import model.ExpenseDAO;
+import model.GoalMoney;
 import model.GoalMoneyDAO;
 import model.Income;
 import model.IncomeDAO;
@@ -27,6 +28,7 @@ public  class LayoutController {
 	private static BorderPane root;
 	private LoginController loginCon;
 	private ReportController reportCon;
+	private BudgetController budgetCon;
 	public static ObservableList<Expense> expenses = FXCollections.observableArrayList();
 	public static ObservableList<Income> incomes = FXCollections.observableArrayList();
 	public static ObservableList<Schedule> schedules = FXCollections.observableArrayList();
@@ -71,16 +73,8 @@ public  class LayoutController {
 		}
 		}
 		
-		GoalMoneyDAO goalMoneyDAO = new GoalMoneyDAO();
-		ObservableList<GoalMoney> tempList4 = goalMoneyDAO.getGoalMoney();
-		for(int b = 0; b<tempList4.size();b++){
-		goalMoneys.add(tempList4.get(b));
 		
-		/*UserDAO userDAO = new UserDAO();
-		ObservableList<User> tempList3 = userDAO.getUser();
-		for(int a = 0; a<tempList3.size();a++){
-		users.add(tempList3.get(a));
-		}*/
+		
 		expenses.add(new Expense(loginCon.users.get(loginCon.userNumber).getID(),LocalDate.of(2018,6,11),"교통","버스",5000,"티머니 충전"));
 		expenses.add(new Expense(loginCon.users.get(loginCon.userNumber).getID(),LocalDate.of(2018,7,20),"유흥","술",34000,"동창회"));
 		expenses.add(new Expense(loginCon.users.get(loginCon.userNumber).getID(),LocalDate.of(2018,6,5),"식비","점심",3500,"학식"));
@@ -91,6 +85,7 @@ public  class LayoutController {
 		expenses.add(new Expense(loginCon.users.get(loginCon.userNumber).getID(),LocalDate.of(2018,6,15),"식비","야식",17000,"치킨"));
 		incomes.add(new Income(loginCon.users.get(loginCon.userNumber).getID(),LocalDate.of(2018,6,6),"알바비",20000));
 		schedules.add(new Schedule(loginCon.users.get(loginCon.userNumber).getID(),LocalDate.of(2018,6,2),"축구","오메가배 풋살결승"));
+		
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
@@ -133,6 +128,12 @@ public  class LayoutController {
 			root.setCenter(budget);
 			BudgetController controller = loader.getController();
 			controller.setBudget(this);
+			
+			GoalMoneyDAO goalMoneyDAO = new GoalMoneyDAO();
+			ObservableList<GoalMoney> tempList4 = goalMoneyDAO.getGoalMoney();
+			for(int b = 0; b<tempList4.size();b++){
+			budgetCon.monthGoalMoney.add(tempList4.get(b));
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

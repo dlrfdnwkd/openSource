@@ -36,7 +36,7 @@ public class ReportController {
 	private LoginController loginCon;
 	private HomeController homeCon;
 	@FXML Label dateTitle;
-	
+
 	@FXML
 	private void previousMonthButton() {
 		homeCon.date = homeCon.date.minusMonths(1);
@@ -142,6 +142,7 @@ public class ReportController {
 			}
 			}
 		}
+		
 		//expenses.add(new Expense(loginCon.users.get(loginCon.userNumber).getID(),LocalDate.of(2018,6,11),"교통","버스비",5000,"티머니 충전"));
 		//incomes.add(new Income(loginCon.users.get(loginCon.userNumber).getID(),LocalDate.of(2018,6,6),"알바비",20000));
 		//schedules.add(new Schedule(loginCon.users.get(loginCon.userNumber).getID(),LocalDate.of(2018,6,2),"축구","오메가배 풋살결승"));
@@ -159,7 +160,7 @@ public class ReportController {
 		scheduleDateColumn.setCellValueFactory(cellData -> cellData.getValue().getDateProperty());
 		scheduleNameColumn.setCellValueFactory(cellData -> cellData.getValue().getNameProperty());
 		scheduleContentColumn.setCellValueFactory(cellData -> cellData.getValue().getContentProperty());
-
+		dateTitle.setText(homeCon.date.getYear()+"년 "+homeCon.date.getMonthValue()+"월");
 	}
 	public ObservableList<Expense> getExpenses(){
 		return monthExpenses;

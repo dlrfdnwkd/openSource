@@ -136,6 +136,21 @@ private String select = "expense";
 						alert.show();
 					}else {
 						layoutCon.incomes.add(new Income(loginCon.users.get(loginCon.userNumber).getID(),datePicker.getValue(),txtName.getText(),Integer.parseInt(txtMoney.getText())));
+						int managementCheck =0;
+						if(layoutCon.management.isEmpty()) {
+							layoutCon.management.add(new Management(loginCon.users.get(loginCon.userNumber).getID(),YearMonth.from(datePicker.getValue()),0,Integer.parseInt(txtMoney.getText())));
+						}else {
+							for(int j=0;j<layoutCon.management.size();j++) {
+								if(YearMonth.from(datePicker.getValue()).equals(layoutCon.management.get(j).getDate())) {
+									layoutCon.management.get(j).plusMonthIncome(Integer.parseInt(txtMoney.getText()));
+									managementCheck=1;
+									break;
+								}
+							}
+							if(managementCheck==0) {
+								layoutCon.management.add(new Management(loginCon.users.get(loginCon.userNumber).getID(), YearMonth.from(datePicker.getValue()),0,Integer.parseInt(txtMoney.getText())));
+							}
+						}
 				input = true;
 					}
 				}

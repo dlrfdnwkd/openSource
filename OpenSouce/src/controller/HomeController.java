@@ -16,7 +16,7 @@ import model.Differentiate;
 
 
 
-public class HomeController {
+public  class HomeController {
 	
 	private Stage primaryStage;
 	private LoginController loginCon;
@@ -99,6 +99,7 @@ public class HomeController {
 	    	    dialogStage.setScene(scene);  
 	    	    InputButtonController controller = loader.getController();
 	    	    controller.setDialogStage(dialogStage);
+	    	    controller.setInput(this);
 	    	    dialogStage.showAndWait();
 	    	    dialogStage.setResizable(false);
 	    	} catch(Exception e) {

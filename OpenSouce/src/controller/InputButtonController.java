@@ -76,6 +76,7 @@ private String select = "expense";
 						int differentiateCheck = 0;
 						if(homeCon.differentiate.isEmpty()) {
 							homeCon.differentiate.add(new Differentiate(loginCon.users.get(loginCon.userNumber).getID(),datePicker.getValue(),Integer.parseInt(txtMoney.getText())));
+							differentiateCheck = 1;
 						}else {
 							for(int i=0;i<homeCon.differentiate.size();i++) {
 								if(datePicker.getValue().equals(homeCon.differentiate.get(i).getDate())) {
@@ -88,9 +89,10 @@ private String select = "expense";
 								homeCon.differentiate.add(new Differentiate(loginCon.users.get(loginCon.userNumber).getID(),datePicker.getValue(),Integer.parseInt(txtMoney.getText())));
 							}
 						}
-						/*int managementCheck =0;
+						int managementCheck =0;
 						if(layoutCon.management.isEmpty()) {
 							layoutCon.management.add(new Management(loginCon.users.get(loginCon.userNumber).getID(),YearMonth.from(datePicker.getValue()),Integer.parseInt(txtMoney.getText()),0));
+							managementCheck = 1;
 						}else {
 							for(int j=0;j<layoutCon.management.size();j++) {
 								if(datePicker.getValue().equals(layoutCon.management.get(j).getDate())) {
@@ -102,10 +104,10 @@ private String select = "expense";
 							if(managementCheck==0) {
 								layoutCon.management.add(new Management(loginCon.users.get(loginCon.userNumber).getID(), YearMonth.from(datePicker.getValue()),Integer.parseInt(txtMoney.getText()),0));
 							}
-							System.out.println(layoutCon.management.get(0).getID()+" "+layoutCon.management.get(0).getMonthExpense());
-						}*/
-						//homeCon.calendar.getChildren().clear();
-						//homeCon.calendar.getChildren().add(new CalendarController(YearMonth.now()).getView());
+						}
+						System.out.println(layoutCon.management.get(0).getID()+" "+layoutCon.management.get(0).getDate()+" "+layoutCon.management.get(0).getMonthExpense());
+						homeCon.calendar.getChildren().clear();
+						homeCon.calendar.getChildren().add(new CalendarController(YearMonth.now()).getView());
 						/*if(result==0)
 						{
 							System.out.println("성공");
@@ -114,6 +116,7 @@ private String select = "expense";
 							System.out.println("실패");
 						}*/
 						//layoutCon.expenses.add(new Expense(loginCon.users.get(loginCon.userNumber).getID(),datePicker.getValue(),(String)typeCheck.getValue(),txtName.getText(),Integer.parseInt(txtMoney.getText()),txtContent.getText()));
+						
 			      input = true;
 					}
 			      }
@@ -181,5 +184,8 @@ private String select = "expense";
 		txtMoney.setDisable(false);
 		txtContent.setDisable(false);
 		select = "expense";
+	}
+	public void setInput(HomeController homeCon) {
+		this.homeCon = homeCon;
 	}
 }

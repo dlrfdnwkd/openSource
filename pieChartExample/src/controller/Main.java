@@ -1,66 +1,61 @@
 package controller;
-	
+
 import javafx.application.Application;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
-import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
-import javafx.stage.Window;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.ProgressBar;
-import javafx.scene.control.ProgressIndicator;
-import javafx.scene.control.Slider;
-import javafx.scene.layout.AnchorPane;
+import javafx.scene.image.Image;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
+
+import java.sql.*;
+
+
 
 public class Main extends Application {
-	@Override
 	
-	public void start(Stage primaryStage) {
-		
-		try {
-			FXMLLoader loader = new FXMLLoader();
-			loader.setLocation(Main.class.getResource("../view/pieChart.fxml"));
-			AnchorPane root =(AnchorPane)loader.load();
-			Stage stage = new Stage();
-			stage.initModality(Modality.WINDOW_MODAL);
-			stage.initOwner(primaryStage);
-			stage.setTitle("총액 및 분석");
-			Scene scene = new Scene(root);
-			stage.setScene(scene);
-			pieChartController controller = loader.getController();
-			stage.show();
-		}catch(Exception e) {
-			e.printStackTrace();
-		}
-		    double sliderwidth = 200;
-		    
-		    final Slider slider = new Slider();
-		    slider.setMin(0);
-		    slider.setMinWidth(sliderwidth);
-		    slider.setMaxWidth(sliderwidth);
-		    
-		    final ProgressBar pb = new ProgressBar(0);
-		    pb.setMinWidth(sliderwidth);
-		    pb.setMaxWidth(sliderwidth);
-		    
-		    final ProgressIndicator pi =new ProgressIndicator(0);
-		    
-		    slider.valueProperty().addListener(new ChangeListener<Number>(){
+	public static Stage parentWindow;
 
-				@Override
-				public void changed(ObservableValue<? extends Number> ov, Number old_val, Number new_val) {
-					pb.setProgress(new_val.doubleValue() / 50);
-					pi.setProgress(new_val.doubleValue() / 50);
-				}});
-			
-		  
-		    
+	@Override
+	public void start(Stage primaryStage) throws Exception{
+			parentWindow = primaryStage;
+			Parent login = FXMLLoader.load(getClass().getResource("/view/Login.fxml"));
+			Scene loginscene = new Scene(login);
+			primaryStage.setScene(loginscene);
+			//primaryStage.initStyle(StageStyle.TRANSPARENT);
+			primaryStage.setTitle("신호등 가계부");
+			primaryStage.getIcons().add(new Image("file:image/신호등.png"));
+			primaryStage.show();
+			primaryStage.setResizable(false);
 	}
-	
+
 	public static void main(String[] args) {
+		/*String url ="jdbc:mysql://127.0.0.1/?serverTimezone=UTC&verifyServerCertificate=false&useSSL=true&user=root&password=dmlwls159";
+		   Connection conn=null;
+		   Statement stmt=null;
+		   ResultSet rs=null;
+		   try {
+		      Class.forName("com.mysql.cj.jdbc.Driver");
+		      System.out.println("드라이버 연결성공");
+		      
+		      conn = DriverManager.getConnection(url);
+		      System.out.println("데이터베이스 연동성공");
+		      
+		      stmt =conn.createStatement();
+		      String useopensourcedb = "use opensourcedb";
+		      stmt.executeUpdate(useopensourcedb);
+		   }
+		   catch(ClassNotFoundException cnfe) {
+		      cnfe.printStackTrace();
+		   }
+		   catch(SQLException se) {
+		      se.printStackTrace();
+		   }
+		   finally {
+		      if(conn!=null) try {conn.close();} catch(SQLException se) {}
+		      if(stmt!=null) try {stmt.close();} catch(SQLException se) {}
+		      if(rs!=null) try {rs.close();} catch(SQLException se) {}
+		   }*/
 		launch(args);
 	}
-	}
-
+}

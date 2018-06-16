@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.BorderPane?>
+
+<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.FindController">
+   <children>
+      <Label text="아이디 찾기" />
+      <HBox alignment="CENTER" prefHeight="30.0" prefWidth="400.0">
+         <children>
+            <Label text="이름 :">
+               <HBox.margin>
+                  <Insets right="30.0" />
+               </HBox.margin>
+            </Label>
+            <TextField fx:id="txtName1" prefHeight="23.0" prefWidth="138.0" />
+         </children>
+      </HBox>
+      <HBox alignment="CENTER" prefHeight="33.0" prefWidth="400.0">
+         <children>
+            <Label text="주민번호 :">
+               <HBox.margin>
+                  <Insets right="10.0" />
+               </HBox.margin>
+            </Label>
+            <TextField fx:id="txtFirstNumber1" prefHeight="23.0" prefWidth="100.0" />
+            <Label text="-" />
+            <PasswordField fx:id="txtLastNumber1" prefHeight="23.0" prefWidth="100.0" />
+         </children>
+      </HBox>
+      <Button mnemonicParsing="false" onAction="#IDSearchButton" text="확인" />
+      <Label text="비밀번호 찾기">
+         <VBox.margin>
+            <Insets top="20.0" />
+         </VBox.margin>
+      </Label>
+      <HBox alignment="CENTER" prefHeight="38.0" prefWidth="400.0">
+         <children>
+            <Label text="이름 :">
+               <HBox.margin>
+                  <Insets right="32.0" />
+               </HBox.margin>
+            </Label>
+            <TextField fx:id="txtName2">
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin>
+            </TextField>
+         </children>
+      </HBox>
+      <HBox alignment="CENTER" prefHeight="32.0" prefWidth="395.0">
+         <children>
+            <Label text="아이디 :">
+               <HBox.margin>
+                  <Insets right="20.0" />
+               </HBox.margin>
+            </Label>
+            <TextField fx:id="txtID">
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin>
+            </TextField>
+         </children>
+         <VBox.margin>
+            <Insets />
+         </VBox.margin>
+      </HBox>
+      <HBox alignment="CENTER" prefHeight="33.0" prefWidth="400.0">
+         <children>
+            <Label text="주민번호 :">
+               <HBox.margin>
+                  <Insets right="10.0" />
+               </HBox.margin>
+            </Label>
+            <TextField fx:id="txtFirstNumber2" prefHeight="23.0" prefWidth="100.0" />
+            <Label text="-" />
+            <PasswordField fx:id="txtLastNumber2" prefHeight="23.0" prefWidth="100.0" />
+         </children>
+      </HBox>
+      <Button mnemonicParsing="false" onAction="#PasswordSearchButton" text="확인" />
+   </children>
+</VBox>

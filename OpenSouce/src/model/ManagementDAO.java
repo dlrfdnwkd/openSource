@@ -1,18 +1,20 @@
 package model;
 
 import java.sql.*;
+import java.time.LocalDate;
+import java.time.YearMonth;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 
-public class ScheduleDAO {
+public class ManagementDAO {
 	String url ="jdbc:mysql://127.0.0.1/?serverTimezone=UTC&verifyServerCertificate=false&useSSL=true&user=root&password=dmlwls159";
 	private Connection conn;
 	private ResultSet rs;
 	Statement stmt=null;
 	
-	public ScheduleDAO() {
+	public ManagementDAO() {
 		 try {
 			 
 			 Class.forName("com.mysql.cj.jdbc.Driver");
@@ -27,8 +29,8 @@ public class ScheduleDAO {
 
 
 
-public int deleteSchedule() {
-	String SQL = "DELETE FROM 老沥";
+public int deleteManagement() {
+	String SQL = "DELETE FROM 包府";
 	try {
 		PreparedStatement pstmt = conn.prepareStatement(SQL);
 		return pstmt.executeUpdate();
@@ -39,18 +41,18 @@ public int deleteSchedule() {
 	
  }
 
-public int insertSchedule(Schedule schedule) {
-	String SQL="INSERT INTO 老沥 VALUES (?,?,?,?)";
+public int insertManagement(Management management) {
+	String SQL="INSERT INTO 包府 VALUES (?,?,?,?)";
 	try {
 		int i;
 		//for(i=0;i<expenses.size();i++) {
 			//Expense expense = expenses.get(i);
 			PreparedStatement pstmt = conn.prepareStatement(SQL);
 			
-			pstmt.setString(1, schedule.getID());
-			pstmt.setDate(2, Date.valueOf(schedule.getDate()));
-			pstmt.setString(3, schedule.getName());
-			pstmt.setString(4, schedule.getContent());
+			pstmt.setString(1, management.getID());
+			pstmt.setDate(2,Date.valueOf(LocalDate.of(management.getDate().getYear(), management.getDate().getMonth(), 1)));
+			pstmt.setInt(3, management.getMonthExpense());
+			pstmt.setInt(4, management.getMonthIncome());
 			pstmt.executeUpdate();
 		
 		//return i;
@@ -60,28 +62,32 @@ public int insertSchedule(Schedule schedule) {
 	}
 	return -1;
 }
-public ObservableList<Schedule> getSchedule(){
-	String SQL = "SELECT * FROM 老沥";
-	ObservableList<Schedule> schedules = FXCollections.observableArrayList();	
+public ObservableList<Management> getManagement(){
+	String SQL = "SELECT * FROM 包府";
+	ObservableList<Management> management = FXCollections.observableArrayList();	
 	try {
 		PreparedStatement pstmt = conn.prepareStatement(SQL);
 		rs=pstmt.executeQuery();
 		while(rs.next()) {
-			Schedule schedule =new Schedule(rs.getString(1),rs.getDate(2).toLocalDate(),rs.getString(3),rs.getString(4));
-			schedules.add(schedule);
+			Management management1 =new Management(rs.getString(1),YearMonth.from(rs.getDate(2).toLocalDate()),rs.getInt(3),rs.getInt(4));
+			management.add(management1);
 			}
 	}catch(Exception e) {
 		e.printStackTrace();
 	}
-	return schedules;
+	return management;
 }
-public int saveSchedule(Schedule schedule) {
+public int saveManagement(Management management) {
 	/*if(deleteExpense() == -1) {
 		return -1;
 	}*/
-	if(insertSchedule(schedule) == 0) {
+	if(insertManagement(management) == 0) {
 		return 0;
 	}
 	return 1;
 }
+
+
+
+
 }

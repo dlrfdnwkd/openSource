@@ -14,7 +14,7 @@ public class Differentiate {
 	
 	public Differentiate(String ID,LocalDate date,int dayExpense) {
 		    this.ID = ID;
-			this.date = new SimpleObjectProperty(date);
+			this.date = new SimpleObjectProperty<LocalDate>(date);
 		    this.dayExpense = new SimpleIntegerProperty(dayExpense);
 	}
 	public String getID() {

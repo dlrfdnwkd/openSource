@@ -14,10 +14,14 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import model.Differentiate;
+import model.DifferentiateDAO;
 import model.Expense;
+import model.ExpenseDAO;
 import model.Income;
+import model.IncomeDAO;
 import model.Management;
 import model.Schedule;
+import model.ScheduleDAO;
 
 public class InputButtonController {
 private LayoutController layoutCon;
@@ -69,38 +73,59 @@ private String select = "expense";
 						alert.setContentText("금액을 입력해주세요.");
 						alert.show();
 					}else {
-						//ExpenseDAO expenseDAO = new ExpenseDAO();
-						//int result = expenseDAO.saveExpense(new Expense(loginCon.users.get(loginCon.userNumber).getID(),datePicker.getValue(),(String)typeCheck.getValue(),txtName.getText(),Integer.parseInt(txtMoney.getText()),txtContent.getText()));
-					    
+						ExpenseDAO expenseDAO = new ExpenseDAO();
+						int result = expenseDAO.saveExpense(new Expense(loginCon.users.get(loginCon.userNumber).getID(),datePicker.getValue(),(String)typeCheck.getValue(),txtName.getText(),Integer.parseInt(txtMoney.getText()),txtContent.getText()));
 						layoutCon.expenses.add(new Expense(loginCon.users.get(loginCon.userNumber).getID(),datePicker.getValue(),(String)typeCheck.getValue(),txtName.getText(),Integer.parseInt(txtMoney.getText()),txtContent.getText()));
+						if(result==0)
+						{
+							System.out.println("성공");
+						}
+						else {
+							System.out.println("실패");
+						}
+						//layoutCon.expenses.add(new Expense(loginCon.users.get(loginCon.userNumber).getID(),datePicker.getValue(),(String)typeCheck.getValue(),txtName.getText(),Integer.parseInt(txtMoney.getText()),txtContent.getText()));
 						int differentiateCheck = 0;
 						if(homeCon.differentiate.isEmpty()) {
 							homeCon.differentiate.add(new Differentiate(loginCon.users.get(loginCon.userNumber).getID(),datePicker.getValue(),Integer.parseInt(txtMoney.getText())));
+							DifferentiateDAO differentiateDAO = new DifferentiateDAO();
+							int result = differentiateDAO.saveDifferentiate(new Differentiate(loginCon.users.get(loginCon.userNumber).getID(),datePicker.getValue(),Integer.parseInt(txtMoney.getText())));
+							
 						}else {
 							for(int i=0;i<homeCon.differentiate.size();i++) {
 								if(datePicker.getValue().equals(homeCon.differentiate.get(i).getDate())) {
 									homeCon.differentiate.get(i).plusDayExpense(Integer.parseInt(txtMoney.getText()));
+									//판별 수정
 									differentiateCheck = 1;
 									break;
 								}
 							}
 							if(differentiateCheck == 0) {
 								homeCon.differentiate.add(new Differentiate(loginCon.users.get(loginCon.userNumber).getID(),datePicker.getValue(),Integer.parseInt(txtMoney.getText())));
+								DifferentiateDAO differentiateDAO = new DifferentiateDAO();
+								int result = differentiateDAO.saveDifferentiate(new Differentiate(loginCon.users.get(loginCon.userNumber).getID(),datePicker.getValue(),Integer.parseInt(txtMoney.getText())));
+								
 							}
 						}
 						int managementCheck =0;
 						if(layoutCon.management.isEmpty()) {
 							layoutCon.management.add(new Management(loginCon.users.get(loginCon.userNumber).getID(),YearMonth.from(datePicker.getValue()),Integer.parseInt(txtMoney.getText()),0));
+							DifferentiateDAO differentiateDAO = new DifferentiateDAO();
+							int result = differentiateDAO.saveDifferentiate(new Differentiate(loginCon.users.get(loginCon.userNumber).getID(),datePicker.getValue(),Integer.parseInt(txtMoney.getText())));
+							
 						}else {
 							for(int j=0;j<layoutCon.management.size();j++) {
 								if(YearMonth.from(datePicker.getValue()).equals(layoutCon.management.get(j).getDate())) {
 									layoutCon.management.get(j).plusMonthExpense(Integer.parseInt(txtMoney.getText()));
+									//관리 수정
 									managementCheck=1;
 									break;
 								}
 							}
 							if(managementCheck==0) {
 								layoutCon.management.add(new Management(loginCon.users.get(loginCon.userNumber).getID(), YearMonth.from(datePicker.getValue()),Integer.parseInt(txtMoney.getText()),0));
+								DifferentiateDAO differentiateDAO = new DifferentiateDAO();
+								int result = differentiateDAO.saveDifferentiate(new Differentiate(loginCon.users.get(loginCon.userNumber).getID(),datePicker.getValue(),Integer.parseInt(txtMoney.getText())));
+								
 							}
 						}
 						
@@ -135,7 +160,18 @@ private String select = "expense";
 						alert.setContentText("금액을 입력해주세요.");
 						alert.show();
 					}else {
+						IncomeDAO incomeDAO = new IncomeDAO();
+						int result = incomeDAO.saveIncome(new Income(loginCon.users.get(loginCon.userNumber).getID(),datePicker.getValue(),txtName.getText(),Integer.parseInt(txtMoney.getText())));
 						layoutCon.incomes.add(new Income(loginCon.users.get(loginCon.userNumber).getID(),datePicker.getValue(),txtName.getText(),Integer.parseInt(txtMoney.getText())));
+						if(result==0)
+						{
+							System.out.println("성공");
+						}
+						else {
+							System.out.println("실패");
+						}
+						
+						
 						int managementCheck =0;
 						if(layoutCon.management.isEmpty()) {
 							layoutCon.management.add(new Management(loginCon.users.get(loginCon.userNumber).getID(),YearMonth.from(datePicker.getValue()),0,Integer.parseInt(txtMoney.getText())));
@@ -150,6 +186,7 @@ private String select = "expense";
 							if(managementCheck==0) {
 								layoutCon.management.add(new Management(loginCon.users.get(loginCon.userNumber).getID(), YearMonth.from(datePicker.getValue()),0,Integer.parseInt(txtMoney.getText())));
 							}
+							
 						}
 				input = true;
 					}
@@ -162,7 +199,16 @@ private String select = "expense";
 					alert.setContentText("제목을 입력해주세요.");
 					alert.show();
 				}else {
-					layoutCon.schedules.add(new Schedule(loginCon.users.get(loginCon.userNumber).getID(),datePicker.getValue(),txtName.getText(),txtContent.getText()));
+					ScheduleDAO scheduleDAO = new ScheduleDAO();
+					int result = scheduleDAO.saveSchedule(new Schedule(loginCon.users.get(loginCon.userNumber).getID(),datePicker.getValue(),txtName.getText(),txtMoney.getText()));
+					layoutCon.schedules.add(new Schedule(loginCon.users.get(loginCon.userNumber).getID(),datePicker.getValue(),txtName.getText(),txtMoney.getText()));
+					if(result==0)
+					{
+						System.out.println("성공");
+					}
+					else {
+						System.out.println("실패");
+					}
 				input = true;
 			}
 			}

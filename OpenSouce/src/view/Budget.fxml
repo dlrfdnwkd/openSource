@@ -54,7 +54,7 @@
                </toggleGroup>
             </RadioButton>
             <RadioButton layoutX="287.0" layoutY="90.0" mnemonicParsing="false" onAction="#setType" text="2. 유형별 지출" toggleGroup="$group" />
-            <ComboBox fx:id="typeCheck" layoutX="169.0" layoutY="153.0" prefWidth="150.0" promptText="교통">
+            <ComboBox fx:id="typeCheck" layoutX="169.0" layoutY="153.0" prefWidth="150.0" promptText="유형선택">
                <contextMenu>
                   <ContextMenu>
                     <items>

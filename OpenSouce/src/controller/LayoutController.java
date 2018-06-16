@@ -14,9 +14,14 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import model.Expense;
+import model.ExpenseDAO;
+import model.GoalMoney;
+import model.GoalMoneyDAO;
 import model.Income;
+import model.IncomeDAO;
 import model.Management;
 import model.Schedule;
+import model.ScheduleDAO;
 
 public  class LayoutController {
 	private static BorderPane root;
@@ -43,18 +48,39 @@ public  class LayoutController {
 		rootStage.setScene(scene);
 		rootStage.setResizable(true);
 		rootStage.centerOnScreen();
-		/*ExpenseDAO expenseDAO = new ExpenseDAO();
+		
+		ExpenseDAO expenseDAO = new ExpenseDAO();
 		ObservableList<Expense> tempList = expenseDAO.getExpense();
 		for(int i = 0; i<tempList.size();i++){
-		expenses.add(tempList.get(i));
+			if(loginCon.users.get(loginCon.userNumber).getID().equals(tempList.get(i).getID())) {		
+		        expenses.add(tempList.get(i));
+			}
 		}
+		
 		IncomeDAO incomeDAO = new IncomeDAO();
 		ObservableList<Income> tempList1 = incomeDAO.getIncome();
 		for(int j = 0; j<tempList1.size();j++){
+			if(loginCon.users.get(loginCon.userNumber).getID().equals(tempList1.get(j).getID())) {
 		incomes.add(tempList1.get(j));
-	    }*/
-		/*
-		expenses.add(new Expense(loginCon.users.get(loginCon.userNumber).getID(),LocalDate.of(2018,6,11),"교통","버스",5000,"티머니 충전"));
+	    }
+		}
+		
+		ScheduleDAO scheduleDAO = new ScheduleDAO();
+		ObservableList<Schedule> tempList2 = scheduleDAO.getSchedule();
+		for(int k = 0; k<tempList2.size();k++){
+			if(loginCon.users.get(loginCon.userNumber).getID().equals(tempList2.get(k).getID())) {
+		schedules.add(tempList2.get(k));
+		}
+		}
+		GoalMoneyDAO goalMoneyDAO = new GoalMoneyDAO();
+		ObservableList<GoalMoney> tempList4 = goalMoneyDAO.getGoalMoney();
+		for(int b = 0; b<tempList4.size();b++){
+			if(loginCon.users.get(loginCon.userNumber).getID().equals(tempList4.get(b).getID())) {
+		BudgetController.monthGoalMoney.add(tempList4.get(b));
+		}
+		}
+		
+		/*expenses.add(new Expense(loginCon.users.get(loginCon.userNumber).getID(),LocalDate.of(2018,6,11),"교통","버스",5000,"티머니 충전"));
 		expenses.add(new Expense(loginCon.users.get(loginCon.userNumber).getID(),LocalDate.of(2018,7,20),"유흥","술",34000,"동창회"));
 		expenses.add(new Expense(loginCon.users.get(loginCon.userNumber).getID(),LocalDate.of(2018,6,5),"식비","점심",3500,"학식"));
 		expenses.add(new Expense(loginCon.users.get(loginCon.userNumber).getID(),LocalDate.of(2018,7,4),"식비","저녁",8500,"독스마스"));
@@ -101,16 +127,7 @@ public  class LayoutController {
 			ReportController controller = loader.getController();
 			controller.setReprot(this);
 			root.setCenter(report);
-			/*ExpenseDAO expenseDAO = new ExpenseDAO();
-			ObservableList<Expense> tempList = expenseDAO.getExpense();
-			for(int i = 0; i<tempList.size();i++){
-			expenses.add(tempList.get(i));
-			}
-			IncomeDAO incomeDAO = new IncomeDAO();
-			ObservableList<Income> tempList1 = incomeDAO.getIncome();
-			for(int j = 0; j<tempList1.size();j++){
-			incomes.add(tempList1.get(j));
-		    }*/
+			
 			}
 		catch (Exception e) {
 			e.printStackTrace();
@@ -124,6 +141,8 @@ public  class LayoutController {
 			root.setCenter(budget);
 			BudgetController controller = loader.getController();
 			controller.setBudget(this);
+			
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

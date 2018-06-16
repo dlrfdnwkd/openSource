@@ -38,9 +38,14 @@ public class Differentiate {
 	public void setDayExpense(int dayExpense) {
 		this.dayExpense.set(dayExpense);
 	}
-	public void addDayExpense(int dayExpense) {
+	public void plusDayExpense(int dayExpense) {
 		int a =this.dayExpense.intValue();
 		a += dayExpense;
+		this.dayExpense.set(a);
+	}
+	public void minusDayExpense(int dayExpense) {
+		int a = this.dayExpense.intValue();
+		a -= dayExpense;
 		this.dayExpense.set(a);
 	}
 	public IntegerProperty getDayExpenseProperty() {

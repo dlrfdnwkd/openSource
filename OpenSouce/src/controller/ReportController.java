@@ -1,15 +1,22 @@
 package controller;
 
 import java.time.LocalDate;
-import java.time.YearMonth;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.Cell;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.Alert.AlertType;
+import javafx.scene.layout.VBox;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 import model.Expense;
 import model.Income;
 import model.Schedule;
@@ -36,6 +43,46 @@ public class ReportController {
 	private LoginController loginCon;
 	private HomeController homeCon;
 	@FXML Label dateTitle;
+	private int number;
+	private Expense expenseNewValue;
+	private Stage primaryStage;
+	private int select;
+	
+	@FXML
+	private void editButton() {
+		if(select==0) {
+			Alert alert = new Alert(AlertType.WARNING);
+			alert.setTitle("오류");
+			alert.setHeaderText("선택 오류");
+			alert.setContentText("아무것도 선택하지 않았습니다.");
+		}else {
+		try {
+		FXMLLoader loader = new FXMLLoader();
+		loader.setLocation(Main.class.getResource("../view/Edit.fxml"));
+		VBox edit =(VBox) loader.load();
+		Stage dialogStage = new Stage();
+		dialogStage.setTitle("지출수정");
+		dialogStage.initModality(Modality.WINDOW_MODAL);
+		dialogStage.initOwner(primaryStage);
+		Scene scene =new Scene(edit);
+		dialogStage.setScene(scene);
+		EditController controller = loader.getController();
+		controller.setDialogStage(dialogStage);
+		if(select==1) {
+			controller.setExpense(this,number);
+		}else {
+			if(select==2) {
+				controller.setIncome(this, number);
+			}else {
+				controller.setSchedule(this, number);
+			}
+		}
+		dialogStage.showAndWait();
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		}
+	}
 
 	@FXML
 	private void previousMonthButton() {
@@ -161,6 +208,99 @@ public class ReportController {
 		scheduleNameColumn.setCellValueFactory(cellData -> cellData.getValue().getNameProperty());
 		scheduleContentColumn.setCellValueFactory(cellData -> cellData.getValue().getContentProperty());
 		dateTitle.setText(homeCon.date.getYear()+"년 "+homeCon.date.getMonthValue()+"월");
+	    expenseTable.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Expense>() {
+	    	@Override
+	    public void changed(ObservableValue<? extends Expense> observable,Expense oldValue, Expense newValue) {
+	    		for(int i=0;i<layoutCon.expenses.size();i++) {
+		    		 if(newValue.equals(layoutCon.expenses.get(i))) {
+		    			 number = i;
+		    			 select=1;
+		    		 }
+		    	 }
+	    		/*if(select==0) {
+	    		 for(int i=0;i<layoutCon.expenses.size();i++) {
+		    		 if(newValue.equals(layoutCon.expenses.get(i))) {
+		    			 number = i;
+		    			 select=1;
+		    		 }
+		    	 }
+	    	 }else {
+	    		if(select==2) {
+	    			incomeTable.getSelectionModel().clearSelection();
+	    		} if(select==3) {
+	    			scheduleTable.getSelectionModel().clearSelection();
+	    		}
+	    		for(int i=0;i<layoutCon.expenses.size();i++) {
+		    		 if(newValue.equals(layoutCon.expenses.get(i))) {
+		    			 number = i;
+		    			 select=1;
+		    		 }
+		    	 }
+	    	 }*/
+	    }
+	    });
+	    incomeTable.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Income>() {
+	    	@Override
+	    public void changed(ObservableValue<? extends Income> observable,Income oldValue, Income newValue) {
+	    		for(int i=0;i<layoutCon.incomes.size();i++) {
+		    		 if(newValue.equals(layoutCon.incomes.get(i))) {
+		    			 number = i;
+		    			 select=2;
+		    		 }
+	    		}
+	    		/*if(select==0) {
+	    		for(int i=0;i<layoutCon.incomes.size();i++) {
+	    		 if(newValue.equals(layoutCon.incomes.get(i))) {
+	    			 number = i;
+	    			 select=2;
+	    		 }
+	    	 }
+	    		}else {
+	    			if(select==1) {
+	    				expenseTable.getSelectionModel().clearSelection();
+	    			} if(select==3) {
+		    			scheduleTable.getSelectionModel().clearSelection();
+	    			}
+	    				for(int i=0;i<layoutCon.incomes.size();i++) {
+	    		    		 if(newValue.equals(layoutCon.incomes.get(i))) {
+	    		    			 number = i;
+	    		    			 select=2;
+	    		    		 }
+	    		    	 }    			
+	    		}*/
+	    }
+	    });
+	    scheduleTable.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Schedule>() {
+	    	@Override
+	    public void changed(ObservableValue<? extends Schedule> observable,Schedule oldValue, Schedule newValue) {
+	    		for(int i=0;i<layoutCon.schedules.size();i++) {
+		    		 if(newValue.equals(layoutCon.schedules.get(i))) {
+		    			 number = i;
+		    			 select=3;
+		    		 }
+		    	 }
+	    		/* if(select==0) {
+	    		 for(int i=0;i<layoutCon.schedules.size();i++) {
+		    		 if(newValue.equals(layoutCon.schedules.get(i))) {
+		    			 number = i;
+		    			 select=3;
+		    		 }
+		    	 }
+	    	 }else {
+	    		 if(select==1) { 
+	    			 expenseTable.getSelectionModel().clearSelection();
+	    		 } if(select==2) {
+		    		 incomeTable.getSelectionModel().clearSelection();
+	    		 }
+	    		for(int i=0;i<layoutCon.schedules.size();i++) {
+	    		 if(newValue.equals(layoutCon.schedules.get(i))) {
+	    			 number = i;
+	    			 select=3;
+	    		 }
+	    	 }
+	    	 }*/
+	    }
+	    });
 	}
 	public ObservableList<Expense> getExpenses(){
 		return monthExpenses;

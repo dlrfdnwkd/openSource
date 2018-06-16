@@ -76,11 +76,10 @@ private String select = "expense";
 						int differentiateCheck = 0;
 						if(homeCon.differentiate.isEmpty()) {
 							homeCon.differentiate.add(new Differentiate(loginCon.users.get(loginCon.userNumber).getID(),datePicker.getValue(),Integer.parseInt(txtMoney.getText())));
-							differentiateCheck = 1;
 						}else {
 							for(int i=0;i<homeCon.differentiate.size();i++) {
 								if(datePicker.getValue().equals(homeCon.differentiate.get(i).getDate())) {
-									homeCon.differentiate.get(i).addDayExpense(Integer.parseInt(txtMoney.getText()));
+									homeCon.differentiate.get(i).plusDayExpense(Integer.parseInt(txtMoney.getText()));
 									differentiateCheck = 1;
 									break;
 								}
@@ -92,11 +91,10 @@ private String select = "expense";
 						int managementCheck =0;
 						if(layoutCon.management.isEmpty()) {
 							layoutCon.management.add(new Management(loginCon.users.get(loginCon.userNumber).getID(),YearMonth.from(datePicker.getValue()),Integer.parseInt(txtMoney.getText()),0));
-							managementCheck = 1;
 						}else {
 							for(int j=0;j<layoutCon.management.size();j++) {
-								if(datePicker.getValue().equals(layoutCon.management.get(j).getDate())) {
-									layoutCon.management.get(j).addMonthExpense(Integer.parseInt(txtMoney.getText()));
+								if(YearMonth.from(datePicker.getValue()).equals(layoutCon.management.get(j).getDate())) {
+									layoutCon.management.get(j).plusMonthExpense(Integer.parseInt(txtMoney.getText()));
 									managementCheck=1;
 									break;
 								}
@@ -105,7 +103,7 @@ private String select = "expense";
 								layoutCon.management.add(new Management(loginCon.users.get(loginCon.userNumber).getID(), YearMonth.from(datePicker.getValue()),Integer.parseInt(txtMoney.getText()),0));
 							}
 						}
-						System.out.println(layoutCon.management.get(0).getID()+" "+layoutCon.management.get(0).getDate()+" "+layoutCon.management.get(0).getMonthExpense());
+						
 						homeCon.calendar.getChildren().clear();
 						homeCon.calendar.getChildren().add(new CalendarController(YearMonth.now()).getView());
 						/*if(result==0)

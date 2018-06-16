@@ -87,7 +87,7 @@
       </VBox>
       <HBox alignment="CENTER" prefHeight="82.0" prefWidth="1000.0">
          <children>
-            <Button mnemonicParsing="false" text="편집">
+            <Button mnemonicParsing="false" onAction="#editButton" text="편집">
                <HBox.margin>
                   <Insets right="10.0" />
                </HBox.margin>

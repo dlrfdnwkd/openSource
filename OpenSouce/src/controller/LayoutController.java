@@ -98,10 +98,9 @@ public  class LayoutController {
 			FXMLLoader loader = new FXMLLoader();
 			loader.setLocation(Main.class.getResource("../view/Report.fxml"));
 			VBox report = (VBox) loader.load();
-			root.setCenter(report);
 			ReportController controller = loader.getController();
 			controller.setReprot(this);
-			
+			root.setCenter(report);
 			/*ExpenseDAO expenseDAO = new ExpenseDAO();
 			ObservableList<Expense> tempList = expenseDAO.getExpense();
 			for(int i = 0; i<tempList.size();i++){

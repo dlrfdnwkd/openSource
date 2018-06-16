@@ -52,14 +52,24 @@ public class Management {
 	public IntegerProperty getMonthIncomeProperty() {
 		return monthIncome;
 	}
-	public void addMonthExpense(int expense) {
+	public void plusMonthExpense(int expense) {
 		int a = this.monthExpense.get();
 		a += expense;
 		this.monthExpense.set(a);
 	}
-	public void addMonthIncome(int income) {
+	public void minusMonthExpense(int expense) {
+		int a = this.monthExpense.get();
+		a -= expense;
+		this.monthExpense.set(a);
+	}
+	public void plusMonthIncome(int income) {
 		int a = this.monthIncome.get();
 		a += income;
+		this.monthIncome.set(a);
+	}
+	public void minusMonthIncome(int income) {
+		int a = this.monthIncome.get();
+		a -= income;
 		this.monthIncome.set(a);
 	}
 

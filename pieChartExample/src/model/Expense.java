@@ -77,7 +77,7 @@ public class Expense {
 		return content;
 	}
 	public static void add(Expense expense2) {
-		// TODO Auto-generated method stub
+		
 		
 	}
 

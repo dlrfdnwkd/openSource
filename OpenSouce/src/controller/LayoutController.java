@@ -13,6 +13,8 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import model.Differentiate;
+import model.DifferentiateDAO;
 import model.Expense;
 import model.ExpenseDAO;
 import model.GoalMoney;
@@ -20,6 +22,7 @@ import model.GoalMoneyDAO;
 import model.Income;
 import model.IncomeDAO;
 import model.Management;
+import model.ManagementDAO;
 import model.Schedule;
 import model.ScheduleDAO;
 
@@ -31,6 +34,7 @@ public  class LayoutController {
 	public static ObservableList<Income> incomes = FXCollections.observableArrayList();
 	public static ObservableList<Schedule> schedules = FXCollections.observableArrayList();
 	public static ObservableList<Management> management = FXCollections.observableArrayList();
+	public static ObservableList<Differentiate> differentiate = FXCollections.observableArrayList();
 	//int i;
 	public LayoutController() {
 		//expenses.add(new Expense(loginCon.users.get(loginCon.userNumber).getID(),LocalDate.of(2018,6,11),"교통","버스비",5000,"티머니 충전"));
@@ -79,7 +83,20 @@ public  class LayoutController {
 		BudgetController.monthGoalMoney.add(tempList4.get(b));
 		}
 		}
-		
+		DifferentiateDAO differentiateDAO = new DifferentiateDAO();
+		ObservableList<Differentiate> tempList5 = differentiateDAO.getDifferentiate();
+		for(int x=0;x<tempList5.size();x++) {
+			if(loginCon.users.get(loginCon.userNumber).getID().equals(tempList5.get(x).getID())) {
+				differentiate.add(tempList5.get(x));
+			}
+		}
+		ManagementDAO managementDAO = new ManagementDAO();
+		ObservableList<Management> tempList6 = managementDAO.getManagement();
+		for(int y=0;y<tempList6.size();y++) {
+			if(loginCon.users.get(loginCon.userNumber).getID().equals(tempList6.get(y).getID())) {
+				management.add(tempList6.get(y));
+			}
+		}
 		/*expenses.add(new Expense(loginCon.users.get(loginCon.userNumber).getID(),LocalDate.of(2018,6,11),"교통","버스",5000,"티머니 충전"));
 		expenses.add(new Expense(loginCon.users.get(loginCon.userNumber).getID(),LocalDate.of(2018,7,20),"유흥","술",34000,"동창회"));
 		expenses.add(new Expense(loginCon.users.get(loginCon.userNumber).getID(),LocalDate.of(2018,6,5),"식비","점심",3500,"학식"));

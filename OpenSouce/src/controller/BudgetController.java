@@ -87,6 +87,7 @@ public class BudgetController {
 		typeCheck.setDisable(true);
 	    monthLabel.setText(homeCon.date.getMonthValue()+"월");
 	    yearLabel.setText(homeCon.date.getYear()+"년");
+	    yearGoalMoney.clear();
 	    for(int i=0;i<monthGoalMoney.size();i++) {
 	    	if(monthGoalMoney.get(i).getDate().getYear() == homeCon.date.getYear()) {
 	    		if(monthGoalMoney.get(i).getDate().getMonthValue() == homeCon.date.getMonthValue()) {
@@ -142,19 +143,19 @@ public class BudgetController {
 				alert.setContentText("다시 입력해주세요.");
 				alert.show();
 			}else {
+				monthGoalMoney.clear();
+				GoalMoneyDAO goalMoneyDAO = new GoalMoneyDAO();
+				ObservableList<GoalMoney> tempList4 = goalMoneyDAO.getGoalMoney();
+				for(int b = 0; b<tempList4.size();b++){
+					if(loginCon.users.get(loginCon.userNumber).getID().equals(tempList4.get(b).getID())) {
+				BudgetController.monthGoalMoney.add(tempList4.get(b));
+				}
+				}
 			Alert alert = new Alert(AlertType.INFORMATION);
 			alert.setTitle("설정 성공");
 			alert.setHeaderText("월 총 지출목표금액이 설정되었습니다.");
-			alert.setContentText(homeCon.date.getYear()+"년 "+homeCon.date.getMonthValue()+"월"+" 총 지출목표금액: "+monthGoalMoney.get(0).getTotal());
+			alert.setContentText(homeCon.date.getYear()+"년 "+homeCon.date.getMonthValue()+"월"+" 총 지출목표금액: "+txtMoney.getText());
 			alert.show();
-			monthGoalMoney.clear();
-			GoalMoneyDAO goalMoneyDAO = new GoalMoneyDAO();
-			ObservableList<GoalMoney> tempList4 = goalMoneyDAO.getGoalMoney();
-			for(int b = 0; b<tempList4.size();b++){
-				if(loginCon.users.get(loginCon.userNumber).getID().equals(tempList4.get(b).getID())) {
-			BudgetController.monthGoalMoney.add(tempList4.get(b));
-			}
-			}
 			}
 		}else {
 			if(typeCheck.getValue() == null) {
@@ -188,10 +189,18 @@ public class BudgetController {
 				alert.setContentText("다시 입력해주세요.");
 				alert.show();
 			}else {
+				monthGoalMoney.clear();
+				GoalMoneyDAO goalMoneyDAO = new GoalMoneyDAO();
+				ObservableList<GoalMoney> tempList4 = goalMoneyDAO.getGoalMoney();
+				for(int b = 0; b<tempList4.size();b++){
+					if(loginCon.users.get(loginCon.userNumber).getID().equals(tempList4.get(b).getID())) {
+				BudgetController.monthGoalMoney.add(tempList4.get(b));
+				}
+				}
 			Alert alert = new Alert(AlertType.INFORMATION);
 			alert.setTitle("설정 성공");
 			alert.setHeaderText("교통 목표금액이 설정되었습니다.");
-			alert.setContentText(homeCon.date.getYear()+"년 "+homeCon.date.getMonthValue()+"월"+" 교통 목표금액: "+monthGoalMoney.get(0).getTraffic());
+			alert.setContentText(homeCon.date.getYear()+"년 "+homeCon.date.getMonthValue()+"월"+" 교통 목표금액: "+txtMoney.getText());
 			alert.show();
 			        }
 				}else {
@@ -218,10 +227,18 @@ public class BudgetController {
 							alert.setContentText("다시 입력해주세요.");
 							alert.show();
 						}else {
+							monthGoalMoney.clear();
+							GoalMoneyDAO goalMoneyDAO = new GoalMoneyDAO();
+							ObservableList<GoalMoney> tempList4 = goalMoneyDAO.getGoalMoney();
+							for(int b = 0; b<tempList4.size();b++){
+								if(loginCon.users.get(loginCon.userNumber).getID().equals(tempList4.get(b).getID())) {
+							BudgetController.monthGoalMoney.add(tempList4.get(b));
+							}
+							}
 						Alert alert = new Alert(AlertType.INFORMATION);
 						alert.setTitle("설정 성공");
 						alert.setHeaderText("식비 목표금액이 설정되었습니다.");
-						alert.setContentText(homeCon.date.getYear()+"년 "+homeCon.date.getMonthValue()+"월"+" 식비 목표금액: "+monthGoalMoney.get(0).getFood());
+						alert.setContentText(homeCon.date.getYear()+"년 "+homeCon.date.getMonthValue()+"월"+" 식비 목표금액: "+txtMoney.getText());
 						alert.show();
 						        }
 					}else {
@@ -248,10 +265,18 @@ public class BudgetController {
 								alert.setContentText("다시 입력해주세요.");
 								alert.show();
 							}else {
+								monthGoalMoney.clear();
+								GoalMoneyDAO goalMoneyDAO = new GoalMoneyDAO();
+								ObservableList<GoalMoney> tempList4 = goalMoneyDAO.getGoalMoney();
+								for(int b = 0; b<tempList4.size();b++){
+									if(loginCon.users.get(loginCon.userNumber).getID().equals(tempList4.get(b).getID())) {
+								BudgetController.monthGoalMoney.add(tempList4.get(b));
+								}
+								}
 							Alert alert = new Alert(AlertType.INFORMATION);
 							alert.setTitle("설정 성공");
 							alert.setHeaderText("생활 목표금액이 설정되었습니다.");
-							alert.setContentText(homeCon.date.getYear()+"년 "+homeCon.date.getMonthValue()+"월"+" 식비 목표금액: "+monthGoalMoney.get(0).getLife());
+							alert.setContentText(homeCon.date.getYear()+"년 "+homeCon.date.getMonthValue()+"월"+" 식비 목표금액: "+txtMoney.getText());
 							alert.show();
 							        }
 						}else {
@@ -278,10 +303,18 @@ public class BudgetController {
 									alert.setContentText("다시 입력해주세요.");
 									alert.show();
 								}else {
+									monthGoalMoney.clear();
+									GoalMoneyDAO goalMoneyDAO = new GoalMoneyDAO();
+									ObservableList<GoalMoney> tempList4 = goalMoneyDAO.getGoalMoney();
+									for(int b = 0; b<tempList4.size();b++){
+										if(loginCon.users.get(loginCon.userNumber).getID().equals(tempList4.get(b).getID())) {
+									BudgetController.monthGoalMoney.add(tempList4.get(b));
+									}
+									}
 								Alert alert = new Alert(AlertType.INFORMATION);
 								alert.setTitle("설정 성공");
 								alert.setHeaderText("의료 목표금액이 설정되었습니다.");
-								alert.setContentText(homeCon.date.getYear()+"년 "+homeCon.date.getMonthValue()+"월"+" 의료 목표금액: "+monthGoalMoney.get(0).getMedical());
+								alert.setContentText(homeCon.date.getYear()+"년 "+homeCon.date.getMonthValue()+"월"+" 의료 목표금액: "+txtMoney.getText());
 								alert.show();
 								        }
 							}else {
@@ -308,10 +341,18 @@ public class BudgetController {
 										alert.setContentText("다시 입력해주세요.");
 										alert.show();
 									}else {
+										monthGoalMoney.clear();
+										GoalMoneyDAO goalMoneyDAO = new GoalMoneyDAO();
+										ObservableList<GoalMoney> tempList4 = goalMoneyDAO.getGoalMoney();
+										for(int b = 0; b<tempList4.size();b++){
+											if(loginCon.users.get(loginCon.userNumber).getID().equals(tempList4.get(b).getID())) {
+										BudgetController.monthGoalMoney.add(tempList4.get(b));
+										}
+										}
 									Alert alert = new Alert(AlertType.INFORMATION);
 									alert.setTitle("설정 성공");
 									alert.setHeaderText("유흥 목표금액이 설정되었습니다.");
-									alert.setContentText(homeCon.date.getYear()+"년 "+homeCon.date.getMonthValue()+"월"+" 식비 목표금액: "+monthGoalMoney.get(0).getPleasure());
+									alert.setContentText(homeCon.date.getYear()+"년 "+homeCon.date.getMonthValue()+"월"+" 식비 목표금액: "+txtMoney.getText());
 									alert.show();
 									        }
 								}else {
@@ -337,10 +378,18 @@ public class BudgetController {
 										alert.setContentText("다시 입력해주세요.");
 										alert.show();
 									}else {
+										monthGoalMoney.clear();
+										GoalMoneyDAO goalMoneyDAO = new GoalMoneyDAO();
+										ObservableList<GoalMoney> tempList4 = goalMoneyDAO.getGoalMoney();
+										for(int b = 0; b<tempList4.size();b++){
+											if(loginCon.users.get(loginCon.userNumber).getID().equals(tempList4.get(b).getID())) {
+										BudgetController.monthGoalMoney.add(tempList4.get(b));
+										}
+										}
 									Alert alert = new Alert(AlertType.INFORMATION);
 									alert.setTitle("설정 성공");
 									alert.setHeaderText("기타 목표금액이 설정되었습니다.");
-									alert.setContentText(homeCon.date.getYear()+"년 "+homeCon.date.getMonthValue()+"월"+" 식비 목표금액: "+monthGoalMoney.get(0).getGuitar());
+									alert.setContentText(homeCon.date.getYear()+"년 "+homeCon.date.getMonthValue()+"월"+" 식비 목표금액: "+txtMoney.getText());
 									alert.show();
 										        }
 								}

@@ -34,20 +34,6 @@ public class LoginController  {
 	}
 
 	public void LoginButton(ActionEvent event) throws Exception {
-		/*boolean UserFind =false;
-		UserFind = userFind();
-		if(UserFind==true) {
-	    layoutController.setRootLayout();
-		layoutController.setHome();
-		} else {
-			Alert alert = new Alert(AlertType.WARNING);
-			//alert.initOwner(main.getPrimaryStage());
-			alert.setTitle("로그인 실패");
-			alert.setHeaderText("아이디 및 비밀번호 오류");
-			alert.setContentText("확인한 후 다시 입력해주시오.");
-			alert.showAndWait();	
-			txtPassword.setText(null);
-		}*/
 		login();
 	}
 	public void loginButton() {

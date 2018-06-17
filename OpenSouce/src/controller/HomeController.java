@@ -24,7 +24,6 @@ public  class HomeController {
 	private LayoutController layoutCon;
 	private BudgetController budgetCon;
 	//public int i;
-	public static ObservableList<Differentiate> differentiate = FXCollections.observableArrayList();
 	@FXML  public Pane calendar;
 	public HomeController() {
 	//	layoutCon.expenses.add(new Expense(loginCon.users.get(loginCon.userNumber).getID(),LocalDate.of(2018,6,11),"교통","버스비",5000,"티머니 충전"));
@@ -126,13 +125,4 @@ public  class HomeController {
 	    		e.printStackTrace();
 	    	}
 	    }
-	 /*public void setDatExpense() {
-		 //layoutCon.expenses.get(0).getExpense()
-		 Calendar cal = Calendar.getInstance();
-		 cal.set(Calendar.YEAR,date.getYear());
-		 cal.set(Calendar.MONTH,date.getMonthValue());
-		 for(int i=0;i<budgetCon.monthGoalMoney.size();i++)
-		 int datExepense = budgetCon.monthGoalMoney.get(0).getTotal() / cal.DAY_OF_MONTH;
-		 layoutCon.expenses.get
-	 }*/
 	 }

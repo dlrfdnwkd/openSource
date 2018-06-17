@@ -70,32 +70,32 @@ public class EditController {
 		layoutCon.expenses.get(number).setName(txtName.getText());
 		layoutCon.expenses.get(number).setExpense(Integer.parseInt(txtMoney.getText()));
 		layoutCon.expenses.get(number).setContent(txtContent.getText());
-		//지출 수정
+		//지출 수정 후 동기화
 		if(money!=layoutCon.expenses.get(number).getExpense()) {
 			if(money>layoutCon.expenses.get(number).getExpense()) {
-				for(int i=0;i<homeCon.differentiate.size();i++) {
-					if(layoutCon.expenses.get(number).getDate().equals(homeCon.differentiate.get(i).getDate())) {
-						homeCon.differentiate.get(i).minusDayExpense(money-layoutCon.expenses.get(number).getExpense());
-						//판별 수정
+				for(int i=0;i<layoutCon.differentiate.size();i++) {
+					if(layoutCon.expenses.get(number).getDate().equals(layoutCon.differentiate.get(i).getDate())) {
+						layoutCon.differentiate.get(i).minusDayExpense(money-layoutCon.expenses.get(number).getExpense());
+						//판별 수정 후 동기화
 					}
 				}
 				for(int j=0;j<layoutCon.management.size();j++) {
 					if(YearMonth.from(layoutCon.expenses.get(number).getDate()).equals(layoutCon.management.get(j).getDate())) {
 						layoutCon.management.get(j).minusMonthExpense(money-layoutCon.expenses.get(number).getExpense());
-						//관리 수정
+						//관리 수정 후 동기화
 					}
 				}
 			}else {
-				for(int i=0;i<homeCon.differentiate.size();i++) {
-					if(layoutCon.expenses.get(number).getDate().equals(homeCon.differentiate.get(i).getDate())) {
-						homeCon.differentiate.get(i).plusDayExpense(layoutCon.expenses.get(number).getExpense()-money);
-						//
+				for(int i=0;i<layoutCon.differentiate.size();i++) {
+					if(layoutCon.expenses.get(number).getDate().equals(layoutCon.differentiate.get(i).getDate())) {
+						layoutCon.differentiate.get(i).plusDayExpense(layoutCon.expenses.get(number).getExpense()-money);
+						//판별 수정 후 동기화
 					}
 				}
 				for(int j=0;j<layoutCon.management.size();j++) {
 					if(YearMonth.from(layoutCon.expenses.get(number).getDate()).equals(layoutCon.management.get(j).getDate())) {
 						layoutCon.management.get(j).plusMonthExpense(layoutCon.expenses.get(number).getExpense()-money);
-						//
+						//관리 수정후 동기화
 					}
 				}
 			}
@@ -106,20 +106,20 @@ public class EditController {
 			layoutCon.incomes.get(number).setDate(datePicker.getValue());
 			layoutCon.incomes.get(number).setName(txtName.getText());
 			layoutCon.incomes.get(number).setIncome(Integer.parseInt(txtMoney.getText()));
-			//수입 수정
+			//수입 수정 후 동기화
 			if(money!=layoutCon.incomes.get(number).getIncome()) {
 				if(money>layoutCon.incomes.get(number).getIncome()) {
 					for(int j=0;j<layoutCon.management.size();j++) {
 						if(YearMonth.from(layoutCon.incomes.get(number).getDate()).equals(layoutCon.management.get(j).getDate())) {
 							layoutCon.management.get(j).minusMonthIncome(money-layoutCon.incomes.get(number).getIncome());
-							//
+							//관리 수정 후 동기화
 						}
 					}
 				}else {
 					for(int j=0;j<layoutCon.management.size();j++) {
 						if(YearMonth.from(layoutCon.incomes.get(number).getDate()).equals(layoutCon.management.get(j).getDate())) {
 							layoutCon.management.get(j).plusMonthIncome(layoutCon.incomes.get(number).getIncome()-money);
-							//
+							//관리 수정 후 동기화
 						}
 					}
 				}
@@ -128,7 +128,7 @@ public class EditController {
 			layoutCon.schedules.get(number).setDate(datePicker.getValue());
 			layoutCon.schedules.get(number).setName(txtName.getText());
 			layoutCon.schedules.get(number).setContent(txtContent.getText());
-			//일정 수정
+			//일정 수정 후 동기화
 		}
 	}
 		dialogStage.close();

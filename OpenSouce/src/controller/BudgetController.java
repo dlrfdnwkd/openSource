@@ -89,13 +89,11 @@ public class BudgetController {
 	    yearLabel.setText(homeCon.date.getYear()+"년");
 	    for(int i=0;i<monthGoalMoney.size();i++) {
 	    	if(monthGoalMoney.get(i).getDate().getYear() == homeCon.date.getYear()) {
-	    		for(int j=0;j<yearGoalMoney.size();j++) {
-	    			if(!monthGoalMoney.get(i).equals(yearGoalMoney.get(j))) {
+	    		if(monthGoalMoney.get(i).getDate().getMonthValue() == homeCon.date.getMonthValue()) {
 	    			yearGoalMoney.add(monthGoalMoney.get(i));
+	    		}
 	    			}
 	    		}
-	    	}
-	    }
 	    goalMoneyMonthColumn.setCellValueFactory(cellData -> cellData.getValue().getDateProperty());
 	    goalMoneyTrafficColumn.setCellValueFactory(cellData -> cellData.getValue().getTrafficProperty().asObject());
 	    goalMoneyFoodColumn.setCellValueFactory(cellData -> cellData.getValue().getFoodProperty().asObject());
@@ -133,7 +131,9 @@ public class BudgetController {
 			}
 			if(dateCheck==0) {
 				GoalMoneyDAO goalMoneyDAO = new GoalMoneyDAO();
-				int result = goalMoneyDAO.saveGoalMoney(new GoalMoney(loginCon.users.get(loginCon.userNumber).getID(),YearMonth.from(homeCon.date),Integer.parseInt(txtMoney.getText()),0,0,0,0,0,Integer.parseInt(txtMoney.getText())));
+				System.out.println(homeCon.date);
+				int result = goalMoneyDAO.saveGoalMoney(new GoalMoney(loginCon.users.get(loginCon.userNumber).getID(),YearMonth.from(homeCon.date),0,0,0,0,0,0,Integer.parseInt(txtMoney.getText())));
+				//monthGoalMoney.add(new GoalMoney(loginCon.users.get(loginCon.userNumber).getID(),YearMonth.from(homeCon.date),0,0,0,0,0,0,Integer.parseInt(txtMoney.getText())));
 		}
 			if(overType==1) {
 				Alert alert = new Alert(AlertType.ERROR);
@@ -147,6 +147,14 @@ public class BudgetController {
 			alert.setHeaderText("월 총 지출목표금액이 설정되었습니다.");
 			alert.setContentText(homeCon.date.getYear()+"년 "+homeCon.date.getMonthValue()+"월"+" 총 지출목표금액: "+monthGoalMoney.get(0).getTotal());
 			alert.show();
+			monthGoalMoney.clear();
+			GoalMoneyDAO goalMoneyDAO = new GoalMoneyDAO();
+			ObservableList<GoalMoney> tempList4 = goalMoneyDAO.getGoalMoney();
+			for(int b = 0; b<tempList4.size();b++){
+				if(loginCon.users.get(loginCon.userNumber).getID().equals(tempList4.get(b).getID())) {
+			BudgetController.monthGoalMoney.add(tempList4.get(b));
+			}
+			}
 			}
 		}else {
 			if(typeCheck.getValue() == null) {
@@ -171,7 +179,7 @@ public class BudgetController {
 			}
 			if(dateCheck==0) {
 				GoalMoneyDAO goalMoneyDAO = new GoalMoneyDAO();
-				int result = goalMoneyDAO.saveGoalMoney(new GoalMoney(loginCon.users.get(loginCon.userNumber).getID(),YearMonth.from(homeCon.date),Integer.parseInt(txtMoney.getText()),0,0,0,0,0,Integer.parseInt(txtMoney.getText())));
+				goalMoneyDAO.saveGoalMoney(new GoalMoney(loginCon.users.get(loginCon.userNumber).getID(),YearMonth.from(homeCon.date),Integer.parseInt(txtMoney.getText()),0,0,0,0,0,Integer.parseInt(txtMoney.getText())));
 					}
 			if(overTotal ==1) {
 				Alert alert = new Alert(AlertType.ERROR);
@@ -195,13 +203,13 @@ public class BudgetController {
 									overTotal=1;
 									break;
 								}
-								monthGoalMoney.get(i).setFood(Integer.parseInt(txtMoney.getText()));
+								monthGoalMoney.get(i).setFood(Integer.parseInt(txtMoney.getText()));//식비 수정
 								dateCheck=1;
 							}
 						}
 						if(dateCheck==0) {
 							GoalMoneyDAO goalMoneyDAO = new GoalMoneyDAO();
-							int result = goalMoneyDAO.saveGoalMoney(new GoalMoney(loginCon.users.get(loginCon.userNumber).getID(),YearMonth.from(homeCon.date),Integer.parseInt(txtMoney.getText()),0,0,0,0,0,Integer.parseInt(txtMoney.getText())));
+							int result = goalMoneyDAO.saveGoalMoney(new GoalMoney(loginCon.users.get(loginCon.userNumber).getID(),YearMonth.from(homeCon.date),0,Integer.parseInt(txtMoney.getText()),0,0,0,0,Integer.parseInt(txtMoney.getText())));
 								}
 						if(overTotal ==1) {
 							Alert alert = new Alert(AlertType.ERROR);
@@ -215,8 +223,6 @@ public class BudgetController {
 						alert.setHeaderText("식비 목표금액이 설정되었습니다.");
 						alert.setContentText(homeCon.date.getYear()+"년 "+homeCon.date.getMonthValue()+"월"+" 식비 목표금액: "+monthGoalMoney.get(0).getFood());
 						alert.show();
-						GoalMoneyDAO goalMoneyDAO = new GoalMoneyDAO();
-						int result = goalMoneyDAO.saveGoalMoney(new GoalMoney(loginCon.users.get(loginCon.userNumber).getID(),YearMonth.from(homeCon.date),Integer.parseInt(txtMoney.getText()),0,0,0,0,0,Integer.parseInt(txtMoney.getText())));
 						        }
 					}else {
 						if(typeCheck.getValue() == "생활") {
@@ -227,13 +233,13 @@ public class BudgetController {
 										overTotal=1;
 										break;
 									}
-									monthGoalMoney.get(i).setLife(Integer.parseInt(txtMoney.getText()));
+									monthGoalMoney.get(i).setLife(Integer.parseInt(txtMoney.getText())); //생활 수정
 									dateCheck=1;
 								}
 							}
 							if(dateCheck==0) {
 								GoalMoneyDAO goalMoneyDAO = new GoalMoneyDAO();
-								int result = goalMoneyDAO.saveGoalMoney(new GoalMoney(loginCon.users.get(loginCon.userNumber).getID(),YearMonth.from(homeCon.date),Integer.parseInt(txtMoney.getText()),0,0,0,0,0,Integer.parseInt(txtMoney.getText())));
+								goalMoneyDAO.saveGoalMoney(new GoalMoney(loginCon.users.get(loginCon.userNumber).getID(),YearMonth.from(homeCon.date),0,0,Integer.parseInt(txtMoney.getText()),0,0,0,Integer.parseInt(txtMoney.getText())));
 									}
 							if(overTotal ==1) {
 								Alert alert = new Alert(AlertType.ERROR);
@@ -257,13 +263,13 @@ public class BudgetController {
 											overTotal=1;
 											break;
 										}
-										monthGoalMoney.get(i).setMedical(Integer.parseInt(txtMoney.getText()));
+										monthGoalMoney.get(i).setMedical(Integer.parseInt(txtMoney.getText()));//의료 수정
 										dateCheck=1;
 									}
 								}
 								if(dateCheck==0) {
 									GoalMoneyDAO goalMoneyDAO = new GoalMoneyDAO();
-									int result = goalMoneyDAO.saveGoalMoney(new GoalMoney(loginCon.users.get(loginCon.userNumber).getID(),YearMonth.from(homeCon.date),Integer.parseInt(txtMoney.getText()),0,0,0,0,0,Integer.parseInt(txtMoney.getText())));
+									goalMoneyDAO.saveGoalMoney(new GoalMoney(loginCon.users.get(loginCon.userNumber).getID(),YearMonth.from(homeCon.date),0,0,0,Integer.parseInt(txtMoney.getText()),0,0,Integer.parseInt(txtMoney.getText())));
 										}
 								if(overTotal ==1) {
 									Alert alert = new Alert(AlertType.ERROR);
@@ -277,8 +283,6 @@ public class BudgetController {
 								alert.setHeaderText("의료 목표금액이 설정되었습니다.");
 								alert.setContentText(homeCon.date.getYear()+"년 "+homeCon.date.getMonthValue()+"월"+" 의료 목표금액: "+monthGoalMoney.get(0).getMedical());
 								alert.show();
-								GoalMoneyDAO goalMoneyDAO = new GoalMoneyDAO();
-								int result = goalMoneyDAO.saveGoalMoney(new GoalMoney(loginCon.users.get(loginCon.userNumber).getID(),YearMonth.from(homeCon.date),Integer.parseInt(txtMoney.getText()),0,0,0,0,0,Integer.parseInt(txtMoney.getText())));
 								        }
 							}else {
 								if(typeCheck.getValue() == "유흥") {
@@ -289,13 +293,13 @@ public class BudgetController {
 												overTotal=1;
 												break;
 											}
-											monthGoalMoney.get(i).setPleasure(Integer.parseInt(txtMoney.getText()));
+											monthGoalMoney.get(i).setPleasure(Integer.parseInt(txtMoney.getText())); //유흥 수정
 											dateCheck=1;
 										}
 									}
 									if(dateCheck==0) {
 										GoalMoneyDAO goalMoneyDAO = new GoalMoneyDAO();
-										int result = goalMoneyDAO.saveGoalMoney(new GoalMoney(loginCon.users.get(loginCon.userNumber).getID(),YearMonth.from(homeCon.date),Integer.parseInt(txtMoney.getText()),0,0,0,0,0,Integer.parseInt(txtMoney.getText())));
+										goalMoneyDAO.saveGoalMoney(new GoalMoney(loginCon.users.get(loginCon.userNumber).getID(),YearMonth.from(homeCon.date),0,0,0,0,Integer.parseInt(txtMoney.getText()),0,Integer.parseInt(txtMoney.getText())));
 											}
 									if(overTotal ==1) {
 										Alert alert = new Alert(AlertType.ERROR);
@@ -324,7 +328,7 @@ public class BudgetController {
 									}
 									if(dateCheck==0) {
 										GoalMoneyDAO goalMoneyDAO = new GoalMoneyDAO();
-										int result = goalMoneyDAO.saveGoalMoney(new GoalMoney(loginCon.users.get(loginCon.userNumber).getID(),YearMonth.from(homeCon.date),Integer.parseInt(txtMoney.getText()),0,0,0,0,0,Integer.parseInt(txtMoney.getText())));
+										goalMoneyDAO.saveGoalMoney(new GoalMoney(loginCon.users.get(loginCon.userNumber).getID(),YearMonth.from(homeCon.date),0,0,0,0,0,Integer.parseInt(txtMoney.getText()),Integer.parseInt(txtMoney.getText())));
 										}
 									if(overTotal ==1) {
 										Alert alert = new Alert(AlertType.ERROR);

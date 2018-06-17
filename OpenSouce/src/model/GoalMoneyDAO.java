@@ -52,7 +52,7 @@ public int insertGoalMoney(GoalMoney goalMoney) {
 			PreparedStatement pstmt = conn.prepareStatement(SQL);
 			
 			pstmt.setString(1, goalMoney.getID());
-			pstmt.setDate(2, Date.valueOf(LocalDate.of(goalMoney.getDate().getYear(), goalMoney.getDate().getMonth(), 1)));
+			pstmt.setDate(2, Date.valueOf(LocalDate.of(goalMoney.getDate().getYear(), goalMoney.getDate().getMonthValue(), 15)));
 			pstmt.setInt(3, goalMoney.getTraffic());
 			pstmt.setInt(4, goalMoney.getFood());
 			pstmt.setInt(5, goalMoney.getLife());

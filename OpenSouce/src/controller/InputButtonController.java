@@ -88,7 +88,7 @@ private String select = "expense";
 						if(homeCon.differentiate.isEmpty()) {
 							homeCon.differentiate.add(new Differentiate(loginCon.users.get(loginCon.userNumber).getID(),datePicker.getValue(),Integer.parseInt(txtMoney.getText())));
 							DifferentiateDAO differentiateDAO = new DifferentiateDAO();
-							int result = differentiateDAO.saveDifferentiate(new Differentiate(loginCon.users.get(loginCon.userNumber).getID(),datePicker.getValue(),Integer.parseInt(txtMoney.getText())));
+							differentiateDAO.saveDifferentiate(new Differentiate(loginCon.users.get(loginCon.userNumber).getID(),datePicker.getValue(),Integer.parseInt(txtMoney.getText())));
 							
 						}else {
 							for(int i=0;i<homeCon.differentiate.size();i++) {
@@ -102,7 +102,7 @@ private String select = "expense";
 							if(differentiateCheck == 0) {
 								homeCon.differentiate.add(new Differentiate(loginCon.users.get(loginCon.userNumber).getID(),datePicker.getValue(),Integer.parseInt(txtMoney.getText())));
 								DifferentiateDAO differentiateDAO = new DifferentiateDAO();
-								int result = differentiateDAO.saveDifferentiate(new Differentiate(loginCon.users.get(loginCon.userNumber).getID(),datePicker.getValue(),Integer.parseInt(txtMoney.getText())));
+								differentiateDAO.saveDifferentiate(new Differentiate(loginCon.users.get(loginCon.userNumber).getID(),datePicker.getValue(),Integer.parseInt(txtMoney.getText())));
 								
 							}
 						}
@@ -110,7 +110,7 @@ private String select = "expense";
 						if(layoutCon.management.isEmpty()) {
 							layoutCon.management.add(new Management(loginCon.users.get(loginCon.userNumber).getID(),YearMonth.from(datePicker.getValue()),Integer.parseInt(txtMoney.getText()),0));
 							DifferentiateDAO differentiateDAO = new DifferentiateDAO();
-							int result = differentiateDAO.saveDifferentiate(new Differentiate(loginCon.users.get(loginCon.userNumber).getID(),datePicker.getValue(),Integer.parseInt(txtMoney.getText())));
+							differentiateDAO.saveDifferentiate(new Differentiate(loginCon.users.get(loginCon.userNumber).getID(),datePicker.getValue(),Integer.parseInt(txtMoney.getText())));
 							
 						}else {
 							for(int j=0;j<layoutCon.management.size();j++) {
@@ -124,7 +124,7 @@ private String select = "expense";
 							if(managementCheck==0) {
 								layoutCon.management.add(new Management(loginCon.users.get(loginCon.userNumber).getID(), YearMonth.from(datePicker.getValue()),Integer.parseInt(txtMoney.getText()),0));
 								DifferentiateDAO differentiateDAO = new DifferentiateDAO();
-								int result = differentiateDAO.saveDifferentiate(new Differentiate(loginCon.users.get(loginCon.userNumber).getID(),datePicker.getValue(),Integer.parseInt(txtMoney.getText())));
+								differentiateDAO.saveDifferentiate(new Differentiate(loginCon.users.get(loginCon.userNumber).getID(),datePicker.getValue(),Integer.parseInt(txtMoney.getText())));
 								
 							}
 						}

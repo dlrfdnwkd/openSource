@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.effect.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.scene.control.*?>
 <?import java.lang.*?>
@@ -8,20 +9,14 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="724.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.BudgetController">
    <children>
-      <Button layoutX="188.0" layoutY="128.0" mnemonicParsing="false" onAction="#previousMonthButton" text="&lt;" />
-      <Button layoutX="296.0" layoutY="128.0" mnemonicParsing="false" onAction="#nextMonthButton" text="&gt;" />
-      <Label fx:id="monthLabel" layoutX="242.0" layoutY="127.0" prefHeight="25.0" prefWidth="48.0" text="6월" AnchorPane.leftAnchor="242.0" AnchorPane.rightAnchor="710.0">
-         <font>
-            <Font size="20.0" />
-         </font></Label>
-      <AnchorPane layoutX="593.0" layoutY="205.0" prefHeight="724.0" prefWidth="500.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <AnchorPane layoutX="593.0" layoutY="205.0" prefHeight="724.0" prefWidth="667.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="333.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Label layoutX="-92.0" layoutY="6.0" text="목표금액">
+            <Label layoutX="242.0" layoutY="14.0" text="목표금액" textFill="#31b0e5" AnchorPane.leftAnchor="242.0">
                <font>
                   <Font size="46.0" />
                </font>
             </Label>
-            <TableView fx:id="goalMoneyTable" layoutX="136.0" layoutY="228.0" prefHeight="530.0" prefWidth="500.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+            <TableView fx:id="goalMoneyTable" layoutY="228.0" prefHeight="530.0" prefWidth="609.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
               <columns>
                   <TableColumn fx:id="goalMoneyMonthColumn" prefWidth="75.0" text="월" />
                 <TableColumn fx:id="goalMoneyTrafficColumn" prefWidth="75.0" text="교통" />
@@ -36,25 +31,34 @@
                   <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                </columnResizePolicy>
             </TableView>
-            <Button layoutX="173.0" layoutY="126.0" mnemonicParsing="false" onAction="#previousYearButton" text="&lt;&lt;" />
-            <Button layoutX="313.0" layoutY="126.0" mnemonicParsing="false" onAction="#nextYearButton" text="&gt;&gt;" />
-            <Label fx:id="yearLabel" layoutX="226.0" layoutY="125.0" text="2018년">
+            <Button layoutX="253.0" layoutY="126.0" mnemonicParsing="false" onAction="#previousYearButton" style="-fx-background-color: #31b0e5; -fx-background-radius: 70;" text="&lt;&lt;" AnchorPane.leftAnchor="248.0">
+               <effect>
+                  <DropShadow />
+               </effect></Button>
+            <Button layoutX="383.0" layoutY="126.0" mnemonicParsing="false" onAction="#nextYearButton" style="-fx-background-color: #31b0e5; -fx-background-radius: 70;" text="&gt;&gt;" AnchorPane.rightAnchor="248.0">
+               <effect>
+                  <DropShadow />
+               </effect></Button>
+            <Label fx:id="yearLabel" layoutX="298.0" layoutY="125.0" text="2018년" textFill="#31b0e5" AnchorPane.leftAnchor="298.0" AnchorPane.topAnchor="125.0">
                <font>
                   <Font size="20.0" />
                </font>
             </Label>
          </children>
       </AnchorPane>
-      <AnchorPane layoutX="179.0" layoutY="213.0" prefHeight="530.0" prefWidth="500.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="500.0">
+      <AnchorPane layoutY="-14.0" prefHeight="708.0" prefWidth="333.0" style="-fx-background-color: #31b0e5;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="667.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Button layoutX="236.0" layoutY="349.0" mnemonicParsing="false" onAction="#addButton" text="설정" />
-            <RadioButton layoutX="161.0" layoutY="90.0" mnemonicParsing="false" onAction="#setTotal" selected="true" text="1.월 총 지출">
+            <Button layoutX="127.0" layoutY="581.0" mnemonicParsing="false" onAction="#addButton" prefHeight="40.0" prefWidth="80.0" style="-fx-background-color: white; -fx-background-radius: 50;" text="설정" textFill="#31b0e5">
+               <effect>
+                  <DropShadow />
+               </effect></Button>
+            <RadioButton layoutX="77.0" layoutY="324.0" mnemonicParsing="false" onAction="#setTotal" selected="true" text="1.월 총 지출" textFill="WHITE">
                <toggleGroup>
                   <ToggleGroup fx:id="group" />
                </toggleGroup>
             </RadioButton>
-            <RadioButton layoutX="287.0" layoutY="90.0" mnemonicParsing="false" onAction="#setType" text="2. 유형별 지출" toggleGroup="$group" />
-            <ComboBox fx:id="typeCheck" layoutX="169.0" layoutY="153.0" prefWidth="150.0" promptText="유형선택">
+            <RadioButton layoutX="198.0" layoutY="324.0" mnemonicParsing="false" onAction="#setType" text="2. 유형별 지출" textFill="WHITE" toggleGroup="$group" />
+            <ComboBox fx:id="typeCheck" layoutX="92.0" layoutY="405.0" prefWidth="150.0" promptText="유형선택" style="-fx-background-color: white;">
                <contextMenu>
                   <ContextMenu>
                     <items>
@@ -64,10 +68,21 @@
                   </ContextMenu>
                </contextMenu>
             </ComboBox>
-            <Label layoutX="114.0" layoutY="90.0" text="종류 :" />
-            <Label layoutX="114.0" layoutY="157.0" text="유형 :" />
-            <Label layoutX="114.0" layoutY="235.0" text="금액 :" />
-            <TextField fx:id="txtMoney" layoutX="169.0" layoutY="231.0" prefHeight="23.0" prefWidth="150.0" />
+            <Label layoutX="30.0" layoutY="325.0" text="종류 :" textFill="WHITE" />
+            <Label layoutX="30.0" layoutY="409.0" text="유형 :" textFill="WHITE" />
+            <Label layoutX="30.0" layoutY="492.0" text="금액 :" textFill="WHITE" />
+            <TextField fx:id="txtMoney" layoutX="92.0" layoutY="488.0" prefHeight="23.0" prefWidth="150.0" />
+            <Button layoutX="77.0" layoutY="130.0" mnemonicParsing="false" onAction="#previousMonthButton" prefHeight="25.0" prefWidth="25.0" style="-fx-background-color: white; -fx-background-radius: 70;" text="&lt;">
+               <effect>
+                  <DropShadow />
+               </effect>
+            </Button>
+            <Button layoutX="222.0" layoutY="130.0" mnemonicParsing="false" onAction="#nextMonthButton" prefHeight="25.0" prefWidth="25.0" style="-fx-background-color: white; -fx-background-radius: 70;" text="&gt;">
+               <effect>
+                  <DropShadow />
+               </effect>
+            </Button>
+            <Label fx:id="monthLabel" layoutX="150.0" layoutY="135.0" text="Label" textFill="WHITE" />
          </children>
       </AnchorPane>
    </children>

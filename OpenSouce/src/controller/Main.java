@@ -24,7 +24,7 @@ public class Main extends Application {
 			primaryStage.setScene(loginscene);
 			//primaryStage.initStyle(StageStyle.TRANSPARENT);
 			primaryStage.setTitle("신호등 가계부");
-			primaryStage.getIcons().add(new Image("file:image/신호등.png"));
+			primaryStage.getIcons().add(new Image("file:image/BookIcon.png"));
 			primaryStage.show();
 			primaryStage.setResizable(false);
 	}

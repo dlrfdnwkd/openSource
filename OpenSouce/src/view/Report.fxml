@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.effect.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
@@ -7,28 +8,28 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.BorderPane?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="724.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ReportController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="724.0" prefWidth="1000.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ReportController">
    <children>
       <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
          <children>
-            <Label prefHeight="58.0" prefWidth="153.0" text="보고서">
+            <Label prefHeight="58.0" prefWidth="153.0" text="보고서" textFill="#31b0e5">
                <font>
                   <Font size="49.0" />
                </font>
             </Label>
             <HBox alignment="CENTER" prefHeight="58.0" prefWidth="693.0">
                <children>
-                  <Button mnemonicParsing="false" onAction="#previousMonthButton" text="&lt;">
+                  <Button mnemonicParsing="false" onAction="#previousMonthButton" prefHeight="25.0" prefWidth="25.0" style="-fx-background-color: #31b0e5; -fx-background-radius: 20;" text="&lt;" textFill="WHITE">
                      <HBox.margin>
                         <Insets right="10.0" />
                      </HBox.margin>
                   </Button>
-                  <Label fx:id="dateTitle" text="2018년 5월">
+                  <Label fx:id="dateTitle" text="2018년 5월" textFill="#31b0e5">
                      <font>
                         <Font size="22.0" />
                      </font>
                   </Label>
-                  <Button mnemonicParsing="false" onAction="#nextMonthButton" text="&gt;">
+                  <Button mnemonicParsing="false" onAction="#nextMonthButton" prefHeight="25.0" prefWidth="25.0" style="-fx-background-color: #31b0e5; -fx-background-radius: 20;" text="&gt;" textFill="WHITE">
                      <HBox.margin>
                         <Insets left="10.0" />
                      </HBox.margin>
@@ -87,15 +88,21 @@
       </VBox>
       <HBox alignment="CENTER" prefHeight="82.0" prefWidth="1000.0">
          <children>
-            <Button mnemonicParsing="false" onAction="#editButton" text="편집">
+            <Button mnemonicParsing="false" onAction="#editButton" prefHeight="25.0" prefWidth="80.0" style="-fx-background-color: #31b0e5; -fx-background-radius: 20;" text="편집" textFill="WHITE">
                <HBox.margin>
-                  <Insets right="10.0" />
+                  <Insets right="40.0" />
                </HBox.margin>
+               <effect>
+                  <DropShadow />
+               </effect>
             </Button>
-            <Button mnemonicParsing="false" text="삭제">
+            <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="80.0" style="-fx-background-color: #31b0e5; -fx-background-radius: 20;" text="삭제" textFill="WHITE">
                <HBox.margin>
-                  <Insets left="10.0" />
+                  <Insets left="40.0" />
                </HBox.margin>
+               <effect>
+                  <DropShadow />
+               </effect>
             </Button>
          </children>
       </HBox>

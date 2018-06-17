@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.effect.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import java.lang.*?>
@@ -12,9 +13,9 @@
          <items>
             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                <children>
-                  <VBox layoutX="107.0" layoutY="-12.0" prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <VBox layoutX="107.0" layoutY="-12.0" prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: white;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
-                        <Label text="1.지출" />
+                        <Label prefHeight="15.0" prefWidth="296.0" text="1.지출" />
                         <TableView fx:id="expenseTable" prefHeight="200.0" prefWidth="200.0">
                            <columns>
                               <TableColumn fx:id="expenseNameColumn" prefWidth="75.0" text="제목" />
@@ -63,7 +64,10 @@
             </TableView>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <Button mnemonicParsing="false" text="확인" />
+                  <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="150.0" style="-fx-background-color: blue; -fx-background-radius: 50;" text="확인" textFill="WHITE">
+                     <effect>
+                        <DropShadow />
+                     </effect></Button>
                </children>
             </HBox>
          </children>

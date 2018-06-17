@@ -142,9 +142,10 @@ public class CalendarController {
                 }
                 }
                 }
+            ap.setFocusTraversable(true);
             if(!calendarDate.getMonth().equals(yearMonth.getMonth()))
             {
-            	ap.setStyle("-fx-background-color: gray;-fx-border-color: white;");
+            	ap.setStyle("-fx-background-color: #EDEDED;-fx-border-color: white;");
             	ap.getChildren().clear();
             }
            // ap.setStyle("-fx-border-color: white;");
